@@ -1,0 +1,90 @@
+@use "./base.scss";
+// put your custom CSS here!
+body {
+    overflow-wrap: break-word !important;
+    letter-spacing: 0.007em;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page > #quartz-body footer {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+.center p, ul, text, li, ol, ul, .katex, .math {
+    text-align: justify;
+}
+
+.center h3 {
+    margin-bottom: -0.7rem;
+}
+
+.center {
+    font-size: 19px;
+    line-height: 1.54;
+}
+
+.center a {
+    color: #5396ed;
+    font-weight: 400;
+}
+
+.center a:hover {
+    color: rgb(30, 40, 145);
+    font-weight: 400;
+}
+
+.folder-outer a {
+    color: #565656 !important;
+    font-weight: 300 !important;
+    font-size: 16px !important;
+}   
+
+.folder-title-depth1 a {
+    color: #2f2f2f !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+}
+
+.folder-outer a:hover {
+    color: #5396ed !important;
+}
+
+
+#explorer-ul > li > .folder-outer > ul > li {
+    padding-bottom: 1rem;
+  }
+
+.folder-outer {
+    border-inline-start: 1px solid rgba( 237,238,243,1 );
+}
+
+
+
+.callout {
+    &[data-callout="affirmation"] {
+        --color: #db8942;
+        --border: #db894244;
+        --bg: #db894210;
+        --callout-icon: var(--callout-icon-success);
+    }
+
+    &[data-callout="ressource"] {
+        --color: #09ad7a;
+        --border: #09ad7144;
+        --bg: #09ad7110;
+        --callout-icon: var(--callout-icon-abstract);
+    }
+
+    &[data-callout="definition"] {
+        --color: #db4242;
+        --border: #db424244;
+        --bg: #db424210;
+        --callout-icon: var(--callout-icon-danger);
+    }
+  }
