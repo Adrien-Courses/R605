@@ -1,5 +1,5 @@
 +++
-title = "TP JPA Découverte"
+title = "TP1 JPA Découverte"
 weight = 10
 +++
 

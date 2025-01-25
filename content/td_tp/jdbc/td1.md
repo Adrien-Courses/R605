@@ -1,5 +1,5 @@
 +++
-title = "TD JDBC Pooling"
+title = "TD1 JDBC Pooling"
 weight = 30
 +++
 

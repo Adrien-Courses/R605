@@ -1,12 +1,14 @@
 +++
 title = "Transactions"
-weight = 30
+weight = 50
 +++
 
-{{% notice style="tip" title="Ressources" icon="book" %}}
-- [Spring Transaction Best Practices (Attention pour Spring)](https://vladmihalcea.com/spring-transaction-best-practices/)
-- [63.6. La gestion des transactions hors Java EE](https://www.jmdoudoux.fr/java/dej/chap-jpa.htm#jpa-6)
-{{% /notice %}}
+> [!ressource] Ressource
+> - [Spring Transaction Best Practices (Attention pour Spring)](https://vladmihalcea.com/spring-transaction-best-practices/)
+> - [63.6. La gestion des transactions hors Java EE](https://www.jmdoudoux.fr/java/dej/chap-jpa.htm#jpa-6)
+
+
+Dans la section dédiée à JDBC nous avions abordé rapidement l'api JTA. De son côté JPA propose une gestion des transactions grâce à l'interface `EntityTransaction`.
 
 - `void begin()` 	Débuter la transaction
 - `void commit()` 	Valider la transaction

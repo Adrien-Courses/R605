@@ -1,6 +1,6 @@
 
 +++
-title = "TP JDBC Transaction"
+title = "TP2 JDBC Transaction"
 weight = 20
 +++
 

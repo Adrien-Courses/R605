@@ -5,10 +5,12 @@ weight = 40
 
 > [!ressource] Ressources
 > - [José Paumard - Cycle de vie d'une entité JPA](https://youtu.be/gsBWy6YyhjI?list=PLzzeuFUy_CnhVfJIKyc3okTiiCc0anutx)
-> - [Vlad Mihalcea - A beginner’s guide to entity state transitions with JPA and Hibernate](https://vladmihalcea.com/a-beginners-guide-to-jpa-hibernate-entity-state-transitions/)
+> - [Vlad Mihalcea - A beginner’s guide to entity state transitions with JPA and Hibernate](https://vladmihalcea.com/a-beginners-guide-to-jpa-hibernate-entity-state-transitions/) <br><br>
+>
+> - [TD1 JPA Cycle de vie]({{< relref "td_tp/jpa/td1" >}}) - Mise en oeuvre de l’illustration décrite ci-dessous
 
 
-![cycle de vie](../images/cycle_de_vie.png)
+![cycle de vie](jpa/specification/images/cycle_de_vie.png)
 
 1. `UserJPA user = new UserJPA()`
 Lorsqu'on crée une nouvelle en JPA, elle se retrouve dans l'état `NEW`
@@ -23,7 +25,7 @@ Lorsqu'on détache une entité, nous disons à JPA que l'entité n'est plus mana
 Finalement, si nous n'avons plus besoin de cet utilisateur nous allons faire un `remove()`. Par conséquent, l'entité va être dans l'état `REMOVED`. Note, à ce moment l'entité n'est pas supprimé en base il faudra attendre les opérations de *commit*
 
 ## Illustration
-Pour illustrer l'importance du cycle de vie, considérons la table suivante
+Pour illustrer l'importance du cycle de vie, considérons la table `Cours` suivante
 ```
 +----+-------+--------------+----------------------------------------+-------------------------+
 | id | duree | promotion_id | description                            | name                    |
@@ -117,7 +119,7 @@ System.out.println(cours2);   // Objet différent : Cours@28b523a
 Si on modifie une entité `DETACHED` et qu'on souhaite persister ses nouvelles valeurs nous devons la rattacher pour l'`EntityManager` persiste son état. Mais que devienne les entités ?
 - On pourrait s'attendre à ce qu'une fois merge l'entité soit redevienne celle d'avant le détachement. Mais non, JPA va recréer une nouvelle entité
 
-```
+```java
 EntityManagerFactory emf = Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa");
 EntityManager em = emf.createEntityManager();
 

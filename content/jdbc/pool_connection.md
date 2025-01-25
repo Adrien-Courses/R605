@@ -4,7 +4,7 @@ weight = 40
 +++
 
 > [!ressource] Ressource
-> [TP3 JDBC - Pool Connection]({{< relref "td_tp/jdbc/tp3" >}})
+> [TD1 JDBC - Pool Connection]({{< relref "td_tp/jdbc/td1" >}})
 
 ![pool connexion](jdbc/images/poolconnection.png)
 

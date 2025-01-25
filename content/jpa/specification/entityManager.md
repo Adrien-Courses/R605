@@ -6,7 +6,7 @@ weight = 20
 > [!ressource] Ressources
 > - [Créer un entity manager pour une unité de persistence](https://youtu.be/khzMpNTT39w?list=PLzzeuFUy_CnhVfJIKyc3okTiiCc0anutx)
 
-![alt text](../images/emf.png)
+![alt text](jpa/specification/images/emf.png)
 
 Les interactions entre la base de données et les beans entités sont assurées par un objet de type `javax.persistence.EntityManager` : il permet de lire et rechercher des données mais aussi de les mettre à jour (ajout, modification, suppression). L'EntityManager est donc au coeur de toutes les actions de persistance.
 
@@ -27,10 +27,3 @@ transac.commit();
 em.close();    
 emf.close();  
 ```
-
-## Transactions
-Dans la section dédiée à JDBC nous avions abordé rapidement l'api JTA. De son côté JPA propose une gestion des transactions grâce à l'interface `EntityTransaction`.
-- void begin() 	Débuter la transaction
-- void commit() 	Valider la transaction
-- void roolback() 	Annuler la transaction
-- boolean isActive() 	Déterminer si la transaction est active
