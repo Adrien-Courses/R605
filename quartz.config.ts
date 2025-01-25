@@ -16,7 +16,7 @@ const config: QuartzConfig = {
       provider: "plausible",
     },
     locale: "fr-FR",
-    baseUrl: "r601.adriencaubel.fr",
+    baseUrl: "r605.adriencaubel.fr",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
     generateSocialImages: false,
