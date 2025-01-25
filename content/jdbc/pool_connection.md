@@ -3,7 +3,10 @@ title = "Pool de connexions"
 weight = 40
 +++
 
-![pool connexion](../images/poolconnection.png)
+> [!ressource] Ressource
+> [TP3 JDBC - Pool Connection]({{< relref "td_tp/jdbc/tp3" >}})
+
+![pool connexion](jdbc/images/poolconnection.png)
 
 L'ouverture d'une connexion est un processus coûteux et long. Le pool maintient des connexions ouvertes entre les requêtes, évitant ainsi le coût d'établissement d'une nouvelle connexion à chaque fois.
 

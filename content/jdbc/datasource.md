@@ -21,8 +21,8 @@ Connection connection = dataSource.getConnection();
 
 ## Avantage DataSource
 Nous ne sommes pas obligé de donnée l'url de connexion exacte qui est propre à chaque drivers :
-- "jdbc:mysql://"
-- "jdbc:postgres://"
+- `jdbc:mysql://`
+- `jdbc:postgres://`
 
 Nous allons simplement donner le serveur, le port ou encore la table
 ```java
