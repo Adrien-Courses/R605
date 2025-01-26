@@ -50,3 +50,7 @@ public static void initializeData() {
 
 Si nous nous rendons en BDD et exécutons le code suivant `SELECT * FROM Course` quel va être le résultat ?
 - En vous appuyant sur l'article en ressource expliqué le résultat
+
+### Complément
+En supprimant la boucle, l'id ne commence pas à 1, pourquoi ?
+- [How do Identity, Sequence, and Table (sequence-like) generators work in JPA and Hibernate](https://vladmihalcea.com/hibernate-identity-sequence-and-table-sequence-generator/)
