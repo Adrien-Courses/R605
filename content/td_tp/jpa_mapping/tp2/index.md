@@ -1,6 +1,6 @@
 +++
-title = "TP JPA"
-weight = 99
+title = "TP2 JPA Mapping"
+weight = 50
 +++
 
 > [!ressource] Ressources

@@ -5,17 +5,22 @@ weight = 50
 
 > [!ressource] Ressources
 > - [What is the difference between Unidirectional and Bidirectional JPA and Hibernate associations?](https://stackoverflow.com/questions/5360795/what-is-the-difference-between-unidirectional-and-bidirectional-jpa-and-hibernat)
-{{% notice style="warning" title="Rappel" icon="pen" %}}
-Si on ne précise pas le `mappedBy` une table de jointure sera créée, voir [OneToMany relation]({{% relref "one-to-many.md" %}})
-{{% /notice %}}
+
+> [!affirmation] Affirmation
+> Si on ne précise pas le `mappedBy` une table de jointure sera créée, voir par exemple [OneToMany relation]({{< relref "one-to-many.md" >}})
+
 
 On revient brièvement sur l'annotation `@mappedBy` et son utilité.
 
-> The main difference is that bidirectional relationship provides navigational access in both directions, so that you can access the other side without explicit queries. Also it allows you to apply cascading options to both directions.
+> The main difference is that bidirectional relationship provides navigational access in both directions, so that you can access the other side without explicit queries. Also it allows you to apply cascading options to both directions. [^1]
+
+[^1]: https://stackoverflow.com/questions/5360795/what-is-the-difference-between-unidirectional-and-bidirectional-jpa-and-hibernat
 
 - Via une relation bidirectionnelle nous aurons access au getter et setter des deux côtés de la relation (du parent -> l'enfant et de l'enfant -> le parent)
-- La gestion des cascades devient implicite. 
-
+- Concernant la gestion du *cascading*
+  - Nous pouvons le mettre que d'un seul côté (supprimer un post supprimera tous les commentaires)
+  - Et/ou de l'autre côté également (supprimer tous les commentaires supprimera le post)
+  
 ## Explications
 
 Nous souhaitons représenter le fait qu'un `Post` a plusieurs commentaires.
@@ -40,9 +45,14 @@ class Comment {
 
 ### Conséquence du mappedBy
 - L'attribut `mappedBy` indique que le côté `@ManyToOne` est responsable de la gestion de la colonne de clé étrangère.
-  -  En effet, nous souhaitons que la `FK` soit bien dans la table `Comment`
- 
-- et que la collection est utilisée uniquement pour récupérer les entités enfants et pour propager les changements d'état de l'entité parente aux enfants.
+  -  En effet, nous souhaitons que la FK soit bien dans la table `Comment`
+  -  Donc en valeur du `mappedBy` nous mettons l'attribut dont nous **ne** souhaitons **pas** qu'il contienne la FK <br><br>
+
+### Conséquence du CascadeType
+> [!ressource] Ressources
+> - [A beginner’s guide to JPA and Hibernate Cascade Types](https://vladmihalcea.com/a-beginners-guide-to-jpa-and-hibernate-cascade-types/)
+
+- La collection est utilisée uniquement pour récupérer les entités enfants et pour propager les changements d'état de l'entité parente aux enfants.
   - En effet, la suppression d'un `post` doit entraîné la suppressions des commentaires associés
   - MAIS la suppression d'un `comment` ne doit pas entraîné la suppression du post
 
@@ -89,8 +99,8 @@ public class User {
     private Set<Command> commands = new HashSet<>();
 ```
 
-- `orphanRemoval = true` s'assure que si nous supprimons (en code java) une commande d'un utilisateur, alors la commande sera automatique supprimer en base de données
-- `cascade = CascadeType.ALL` s'assure que si un utilisateur est supprimé alors toutes ses commandes le seront aussi, il en va de même si un utilisateur est créé avec plusieurs commandes.
+- `orphanRemoval = true` s'assure que si nous supprimons (en code java) une commande d'un utilisateur, alors la commande sera automatique supprimer en base de données (et pas seulement la colonne Fk passée à `NULL`)
+- `cascade = CascadeType.ALL` s'assure que si un utilisateur est supprimé alors toutes ses commandes le seront aussi.
 
 ```java
 try {

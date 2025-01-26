@@ -3,6 +3,15 @@ title = "@ManyToOne"
 weight = 20
 +++
 
+Supposons que nous avons un Order et un OrderLine. 
+- Nous pouvons choisir d’avoir une relation unidirectionnelle `OneToMany` entre Order et OrderLine (Order contiendrait une collection de OrderLines). 
+- Ou bien, nous pouvons opter pour une association `ManyToOne` entre OrderLine et Order (OrderLine contiendrait une référence à son Order). 
+- Enfin, nous pouvons choisir d’avoir les deux, auquel cas l’association devient une relation bidirectionnelle `OneToMany/ManyToOne`.
+
+Au final nous retombons sur le même sujet que la section précédent.
+
+
+<!--- 
 > [!ressource] Ressources
 > - [KooR - Mapping d'une relation @ManyToOne](https://koor.fr/Java/TutorialJEE/jee_jpa_many_to_one.wp)
 
@@ -126,3 +135,5 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Command> commands = new HashSet<>();
 ```
+
+-->

@@ -1,5 +1,5 @@
 +++
-title = "Copie défensive / Synchronisation"
+title = "Copie défensive"
 weight = 60
 +++
 

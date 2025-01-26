@@ -14,26 +14,22 @@ Nous souhaitons représenter la relation un utilisateur peut avoir plusieurs com
 ```java
 @Entity
 public class Utilisateur {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @OneToMany(
-        cascade = CascadeType.ALL,
-        orphanRemoval = true
-    )
+    @OneToMany
     private List<Commande> commandes = new ArrayList<>();
+}
 ```
 
 ```java
 @Entity
 public class Commande {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+}
 ```
 
 Mais si nous exécutons le code suivant, nous n'aurons pas uniquement que deux tables (dont `t_commande` avec la FK) mais 3 tables :
@@ -42,7 +38,7 @@ Mais si nous exécutons le code suivant, nous n'aurons pas uniquement que deux t
 - `t_utilisateur_commande`
 
 
-{{< mermaid align="center" zoom="true" >}}
+```mermaid
 erDiagram
     T_UTILISATEUR {
         Long id PK
@@ -59,10 +55,14 @@ erDiagram
 
     T_UTILISATEUR ||--o{ T_UTILISATEUR_COMMANDE : "" 
     T_COMMANDE ||--o{ T_UTILISATEUR_COMMANDE : ""
-{{< /mermaid >}}
+```
+
+> But this is most likely not the mapping you’re looking for because Hibernate uses an association table to map the relationship. **If you want to avoid that, you need to use a @JoinColumn annotation to specify the foreign key column.** [^1]
+[^1]: https://thorben-janssen.com/ultimate-guide-association-mappings-jpa-hibernate/#uniOneToMany
 
 
 ## Relation unidirectionnelle deux tables
+
 Pour résoudre le problème de la table de jointure supplémentaire , il suffit d'ajouter la colonne `@JoinColumn`. L'annotation aide Hibernate à comprendre qu'il existe une colonne de clé étrangère `fk_utilisateur_id` dans la table `t_commande` qui définit cette association.
 
 ```java
@@ -73,13 +73,13 @@ public class Utilisateur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany
     @JoinColumn(name ="fk_utilisateur_id")
     private List<Commande> commandes = new ArrayList<>();
 }
 ```
 
-{{< mermaid align="center" zoom="true" >}}
+```mermaid
 erDiagram
     T_UTILISATEUR {
         Long id PK
@@ -91,10 +91,10 @@ erDiagram
     }
 
     T_UTILISATEUR ||--o{ T_COMMANDE : "a"
-{{< /mermaid >}}
+```
 
 ### Performance
-L'article cité en ressource (un MUST READ), nous montre qu'en appliquant uniquement cette stratégie nous nous exposons à un problème de performance. 
+[L'article cité en ressource](https://vladmihalcea.com/the-best-way-to-map-a-onetomany-association-with-jpa-and-hibernate/) (un MUST READ), nous montre qu'en appliquant uniquement cette stratégie nous nous exposons à un problème de performance. 
 
 Par exemple, si on souhaite insérer une nouvelle commande à un utilisateur. En Java nous réalisons le code suivant
 ```java
@@ -109,14 +109,14 @@ Les instructions SQL seront jouées
 insert into utilisateur (nom, id)
 values ('Adrien', 1)
 
--- Création des commentaires
+-- 1. Création des commentaires
 insert into commentaire (desc, id)
 values ('Premier Commentaire', 1)
 
 insert into commentaire (desc, id)
 values ('Second Commentaire', 2)
 
--- Mise à jour des commentaire pour rajouter une valeur dans fk_utilisateur_id
+-- 2. Mise à jour des commentaire pour rajouter une valeur dans fk_utilisateur_id
 update commentaire set fk_utilisateur_id = 1 where id = 1
 update commentaire set fk_utilisateur_id = 1 where id = 2
 ```
@@ -134,11 +134,7 @@ public class Utilisateur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(
-        mappedBy = "utilisateur",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "utilisateur")
     private List<Commande> commandes = new ArrayList<>();
     
     /**
@@ -172,14 +168,37 @@ public class Commande {
 }
 ```
 
-Dans cette dernière solution nous pouvons noter plusieurs choses :
-- l'utilisation du `mappedBy`, qui nous permet de dire qui est le *owner* de la FK (ici `Commande`)
-  - voir [MappedBy]({{% relref "mappedBy.md" %}})
-- pour assurer la synchronisation bidirectionnelle nous avons ajouté les méthodes `addCommande` et `removeCommande`
-  - voir [Copie défensive]({{% relref "copie_defensive.md" %}})
+Avec cette dernière solution, nous pouvons noter plusieurs choses
+
+### 1. Utilisation de mappedBy
+Comme dans la section précédente sur le `@OneToOne` nous utilisons la propriété `mappedBy` pour indiquer :
+- Le *inverse side* de la relation, c'est-à-dire le côté qui contient l’attribut mappedBy (nous `Utilisateur`)
+- Le *owning side* de la relation, c'est-à-dire le côté de la relation qui onws la clé étrangère (nous `Commande`)
+
+En d'autre terme, la FK **ne** sera **pas** dans la table `Utilisateur`
+
+### 2. Méthodes de synchronisation
+Maintenant, même si nous avons défini l'attribut `mappedBy` et que l'association `@ManyToOne` côté enfant gère la colonne de clé étrangère, nous devons toujours synchroniser les deux côtés de l'association bidirectionnelle. La meilleure façon de le faire est d'ajouter ces deux méthodes utilitaires [^2]
+
+[^2]: https://stackoverflow.com/a/60889316/9399016
+
+```java
+public class Utilisateur {
+    ...
+    public void addCommande(Commande commande) {
+        commandes.add(commande);
+        commande.setUtilisateur(this);
+    }
+
+    public void removeCommande(Commande commande) {
+        commandes.remove(commande);
+        commande.setUtilisateur(null);
+    }
+}
+```
 
 ### Performance
-Cette fois-ci nous n'avons pas deux étapes pour créer une nouvelle commande
+Cette fois-ci nous n'avons pas deux étapes pour créer une nouvelle commande mais seulement du `INSERT`
 
 ```sql
 insert into utilisateur (nom, id)

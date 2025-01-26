@@ -1,5 +1,5 @@
 +++
-title = "JPA"
+title = "JPA Basics"
 weight = 20
 +++
 

@@ -1,6 +1,6 @@
 +++
 title = "Mapping JPA"
-weight = 60
+weight = 30
 +++
 
 Dans la section précédente nous avons vu comment persister, récupérer, mettre à jour des informations avec JPA. 

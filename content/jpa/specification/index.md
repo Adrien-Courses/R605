@@ -1,6 +1,6 @@
 +++
 title = "Java Persistence API"
-weight = 50
+weight = 20
 +++
 
 > [!ressource] Ressource

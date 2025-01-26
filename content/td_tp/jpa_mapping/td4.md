@@ -1,12 +1,15 @@
 +++
-title = "Exercice orphanRemoval"
-weight = 99
+title = "TD4 JPA OrphanRemoval"
+weight = 60
 +++
 
 > [!ressource] Ressources
 > - [How does JPA orphanRemoval=true differ from the ON DELETE CASCADE](https://stackoverflow.com/a/60838256/9399016)
 
-{{< mermaid align="center" zoom="true" >}}
+> [!warning] Note
+> On notera la **non**-présence de `CASCADE_TYPE.ALL`, car dans le cas d'une suppression `CASCADE_TYPE.REMOVE` et `orphanRemoval` sont redondants[^1]
+
+```mermaid
 erDiagram
     COMMANDE {
         LONG id
@@ -18,7 +21,7 @@ erDiagram
     }
 
     COMMANDE ||--o{ LIGNE_DETAIL : contains
-{{< /mermaid >}}
+```
 
 ```java
 @Entity
@@ -94,6 +97,8 @@ private List<LigneDetail> ligneDetails = new ArrayList<LigneDetail>();
 
 Alors la suppression de l'enfant de la collection du parent suffira pour qu'Hibernate le supprime de la base de données. Ainsi `ligneDetail.setCommande(null);` n'est plus requis.
 
-{{% notice style="warning" title="Définition" icon="pen" %}}
-`orphanRemoval` is an entirely ORM-specific thing. It marks "child" entity to be removed when it's no longer referenced from the "parent" entity, e.g. when you remove the child entity from the corresponding collection of the parent entity. [source](https://stackoverflow.com/a/4329723/9399016)
-{{% /notice %}}
+> [!definition] Définition
+> `orphanRemoval` is an entirely ORM-specific thing. It marks "child" entity to be removed when it's no longer referenced from the "parent" entity, e.g. when you remove the child entity from the corresponding collection of the parent entity. [^1]
+
+[^1]: https://stackoverflow.com/a/4329723/9399016
+
