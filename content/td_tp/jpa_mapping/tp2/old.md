@@ -1,6 +1,7 @@
 +++
-title = "TP2 JPA Mapping"
-weight = 50
+title = "TP2 JPA Mapping OLD"
+weight = 10
+tags = ["explorerexclude"]
 +++
 
 > [!ressource] Ressources

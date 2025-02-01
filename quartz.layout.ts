@@ -14,6 +14,10 @@ const filterFn = (node: FileNode): boolean => {
     return false;
   }
 
+  if (node.file?.frontmatter?.tags?.includes("explorerexclude")) {
+    return false;
+  }
+
   return true;
 };
 
@@ -86,7 +90,7 @@ export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
     Component.Breadcrumbs({
       spacerSymbol: "❯", // symbol between crumbs
-      rootName: "Agile", // name of first/root element
+      rootName: "Persistance", // name of first/root element
     }),
     Component.ArticleTitle(),
     Component.ContentMeta(),
@@ -144,7 +148,7 @@ export const defaultContentPageLayout: PageLayout = {
 export const defaultListPageLayout: PageLayout = {
   beforeBody: [Component.Breadcrumbs({
     spacerSymbol: "❯", // symbol between crumbs
-    rootName: "Agile", // name of first/root element
+    rootName: "Persistance", // name of first/root element
   }
   ), Component.ArticleTitle(), Component.ContentMeta()],
   left: [
