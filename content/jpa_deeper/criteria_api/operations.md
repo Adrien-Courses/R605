@@ -1,5 +1,5 @@
 +++
-title = "Concepts de base"
+title = "Opérations"
 weight = 20
 +++
 
@@ -56,7 +56,8 @@ Les **expressions de prédicats** sont les éléments de base pour définir les 
 
 Ces prédicats peuvent être combinés avec des opérateurs logiques (`and()`, `or()`, `not()`) pour créer des conditions de filtrage complexes.
 
-## Exemple complet
+### Exemple select
+
 ```java
 // Créer un objet de type CriteriaQuery
 CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -77,4 +78,39 @@ cq.select(pet)
 // Executer la requête
 TypedQuery<Pet> q = em.createQuery(cq);
 List<Pet> filteredPets = q.getResultList();
+```
+
+### Exemple update
+
+> [!definition] Attention
+> A toujours exécuter le code dans une transaction
+
+```java
+// Start a transaction
+em.getTransaction().begin();
+
+// Create CriteriaBuilder and CriteriaUpdate
+CriteriaBuilder cb = em.getCriteriaBuilder();
+CriteriaUpdate<Pet> update = cb.createCriteriaUpdate(Pet.class);
+
+// Define the root entity (Pet)
+Root<Pet> pet = update.from(Pet.class);
+
+// Join with Owner
+Join<Pet, Owner> owner = pet.join("owner");
+
+// Set the update: increase age by 1
+update.set(pet.get("age"), cb.sum(pet.get("age"), 1))
+      .where(
+          cb.equal(pet.get("type"), "dog"),
+          cb.lessThan(pet.get("age"), 5),
+          cb.equal(owner.get("id"), ownerId)
+      );
+
+// Execute the update
+Query query = em.createQuery(update);
+int updatedCount = query.executeUpdate();
+
+// Commit transaction
+em.getTransaction().commit();
 ```

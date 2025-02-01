@@ -47,6 +47,7 @@ public class Adresse {
 @Entity
 public class Client {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nom;
     
@@ -57,6 +58,7 @@ public class Client {
 @Entity
 public class Societe {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nomEntreprise;
     
@@ -85,6 +87,7 @@ Client
 @Entity
 public class Societe {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nomEntreprise;
     
