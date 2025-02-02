@@ -4,7 +4,8 @@ weight = 10
 +++
 
 > [!ressource] Ressource
-> https://github.com/Adrien-Courses/R605-TP-JPA-FETCH
+> - https://github.com/Adrien-Courses/R605-TP-JPA-FETCH
+> - [Initializing a Proxy Entity with Hibernate](https://howtodoinjava.com/hibernate/use-hibernate-initialize-to-initialize-proxycollection/)
 
 ## 1. Télécharger et lancer le projet
 - Lancer Docker Desktop
@@ -110,16 +111,94 @@ ME DIRE QUE CA DOIT ETRE CODE DANS COUCHE DAO ET PAS SERVICE
 -->
 
 
-### d) Implémenter plusieurs solutions
+## Implémenter plusieurs solutions
 Ci-dessous plusieurs solutions pour répondre au problème
 
-1. **Hibernate.initialize()**  
+### 1. Propriété enable_lazy_load_no_trans
+   - On peut ajouter dans le fichier `persistance.xml` la propriété ci-dessous qui permet de bypass tous les problèmes liés au lazy.
+   - Combien de requête sont exécutées ?
+
+```xml
+<property name="hibernate.enable_lazy_load_no_trans" value="true" />
+```
+
+
+<!--
+Cinq
+```
+-- SELECT du getClientById()
+[Hibernate] 
+    select
+        c1_0.id,
+        c1_0.email,
+        c1_0.nom 
+    from
+        Client c1_0 
+    where
+        c1_0.id=?
+        
+johndoe@example.com John Doe
+
+-- SELECT du getCommandes()
+[Hibernate] 
+    select
+        c1_0.client_id,
+        c1_0.id,
+        c1_0.dateAchat,
+        c1_0.montant 
+    from
+        Commande c1_0 
+    where
+        c1_0.client_id=?
+
+[Hibernate] 
+    select
+        c1_0.id,
+        c1_0.email,
+        c1_0.nom 
+    from
+        Client c1_0 
+    where
+        c1_0.id=?
+
+[fr.adriencaubel.entity.Commande@65d90b7f, fr.adriencaubel.entity.Commande@2a42019a, fr.adriencaubel.entity.Commande@6fc0e448]
+
+-- SELECT du getFavoris()
+[Hibernate] 
+    select
+        f1_0.client_id,
+        f1_0.id,
+        f1_0.nom,
+        f1_0.prix 
+    from
+        Article f1_0 
+    where
+        f1_0.client_id=?
+
+[Hibernate] 
+    select
+        c1_0.id,
+        c1_0.email,
+        c1_0.nom 
+    from
+        Client c1_0 
+    where
+        c1_0.id=?
+
+[fr.adriencaubel.entity.Article@7c0e4e4e, fr.adriencaubel.entity.Article@20231384]
+```
+-->
+
+Supprimer la propriété pour les prochaines questions
+
+### 2. Hibernate.initialize()
    - Combien de requête sont exécutées ?
 <!--
 3 requete executé -> pas foufou perf donc regarder autre chose
 -->
 
-1. **JOIN FETCH** : faire des jointures SQL
+### 3. JOIN FETCH
+Faire des jointures SQL en utilisant `createQuery()` et JPQL
    - Combien de requête sont exécutées ?
 <!--
 TypedQuery<Client> query = entityManager.createQuery(
@@ -162,7 +241,8 @@ where
     c1_0.id = ?
 -->
 
-3. **Entity Graph** : section *4. Named Entity Graph* de l'article https://thorben-janssen.com/5-ways-to-initialize-lazy-relations-and-when-to-use-them/
+### 4.Entity Graph
+Section *4. Named Entity Graph* de l'article https://thorben-janssen.com/5-ways-to-initialize-lazy-relations-and-when-to-use-them/
    - Combien de requête sont exécutés ?
 
 <!--
@@ -187,7 +267,7 @@ Pour les étudiants en avance, vous pouvez coder les méthodes suivante :
         clientDAO.saveOrUpdateClient(client); // Persist client (cascade saves orders)
     }
 
-BIEN UTILISER une méthode qui récupère aussi les commande e.g. getClientWithDetailsEntityGraph
+ATTENTION BIEN UTILISER une méthode qui récupère aussi les commande e.g. getClientWithDetailsEntityGraph
 car si on utilise que getClietnById on n'a pas les oneToMany donc LazyException -> Pour un update il nous faut toute l'entité souvent
 
 -->

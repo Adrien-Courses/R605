@@ -85,6 +85,8 @@ public class Promotion {
     )
     private List<Cours> listesCours;
 }
+
+joinColumns est le owning side, la classe où on rajoute cette annotation ici Promotion
 -->
 
 ```
@@ -123,3 +125,5 @@ mysql> SELECT * FROM Cours;
 |   130 |  3 |            1 | UML Design                             | UML                     |
 +-------+----+--------------+----------------------------------------+-------------------------+
 ```
+
+-- M'appeler

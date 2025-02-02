@@ -83,3 +83,23 @@ Et bien ça dépend.
 - Dans le cas où l'on sait que la relation *livres* sera explorée systématiquement après la lecture d'un *étudiant*, il serait plus malin de n'émettre qu'un seul SELECT, avec une jointure, de manière à peupler la relation *livres* à l'avance. 
   - => Cela ne ferait qu'un seul aller-retour avec la base de données, et serait de ce fait beaucoup plus performant. 
 - En revanche, dans le cas d'une relation qui, pour des raisons applicatives, ne serait pas explorée, ou rarement, alors l'exécution de la jointure lors du SELECT serait un surcoût inutile.
+
+### Problème du n+1
+En complément, nous allons mettre un nom sur cette problématique.
+
+> The N+1 query problem happens when the data access framework executed N additional SQL statements to fetch the same data that could have been retrieved when executing the primary SQL query (JOIN)
+
+Supposons la relation une `Voiture` à plusieurs `Roue` => `@OneToMany`
+- Supposons maintenant qu'il faille parcourir toutes les voitures et, pour chacune d'entre elles, afficher la liste des roues. L'implémentation O/R naïve ferait ce qui suit
+  - `SELECT * FROM Cars;`
+  - Puis pour chaque voiture `SELECT * FROM Wheel WHERE CarId = ?`
+  
+En d'autres termes, nous avons une sélection pour les voitures, puis *N* sélections supplémentaires, où *N* est le nombre total de voitures. Par exemple, une jointure aurait été pertinente et plus performante
+```sql
+SELECT c.*, w.* 
+FROM Cars c
+LEFT JOIN Wheel w ON c.id = w.car_id;
+
+```
+
+Plusieurs solutions existent, nous en étudierons dans le [TP3 JPA Fetching]({{< relref "td_tp/jpa_godeeper/fetching" >}})

@@ -49,7 +49,75 @@ Pour ce faire plusieurs possibilité, c'est le point d)
 ## d) Implémenter plusieurs solutions
 Ci-dessous plusieurs solutions pour répondre au problème
 
-1. **Hibernate.initialize()**  
+1. **Propriété enable_lazy_load_no_trans**
+- Combien de requête sont exécutées ?
+  
+Cinq
+
+```
+-- SELECT du getClientById()
+[Hibernate] 
+    select
+        c1_0.id,
+        c1_0.email,
+        c1_0.nom 
+    from
+        Client c1_0 
+    where
+        c1_0.id=?
+        
+johndoe@example.com John Doe
+
+-- SELECT du getCommandes()
+[Hibernate] 
+    select
+        c1_0.client_id,
+        c1_0.id,
+        c1_0.dateAchat,
+        c1_0.montant 
+    from
+        Commande c1_0 
+    where
+        c1_0.client_id=?
+
+[Hibernate] 
+    select
+        c1_0.id,
+        c1_0.email,
+        c1_0.nom 
+    from
+        Client c1_0 
+    where
+        c1_0.id=?
+
+[fr.adriencaubel.entity.Commande@65d90b7f, fr.adriencaubel.entity.Commande@2a42019a, fr.adriencaubel.entity.Commande@6fc0e448]
+
+-- SELECT du getFavoris()
+[Hibernate] 
+    select
+        f1_0.client_id,
+        f1_0.id,
+        f1_0.nom,
+        f1_0.prix 
+    from
+        Article f1_0 
+    where
+        f1_0.client_id=?
+
+[Hibernate] 
+    select
+        c1_0.id,
+        c1_0.email,
+        c1_0.nom 
+    from
+        Client c1_0 
+    where
+        c1_0.id=?
+
+[fr.adriencaubel.entity.Article@7c0e4e4e, fr.adriencaubel.entity.Article@20231384]
+```
+
+2. **Hibernate.initialize()**  
    - Combien de requête sont exécutées ?
 
 ```java

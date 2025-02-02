@@ -402,4 +402,6 @@ public void testFindCommandeEtAjouterLigneDetailWorking() {
     sessionFactory.close();
 } 
 ```
+
+OUI ... logique car ligneDetails.add(ligneDetail); ajoute à la collection locale je dirais
 -->
