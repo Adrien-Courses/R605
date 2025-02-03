@@ -115,6 +115,9 @@ ME DIRE QUE CA DOIT ETRE CODE DANS COUCHE DAO ET PAS SERVICE
 Ci-dessous plusieurs solutions pour répondre au problème
 
 ### 1. Propriété enable_lazy_load_no_trans
+> [!ressource] Ressource
+> [The hibernate.enable_lazy_load_no_trans Anti-Pattern](https://vladmihalcea.com/the-hibernate-enable_lazy_load_no_trans-anti-pattern/)
+
    - On peut ajouter dans le fichier `persistance.xml` la propriété ci-dessous qui permet de bypass tous les problèmes liés au lazy.
    - Combien de requête sont exécutées ?
 

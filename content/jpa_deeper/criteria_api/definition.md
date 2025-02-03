@@ -92,7 +92,7 @@ Il y aura deux appel SQL (FETCH.LAZY)
         p1_0.owner_id=?
 ```
 
-### WHERE avec createQuery()
+### WHERE avec JPQL
 
 Une alternative consiste à écrire une requête SQL préparée puis utiliser `createQuery` (voir [EntityManager Operation]({{< relref "jpa/specification/entityManager_operations" >}})) puis ensuite saisir les paramètres
 
