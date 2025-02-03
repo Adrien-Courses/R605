@@ -28,7 +28,31 @@ weight = 99
 </iframe>
 
 <iframe 
-    src="ressources/static/slides/04_mapping_jpa/slide.html"
+    src="ressources/static/slides/04_Mapping_JPA_association/slide.html"
+    width="100%" 
+    height="600" 
+    frameborder="0"
+    allowfullscreen>
+</iframe>
+
+<iframe 
+    src="ressources/static/slides/05_Heritage/slide.html"
+    width="100%" 
+    height="600" 
+    frameborder="0"
+    allowfullscreen>
+</iframe>
+
+<iframe 
+    src="ressources/static/slides/06_Fetch/slide.html"
+    width="100%" 
+    height="600" 
+    frameborder="0"
+    allowfullscreen>
+</iframe>
+
+<iframe 
+    src="ressources/static/slides/07_Criteria_API/slide.html"
     width="100%" 
     height="600" 
     frameborder="0"

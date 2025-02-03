@@ -120,7 +120,7 @@ Corriger `getBooksByLibraryName(String libraryName)` pour n'avoir qu'une seule r
 - Piste : regarder la différence entre un JOIN et un FETCH JOIN (https://stackoverflow.com/a/17439679/9399016)
 <!---
         // Use fetch instead of join
-        Fetch<Book, Library> libraryFetch = root.fetch("library", JoinType.INNER);
+        Fetch<Book, Library> libraryFetch = root.fetch("library");
         Join<Book, Library> libraryJoin = (Join<Book, Library>) libraryFetch;
 -->
 

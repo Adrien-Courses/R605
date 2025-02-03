@@ -39,7 +39,7 @@ List<Pet> = em.createQuery("SELECT p FROM Pet p", Pet.class).getResultList();
 ## Pourquoi l'utiliser ?
 Très bonne remarque ! En effet, jusqu'à présent, les opérations de base sur les entités (`persist`, `merge`, `remove`) ne permettaient pas de contrôler les conditions WHERE lors de leur exécution. Plusieurs solutions sont possibles :
 - faire un filtre directement en Java
-- utiliser la méthode `createQuery()`
+- utiliser JPQL + méthode `createQuery`
 - utiliser l'API Criteria
 
 ### WHERE en Java
@@ -256,3 +256,6 @@ Lors du `pet.getOwner().getName()` le propriétaire est déjà chargé
     order by
         p1_0.name
 ```
+
+## Conclusion
+L'API criteria permet de remplacer les mot-clés JPQL (`SELECT`, `FROM`, `WHERE`) par des équivalent `select()`, `from()`, `where()` ...

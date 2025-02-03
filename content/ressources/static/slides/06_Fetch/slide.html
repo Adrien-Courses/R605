@@ -26,7 +26,7 @@ section.centered {
   justify-content: center;
   text-align: center;
 }
-;--marpit-advanced-background-split:40%;" data-marpit-pagination-total="39" data-marpit-advanced-background="background" data-marpit-advanced-background-split="left"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/logo.png&quot;);background-size:80%;"></figure></div></section></foreignObject><foreignObject width="60%" height="720" x="40%"><section id="1" data-paginate="true" data-theme="gaia" data-style="section {
+;--marpit-advanced-background-split:40%;" data-marpit-pagination-total="8" data-marpit-advanced-background="background" data-marpit-advanced-background-split="left"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/logo.png&quot;);background-size:80%;"></figure></div></section></foreignObject><foreignObject width="60%" height="720" x="40%"><section id="1" data-paginate="true" data-theme="gaia" data-style="section {
   background-color: #fbfbfb;
 }
 section.centered {
@@ -44,9 +44,9 @@ section.centered {
   justify-content: center;
   text-align: center;
 }
-;--marpit-advanced-background-split:40%;" data-marpit-pagination-total="39" data-marpit-advanced-background="content" data-marpit-advanced-background-split="left">
+;--marpit-advanced-background-split:40%;" data-marpit-pagination-total="8" data-marpit-advanced-background="content" data-marpit-advanced-background-split="left">
 <h1 id="mapping-jpa"><strong>Mapping JPA</strong></h1>
-<h2 id="association">Association</h2>
+<h2 id="fetching">Fetching</h2>
 <p><a href="https://adriencaubel.fr">adriencaubel.fr</a></p>
 </section>
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-paginate="true" data-theme="gaia" data-style="section {
@@ -58,7 +58,7 @@ section.centered {
   justify-content: center;
   text-align: center;
 }
-" lang="fr-FR" data-marpit-pagination="1" style="" data-marpit-pagination-total="39" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="left"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-theme="gaia" data-style="section {
+" lang="fr-FR" data-marpit-pagination="1" style="" data-marpit-pagination-total="8" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="left"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-theme="gaia" data-style="section {
   background-color: #fbfbfb;
 }
 section.centered {
@@ -76,25 +76,19 @@ section.centered {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="39">
+;" data-marpit-pagination-total="8">
 <h1 id="introduction">Introduction</h1>
 <ul>
-<li>
-<p>Nous avons introduit le spécification JPA</p>
+<li>Nous avons étudié les concepts suivants
 <ul>
-<li>EntityManager et opérations persist, remove, find ...</li>
-<li>Cycle de vie d'une entité</li>
-<li>Gestion des transactions<br />
-<br /></li>
+<li>La notion <code>@Entity</code></li>
+<li>Les associations <code>@OneToMany</code> ... et <code>mappedBy</code> (bidirectionnelle)</li>
+<li>L'héritage <code>@Inheritance</code></li>
 </ul>
 </li>
-<li>
-<p>Nous avons également étudier <code>@Entity</code> et <code>@Embeddable</code></p>
-</li>
-<li>
-<p>Maintenant étudions les relations 1:1,  1:n,  n:1 et n:m</p>
-</li>
 </ul>
+<br />
+<p>Nous allons maintenant nous intéresser à <strong>l'optimisation des lectures</strong></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-theme="gaia" data-style="section {
   background-color: #fbfbfb;
@@ -114,31 +108,14 @@ section.centered {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="39">
-<h1 id="impedance-mismatch">Impedance mismatch</h1>
-<p>L'impédance mismatch fait référence aux incompatibilités ou divergences conceptuelles et techniques entre la POO et les Bases de données relationnelles</p>
-<table>
-<thead>
-<tr>
-<th>(POO)</th>
-<th>Bases Relationnelles</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Héritage</td>
-<td>1:1</td>
-</tr>
-<tr>
-<td>List</td>
-<td>1:n ou n:1</td>
-</tr>
-<tr>
-<td>Map</td>
-<td>n:n</td>
-</tr>
-</tbody>
-</table>
+;" data-marpit-pagination-total="8">
+<h1 id="pourquoi">Pourquoi ?</h1>
+<p>Lorsqu’on travaille avec JPA, il est essentiel de comprendre comment sont chargées les relations entre entités pour optimiser les performances de l’application.</p>
+<p>Exemple</p>
+<ul>
+<li>Un <code>Etudiant</code> a une liste de <code>Note</code></li>
+<li>Lorsqu'on charge un <code>etudiant</code> doit-on également charger les <code>notes</code> ?</li>
+</ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-theme="gaia" data-style="section {
   background-color: #fbfbfb;
@@ -158,17 +135,13 @@ section.centered {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="39">
-<h1 id="impedance-mismatch-1">Impedance mismatch</h1>
+;" data-marpit-pagination-total="8">
+<h1 id="strat%C3%A9gies-fetching">Stratégies Fetching</h1>
+<p>Deux stratégies principales existent :</p>
 <ul>
-<li>Par exemple on peut se demander comment de l’héritage en OO va-t-il être transformer en BDD ?
-<ul>
-<li>C'est au programmeur de résoudre ce problème</li>
-<li>Heureusement, nous pouvons tirer parti d’un ORM (Object-Relational Mapping)</li>
+<li><strong>Lazy Fetching</strong> (chargement paresseux)</li>
+<li><strong>Eager Fetching</strong> (chargement immédiat).</li>
 </ul>
-</li>
-</ul>
-<p>Les ORM permettent de créer une correspondance entre un modèle objet et un modèle relationnel de base de données</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-theme="gaia" data-style="section {
   background-color: #fbfbfb;
@@ -188,15 +161,19 @@ section.centered {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="39">
-<h1 id="unidirectionnellesbidirectionnelles">Unidirectionnelles/Bidirectionnelles</h1>
-<p>Un premier constat, très important: <em>en java nous pouvons représenter l’association de trois manières</em></p>
+;" data-marpit-pagination-total="8">
+<h1 id="fetching-par-d%C3%A9faut">Fetching par défaut</h1>
 <ul>
-<li>Dans une <code>Personne</code> on place un lien vers un <code>Passeport</code> (unidir.)</li>
-<li>Dans une <code>Passeport</code> on place un lien vers une <code>Personne</code> (unidir.)</li>
-<li>On place un lien dans les deux côtés (bidir.)</li>
+<li>Par défaut, <code>@OneToMany</code> et <code>@ManyToMany</code> adopte une approche <strong>Lazy</strong></li>
+<li>Par défaut, <code>@OneToOne</code> et <code>@ManyToOne</code> adapte une approche <strong>Eager</strong></li>
 </ul>
-<p>Rappelons que dans une base relationnelle, le problème ne se pose pas: une association représentée par une clé étrangère est par nature bidirectionnelle.</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Etudiant</span> {
+    ...
+    <span class="hljs-meta">@OneToMany(mappedBy = &quot;etudiant&quot;)</span> <span class="hljs-comment">// Lazy par défaut</span>
+    <span class="hljs-keyword">private</span> List&lt;Note&gt; notes
+}
+</code></pre>
+<p>Par défaut la liste de <code>notes</code> ne sera pas chargée en même temps de l'étudiant</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-theme="gaia" data-style="section {
   background-color: #fbfbfb;
@@ -216,21 +193,21 @@ section.centered {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="39">
-<h1 id="unidirectionnelle">Unidirectionnelle</h1>
+;" data-marpit-pagination-total="8">
+<h1 id="fetch-lazy">Fetch LAZY</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-meta">@Entity</span>
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Personne</span> {
-
-    <span class="hljs-meta">@Id</span>
-    <span class="hljs-meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span>
-    <span class="hljs-keyword">private</span> Long id;
-
-    <span class="hljs-keyword">private</span> String nom;
-
-    <span class="hljs-meta">@OneToOne</span>
-    <span class="hljs-keyword">private</span> Passeport passeport;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Etudiant</span> {
+    <span class="hljs-meta">@OneToMany(mappedBy = &quot;etudiant&quot;)</span> <span class="hljs-keyword">private</span> List&lt;Livre&gt; livresLus;
 }
 </code></pre>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-type">Etudiant</span> <span class="hljs-variable">etudiant</span> <span class="hljs-operator">=</span> entityManager.find(Etudiant.class, etudiantId); <span class="hljs-comment">// 1</span>
+List&lt;Livre&gt; livres = etudiant.getLivresLus(); <span class="hljs-comment">// 2</span>
+</code></pre>
+<p>Comme LAZY deux requêtes SQL vont être nécessaires</p>
+<ol>
+<li><code>SELECT * FROM etudiant WHERE id = ?;</code></li>
+<li>puis <code>SELECT * FROM livre WHERE etudiant_id = ?;</code></li>
+</ol>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-theme="gaia" data-style="section {
   background-color: #fbfbfb;
@@ -250,26 +227,20 @@ section.centered {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="39">
-<h1 id="unidirectionnelle-1">Unidirectionnelle</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-meta">@Entity</span>
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Passeport</span> {
-
-    <span class="hljs-meta">@Id</span>
-    <span class="hljs-meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span>
-    <span class="hljs-keyword">private</span> Long id;
-
-    <span class="hljs-keyword">private</span> String numero;
-}
+;" data-marpit-pagination-total="8">
+<h1 id="fetch-eager">Fetch EAGER</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java">    <span class="hljs-meta">@OneToMany(mappedBy = &quot;etudiant&quot;, fetch = FetchType.EAGER)</span> 
+    <span class="hljs-keyword">private</span> List&lt;Livre&gt; livresLus;
 </code></pre>
-<ul>
-<li><code>personne.getPassword()</code> <img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" data-marp-twemoji=""/></li>
-<li><code>password.getPersonne()</code> <img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/274c.svg" data-marp-twemoji=""/>
-<ul>
-<li>car relation unidirectionnel</li>
-</ul>
-</li>
-</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-type">Etudiant</span> <span class="hljs-variable">etudiant</span> <span class="hljs-operator">=</span> entityManager.find(Etudiant.class, etudiantId);
+List&lt;Livre&gt; livres = etudiant.getLivresLus();
+</code></pre>
+<p>Une seule requête, tout est récupéré en même temps</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>SELECT e.*, l.* 
+FROM etudiant e 
+LEFT JOIN livre l ON e.id = l.etudiant_id 
+WHERE e.id = ?;
+</code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-theme="gaia" data-style="section {
   background-color: #fbfbfb;
@@ -289,1043 +260,17 @@ section.centered {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="39">
-<h1 id="bidirectionnelle">Bidirectionnelle</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-meta">@Entity</span>
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Personne</span> {
-
-    <span class="hljs-meta">@Id</span>
-    <span class="hljs-meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span>
-    <span class="hljs-keyword">private</span> Long id;
-
-    <span class="hljs-meta">@OneToOne(mappedBy = &quot;passeport&quot;)</span> <span class="hljs-comment">// Référence inverse à la relation dans `Personne`</span>
-    <span class="hljs-keyword">private</span> Passeport passport;
-}
-</code></pre>
+;" data-marpit-pagination-total="8">
+<h1 id="toujours-choisir-eager">Toujours choisir EAGER ?</h1>
+<p>Et bien ça dépend.</p>
 <ul>
-<li><code>personne.getPassword()</code> <img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" data-marp-twemoji=""/></li>
-<li><code>password.getPersonne()</code> <img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" data-marp-twemoji=""/>
+<li>Dans le cas où l’on sait que la relation <em>livres</em> sera explorée systématiquement après la lecture d’un étudiant, il serait plus malin de n’émettre qu’un seul SELECT avec une jointure, de manière à peupler la relation <em>livres</em> à l’avance.
 <ul>
-<li><code>Personne</code> et <code>Passeport</code> ont chacun une référence à l'autre.</li>
+<li>Cela ne ferait qu’un seul aller-retour avec la base de données.</li>
 </ul>
 </li>
+<li>En revanche, dans le cas d’une relation qui, pour des raisons applicatives, ne serait pas explorée, ou rarement, alors l’exécution de la jointure lors du SELECT serait un surcoût inutile.</li>
 </ul>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-class="centered" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" class="centered" data-marpit-pagination="9" style="--paginate:true;--class:centered;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="relation-11">Relation 1:1</h1>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="10" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="unidirectionnelle-2">Unidirectionnelle</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-meta">@Entity</span>
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> {
-    <span class="hljs-meta">@OneToOne</span> <span class="hljs-keyword">private</span> Passeport passeport;
-}
-<span class="hljs-meta">@Entity</span>
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Passeport</span> {
-   ... <span class="hljs-comment">// aucune relation inverse</span>
-}
-</code></pre>
-<p>Maintenant si on souhaite aller plus loin et pouvoir naviguer dans les deux directions plusieurs options s’offrent à nous</p>
-<ul>
-<li>avoir deux relations unidirectionnelles</li>
-<li>ou avoir une relation bidirectionnelle</li>
-</ul>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="11" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="apart%C3%A9--cas-impossible">Aparté : Cas impossible</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-meta">@Entity</span>
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> {
-    <span class="hljs-meta">@OneToOne</span> <span class="hljs-keyword">private</span> Passeport passeport;
-}
-<span class="hljs-meta">@Entity</span>
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Passeport</span> {
-    <span class="hljs-keyword">private</span> Person person; <span class="hljs-comment">// aucune annotation</span>
-}
-</code></pre>
-<p>=&gt; <code>JdbcTypeRecommendationException</code><br />
-- car <code>Password</code> est annoté de <code>@Entity</code><br />
-- et fait référence à <code>Person</code> aussi une entité, sans annotation JPA pour définir le type de la relation</p>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="12" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="2x-onetoone--2x-unidirectionnelle">2x OneToOne = 2x unidirectionnelle</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-meta">@Entity</span>
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Personne</span> {
-
-    <span class="hljs-meta">@Id</span>
-    <span class="hljs-meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span>
-    <span class="hljs-keyword">private</span> Long id;
-
-    <span class="hljs-keyword">private</span> String nom;
-
-    <span class="hljs-meta">@OneToOne</span>
-    <span class="hljs-keyword">private</span> Passeport passeport;
-}
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="13" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="2x-onetoone--2x-unidirectionnelle-1">2x OneToOne = 2x unidirectionnelle</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-meta">@Entity</span>
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Passeport</span> {
-
-    <span class="hljs-meta">@Id</span>
-    <span class="hljs-meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span>
-    <span class="hljs-keyword">private</span> Long id;
-
-    <span class="hljs-keyword">private</span> String numero;
-
-    <span class="hljs-meta">@OneToOne</span>
-    <span class="hljs-keyword">private</span> Personne personne;
-}
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="14" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="2x-onetoone--r%C3%A9sultat">2x OneToOne : résultat</h1>
-<table>
-<thead>
-<tr>
-<th><strong>id</strong></th>
-<th><strong>nom</strong></th>
-<th><strong>passeport_id</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>John Doe</td>
-<td>101</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th><strong>id</strong></th>
-<th><strong>numero</strong></th>
-<th><strong>personne_id</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>101</td>
-<td>A12345678</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-<p>Dans la plupart des cas, nous n'avons pas besoin de clés étrangères dans les deux tables pour une relation univoque.</p>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="15" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="onetoone--mappedby--bidir">OneToOne + mappedBy = Bidir.</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-comment">/* (Inverse Side) */</span>
-<span class="hljs-meta">@Entity</span>
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Personne</span> {
-    <span class="hljs-meta">@OneToOne(mappedBy = &quot;personne&quot;)</span>  <span class="hljs-comment">// Inverse side, la FK n&#x27;est pas dans Personne</span>
-    <span class="hljs-keyword">private</span> Passeport passeport;
-}
-</code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-comment">/* (Owning Side) */</span>
-<span class="hljs-meta">@Entity</span>
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Passeport</span> {
-    <span class="hljs-meta">@OneToOne</span> <span class="hljs-comment">// Foreign key will be here</span>
-    <span class="hljs-comment">// @JoinColumn(name = &quot;fk_personne_id) nom de colonne explicite</span>
-    <span class="hljs-keyword">private</span> Personne personne;
-}
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="16" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="onetoone--mappedby--r%C3%A9sultat">OneToOne + mappedBy : résultat</h1>
-<table>
-<thead>
-<tr>
-<th><strong>id</strong></th>
-<th><strong>nom</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>John Doe</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th><strong>id</strong></th>
-<th><strong>numero</strong></th>
-<th><strong>personne_id</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>101</td>
-<td>A12345678</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="17" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="onetoone--mappedby--r%C3%A9sultat-1">OneToOne + mappedBy : résultat</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java">entityManager.getTransaction().begin();
-
-<span class="hljs-type">Passeport</span> <span class="hljs-variable">passeport</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Passeport</span>();
-passeport.setNumero(<span class="hljs-string">&quot;A12345678&quot;</span>);
-
-<span class="hljs-comment">// Create Personne entity and associate it with the Passeport</span>
-<span class="hljs-type">Personne</span> <span class="hljs-variable">personne</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();
-personne.setNom(<span class="hljs-string">&quot;John Doe&quot;</span>);
-personne.setPasseport(passeport);
-
-<span class="hljs-comment">// Persist both entities</span>
-entityManager.persist(passeport);
-entityManager.persist(personne);
-
-entityManager.getTransaction().commit();
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="18" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="onetoone--mappedby--cascade">OneToOne + mappedBy + Cascade</h1>
-<p>Nous avons du persister nos deux entités.</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java">entityManager.persist(passeport);
-entityManager.persist(personne);
-</code></pre>
-<p>Il serait intéressant de persister automatiquement l'entité <code>Passeport</code> lorsqu'on persiste l'entité <code>Personne</code></p>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="19" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="onetoone--mappedby--cascade-1">OneToOne + mappedBy + Cascade</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-meta">@Entity</span>
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Personne</span> {
-    <span class="hljs-meta">@OneToOne(mappedBy = &quot;personne&quot;, cascade = CascadeType.ALL)</span>
-    <span class="hljs-keyword">private</span> Passeport passeport;
-}
-</code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-meta">@Entity</span> <span class="hljs-comment">// aucun changement pour Passeport</span>
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Passeport</span> {
-    <span class="hljs-meta">@OneToOne</span>
-    <span class="hljs-keyword">private</span> Personne personne;
-}
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="20" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="onetoone--mappedby--cascade-2">OneToOne + mappedBy + Cascade</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java">entityManager.getTransaction().begin();
-
-<span class="hljs-comment">// Crée un passeport</span>
-<span class="hljs-type">Passeport</span> <span class="hljs-variable">passeport</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Passeport</span>();
-passeport.setNumero(<span class="hljs-string">&quot;A12345678&quot;</span>);
-
-<span class="hljs-comment">// Crée une personne et associe le passeport</span>
-<span class="hljs-type">Personne</span> <span class="hljs-variable">personne</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Personne</span>();
-personne.setNom(<span class="hljs-string">&quot;John Doe&quot;</span>);
-personne.setPasseport(passeport); <span class="hljs-comment">// Cascade permettra de persister le passeport</span>
-
-<span class="hljs-comment">// Persiste uniquement la personne (le passeport sera persisté automatiquement)</span>
-entityManager.persist(personne);
-
-entityManager.getTransaction().commit();
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="21" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="onetoone--conclusion">OneToOne : conclusion</h1>
-<ul>
-<li>
-<p>Utilisation x1 <code>OneToOne</code> conduit à une relation unidirectionnelle <br /><br /></p>
-</li>
-<li>
-<p>Utiliser x2 <code>OneToOne</code> conduit à deux relations unidirectionnelles</p>
-<ul>
-<li>Donc deux FK <br /><br /></li>
-</ul>
-</li>
-<li>
-<p>Utiliser <code>OneToOne</code> + <code>mappedBy</code> conduit à une relation bidirectionnelle</p>
-<ul>
-<li>Une FK</li>
-</ul>
-</li>
-</ul>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-paginate="true" data-class="centered" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" class="centered" data-marpit-pagination="22" style="--paginate:true;--class:centered;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="relation-1n">Relation 1:n</h1>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="23" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="relation-1n-1">Relation 1:n</h1>
-<p>Les choses se compliquent car plusieurs représentation en BDD sont possibles :</p>
-<ul>
-<li>Relation unidirectionnelle (trois tables)</li>
-<li>Relation unidirectionnelle (deux tables)</li>
-<li>Relation bidirectionnelle</li>
-</ul>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="24" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="relation-1n-unidirectionnelle-3t">Relation 1:n unidirectionnelle (3t)</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-meta">@Entity</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Utilisateur</span> {
-    <span class="hljs-meta">@Id</span>
-    <span class="hljs-meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span>
-    <span class="hljs-keyword">private</span> Long id;
-
-    <span class="hljs-meta">@OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)</span>
-    <span class="hljs-keyword">private</span> List&lt;Commande&gt; commandes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();
-}
-</code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-meta">@Entity</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Commande</span> {
-    <span class="hljs-meta">@Id</span>
-    <span class="hljs-meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span>
-    <span class="hljs-keyword">private</span> Long id;
-}
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="25" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="relation-1n-unidirectionnelle-3t-1">Relation 1:n unidirectionnelle (3t)</h1>
-<p>Mais si nous exécutons le code suivant, nous n’aurons pas uniquement que deux tables (dont <code>t_commande</code> avec la FK) mais 3 tables :</p>
-<ul>
-<li><code>t_utilisateur</code></li>
-<li><code>t_commande</code></li>
-<li><code>t_utilisateur_commande</code></li>
-</ul>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="26" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="relation-1n-unidirectionnelle-3t-2">Relation 1:n unidirectionnelle (3t)</h1>
-<p><img src="images/onetomany_3t.png" alt="alt text" /></p>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="27" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="relation-1n-unidirectionnelle-2t">Relation 1:n unidirectionnelle (2t)</h1>
-<p>Pour résoudre le problème de la table de jointure supplémentaire , il suffit d’ajouter la colonne <code>@JoinColumn</code></p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-meta">@Entity</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Utilisateur</span> {
-    <span class="hljs-meta">@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)</span>
-    <span class="hljs-meta">@JoinColumn(name =&quot;fk_utilisateur_id&quot;)</span> <span class="hljs-comment">// &lt;-- ICI</span>
-    <span class="hljs-keyword">private</span> List&lt;Commande&gt; commandes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();
-}
-</code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-meta">@Entity</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Commande</span> {
-    <span class="hljs-meta">@Id</span>
-    <span class="hljs-meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span>
-    <span class="hljs-keyword">private</span> Long id;
-} 
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="28" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="relation-1n-unidirectionnelle-2t-1">Relation 1:n unidirectionnelle (2t)</h1>
-<p><img src="images/onetomany_2t.png" alt="alt text" /></p>
-<p>Nous avons <strong>deux relations unidirectionnelles</strong> != bidirectionnelle</p>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="29" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="relation-1n-unidirectionnelle-2t-2">Relation 1:n unidirectionnelle (2t)</h1>
-<ul>
-<li>Problème de performance</li>
-</ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-type">Utilisateur</span> <span class="hljs-variable">utilisateur</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Utilisateur</span>(<span class="hljs-string">&quot;Adrien&quot;</span>);
-utilisateur.setCommandes().add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Commande</span>(<span class="hljs-string">&quot;Premier Commentaire&quot;</span>));
-</code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-sql"><span class="hljs-keyword">insert into</span> utilisateur (nom, id)
-<span class="hljs-keyword">values</span> (<span class="hljs-string">&#x27;Adrien&#x27;</span>, <span class="hljs-number">1</span>)
-
-<span class="hljs-comment">-- Création des commentaires</span>
-<span class="hljs-keyword">insert into</span> commentaire (<span class="hljs-keyword">desc</span>, id)
-<span class="hljs-keyword">values</span> (<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Premier Commentaire&#x27;</span>, <span class="hljs-number">1</span>)
-
-<span class="hljs-comment">-- Mise à jour des commentaire pour rajouter une valeur dans fk_utilisateur_id</span>
-<span class="hljs-keyword">update</span> commentaire <span class="hljs-keyword">set</span> fk_utilisateur_id <span class="hljs-operator">=</span> <span class="hljs-number">1</span> <span class="hljs-keyword">where</span> id <span class="hljs-operator">=</span> <span class="hljs-number">1</span>
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="30" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="relation-1n-unidirectionnelle-2t-3">Relation 1:n unidirectionnelle (2t)</h1>
-<ul>
-<li>Problème de performance : L’insertion d’un commentaire ce fait en deux étapes.</li>
-</ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-sql"><span class="hljs-comment">-- 1. Insertion</span>
-<span class="hljs-keyword">insert into</span> commentaire (<span class="hljs-keyword">desc</span>, id) <span class="hljs-keyword">values</span> (<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Premier Commentaire&#x27;</span>, <span class="hljs-number">1</span>)
-
-<span class="hljs-comment">-- 2. Mise à jour des commentaire pour rajouter une valeur dans fk_utilisateur_id</span>
-<span class="hljs-keyword">update</span> commentaire <span class="hljs-keyword">set</span> fk_utilisateur_id <span class="hljs-operator">=</span> <span class="hljs-number">1</span> <span class="hljs-keyword">where</span> id <span class="hljs-operator">=</span> <span class="hljs-number">1</span>
-</code></pre>
-<p>Souhait</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-sql"><span class="hljs-keyword">insert into</span> commentaire (fk_utilisateur_id, <span class="hljs-keyword">desc</span>, id)
-<span class="hljs-keyword">values</span> (<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Premier Commentaire&#x27;</span>, <span class="hljs-number">1</span>)
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="31" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="relation-1n-bidirectionnelle">Relation 1:n bidirectionnelle</h1>
-<ul>
-<li>
-<p>Utilisation du <code>mappedBy</code>, qui nous permet de dire qui est le owner (e.i quelle classe <strong>ne</strong> contient <strong>pas</strong> la FK)</p>
-</li>
-<li>
-<p>Pour assurer la synchronisation bidirectionnelle nous avons ajouté les méthodes <code>addCommande</code> et <code>removeCommande</code></p>
-</li>
-</ul>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="32" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="relation-1n-bidirectionnelle-1">Relation 1:n bidirectionnelle</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-meta">@Entity</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Utilisateur</span> {
-    <span class="hljs-meta">@OneToMany(
-        mappedBy = &quot;utilisateur&quot;, // FK pas dans utilisateur
-        cascade = CascadeType.ALL, orphanRemoval = true)</span>
-    <span class="hljs-keyword">private</span> List&lt;Commande&gt; commandes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();
-
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addCommande</span><span class="hljs-params">(Commande commande)</span> {
-        commandes.add(commande);
-        commande.setUtilisateur(<span class="hljs-built_in">this</span>);
-    }
-
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">removeCommande</span><span class="hljs-params">(Commande commande)</span> {
-        commandes.remove(commande);
-        commande.setUtilisateur(<span class="hljs-literal">null</span>);
-    }
-}
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="33" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="relation-1n-bidirectionnelle-2">Relation 1:n bidirectionnelle</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-meta">@Entity</span>
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Commande</span> {
-
-    <span class="hljs-meta">@Id</span>
-    <span class="hljs-meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span>
-    <span class="hljs-keyword">private</span> Long id;
-
-    <span class="hljs-meta">@ManyToOne(fetch = FetchType.LAZY)</span> <span class="hljs-comment">// par defaut EAGER =&gt; moins performant</span>
-    <span class="hljs-meta">@JoinColumn(name = &quot;fk_utilisateur_id&quot;)</span> <span class="hljs-comment">// Optionnel : préciser le nom de la colonne</span>
-    <span class="hljs-keyword">private</span> Utilisateur utilisateur;
-}
-</code></pre>
-<ul>
-<li><code>@OneToMany</code> avec <code>mappedBy</code> + <code>@ManyToOne</code> = relation bidirectionnelle</li>
-</ul>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="34" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="relation-1n-bidirectionnelle-3">Relation 1:n bidirectionnelle</h1>
-<p>Si on oublie le <code>mappedBy</code> alors :</p>
-<ul>
-<li>Une colonne (<code>fk_utilisateur_id</code>) pour la relation @ManyToOne définie dans Commande.</li>
-<li>Une table jointe <code>utilisateur_commande</code> avec les colonnes <code>utilisateur_id</code> et <code>commande_id</code> (du côté <code>@OneToMany</code>)</li>
-</ul>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="35" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="relation-1n-bidirectionnelle-4">Relation 1:n bidirectionnelle</h1>
-<ul>
-<li>TOP performance</li>
-</ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-type">Utilisateur</span> <span class="hljs-variable">utilisateur</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Utilisateur</span>(<span class="hljs-string">&quot;Adrien&quot;</span>);
-<span class="hljs-type">Commande</span> <span class="hljs-variable">commande1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Commande</span>(<span class="hljs-string">&quot;Premier Commentaire&quot;</span>);
-utilisateur.addCommande(commande1); <span class="hljs-comment">// utilisation de la méthode</span>
-</code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-sql"><span class="hljs-keyword">insert into</span> utilisateur (nom, id)
-<span class="hljs-keyword">values</span> (<span class="hljs-string">&#x27;Adrien&#x27;</span>, <span class="hljs-number">1</span>)
-
-<span class="hljs-comment">-- Insertion directement avec la fk_utilisateur_id</span>
-<span class="hljs-keyword">insert into</span> commentaire (fk_utilisateur_id, <span class="hljs-keyword">desc</span>, id)
-<span class="hljs-keyword">values</span> (<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Premier Commentaire&#x27;</span>, <span class="hljs-number">1</span>)
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="36" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="relation-nm">Relation n:m</h1>
-<ul>
-<li>Il n’y a qu’une seule manière de réaliser une relation de type « Many-To-Many » en base de données : il faut impérativement passer par une table d’association.</li>
-</ul>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="37" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="relation-nm--unidirectionnelle">Relation n:m : unidirectionnelle</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-meta">@Entity</span> <span class="hljs-keyword">public</span>  <span class="hljs-keyword">class</span> <span class="hljs-title class_">Musicien</span>  <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> {
-    <span class="hljs-meta">@Id</span> <span class="hljs-meta">@GeneratedValue(strategy = GenerationType.AUTO)</span>
-    <span class="hljs-keyword">private</span> Long id;
-
-    <span class="hljs-meta">@ManyToMany</span>
-    <span class="hljs-keyword">private</span> Collection&lt;Instrument&gt; instruments ;
-}
-</code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-meta">@Entity</span> <span class="hljs-keyword">public</span>  <span class="hljs-keyword">class</span> <span class="hljs-title class_">Instrument</span>  <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> {
-    <span class="hljs-meta">@Id</span> <span class="hljs-meta">@GeneratedValue(strategy = GenerationType.AUTO)</span>
-    <span class="hljs-keyword">private</span> Long id;
-}
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="38" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="relation-nm--bidirectionnelle">Relation n:m : bidirectionnelle</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-meta">@Entity</span> <span class="hljs-keyword">public</span>  <span class="hljs-keyword">class</span> <span class="hljs-title class_">Musicien</span>  <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> {
-    <span class="hljs-meta">@ManyToMany</span>
-    <span class="hljs-keyword">private</span> Collection&lt;Instrument&gt; instruments ;
-}
-</code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-meta">@Entity</span> <span class="hljs-keyword">public</span>  <span class="hljs-keyword">class</span> <span class="hljs-title class_">Instrument</span>  <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> {
-    <span class="hljs-meta">@ManyToMany(mappedBy=&quot;instruments&quot;)</span>
-    <span class="hljs-keyword">private</span> Collection&lt;Musicien&gt; musiciens ;
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="39" data-paginate="true" data-theme="gaia" data-style="section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-" lang="fr-FR" data-marpit-pagination="39" style="--paginate:true;--theme:gaia;--style:section {
-  background-color: #fbfbfb;
-}
-section.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="39">
-<h1 id="relation-nm-1">Relation n:m</h1>
-<p>On peut également préciser le nom de la table de jointure et des colonnes</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-comment">// public  class Musicien</span>
-<span class="hljs-meta">@JoinTable(name = &quot;intrument_musicien&quot;,
-    joinColumns = @JoinColumn(name = &quot;fk_ins_id&quot;),
-    inverseJoinColumns = @JoinColumn(name = &quot;fk_mus_id&quot;)
-)</span>
-<span class="hljs-keyword">private</span> Collection&lt;Instrument&gt; instruments
-</code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-comment">// public  class Instrument</span>
-<span class="hljs-meta">@ManyToMany(mappedBy=&quot;instruments&quot;)</span>
-<span class="hljs-keyword">private</span> Collection&lt;Musicien&gt; musiciens ;
-</code></pre>
-<p>Si l’on ne le met pas <code>mappedBy</code>, alors JPA créera une seconde table de jointure.</p>
 </section>
 <script>!function(){"use strict";const t={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},e="data-marp-auto-scaling-wrapper",i="data-marp-auto-scaling-svg",n="data-marp-auto-scaling-container";class s extends HTMLElement{container;containerSize;containerObserver;svg;svgComputedStyle;svgPreserveAspectRatio="xMinYMid meet";wrapper;wrapperSize;wrapperObserver;constructor(){super();const t=t=>([e])=>{const{width:i,height:n}=e.contentRect;this[t]={width:i,height:n},this.updateSVGRect()};this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(t("containerSize")),this.wrapperObserver=new ResizeObserver(((...e)=>{t("wrapperSize")(...e),this.flushSvgDisplay()}))}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){this.shadowRoot.innerHTML=`\n<style>\n  svg[${i}] { display: block; width: 100%; height: auto; vertical-align: top; }\n  span[${n}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }\n</style>\n<div ${e}>\n  <svg part="svg" ${i}>\n    <foreignObject><span ${n}><slot></slot></span></foreignObject>\n  </svg>\n</div>\n    `.split(/\n\s*/).join(""),this.wrapper=this.shadowRoot.querySelector(`div[${e}]`)??void 0;const t=this.svg;this.svg=this.wrapper?.querySelector(`svg[${i}]`)??void 0,this.svg!==t&&(this.svgComputedStyle=this.svg?window.getComputedStyle(this.svg):void 0),this.container=this.svg?.querySelector(`span[${n}]`)??void 0,this.observe()}disconnectedCallback(){this.svg=void 0,this.svgComputedStyle=void 0,this.wrapper=void 0,this.container=void 0,this.observe()}attributeChangedCallback(){this.observe()}flushSvgDisplay(){const{svg:t}=this;t&&(t.style.display="inline",requestAnimationFrame((()=>{t.style.display=""})))}observe(){this.containerObserver.disconnect(),this.wrapperObserver.disconnect(),this.wrapper&&this.wrapperObserver.observe(this.wrapper),this.container&&this.containerObserver.observe(this.container),this.svgComputedStyle&&this.observeSVGStyle(this.svgComputedStyle)}observeSVGStyle(t){const e=()=>{const i=(()=>{const e=t.getPropertyValue("--preserve-aspect-ratio");if(e)return e.trim();return`x${(({textAlign:t,direction:e})=>{if(t.endsWith("left"))return"Min";if(t.endsWith("right"))return"Max";if("start"===t||"end"===t){let i="rtl"===e;return"end"===t&&(i=!i),i?"Max":"Min"}return"Mid"})(t)}YMid meet`})();i!==this.svgPreserveAspectRatio&&(this.svgPreserveAspectRatio=i,this.updateSVGRect()),t===this.svgComputedStyle&&requestAnimationFrame(e)};e()}updateSVGRect(){let t=Math.ceil(this.containerSize?.width??0);const e=Math.ceil(this.containerSize?.height??0);void 0!==this.dataset.downscaleOnly&&(t=Math.max(t,this.wrapperSize?.width??0));const i=this.svg?.querySelector(":scope > foreignObject");if(i?.setAttribute("width",`${t}`),i?.setAttribute("height",`${e}`),this.svg&&(this.svg.setAttribute("viewBox",`0 0 ${t} ${e}`),this.svg.setAttribute("preserveAspectRatio",this.svgPreserveAspectRatio),this.svg.style.height=t<=0||e<=0?"0":""),this.container){const t=this.svgPreserveAspectRatio.toLowerCase();this.container.style.marginLeft=t.startsWith("xmid")||t.startsWith("xmax")?"auto":"0",this.container.style.marginRight=t.startsWith("xmi")?"auto":"0"}}}const r=(t,{attrs:e={},style:i})=>class extends t{constructor(...t){super(...t);for(const[t,i]of Object.entries(e))this.hasAttribute(t)||this.setAttribute(t,i);this._shadow()}static get observedAttributes(){return["data-auto-scaling"]}connectedCallback(){this._update()}attributeChangedCallback(){this._update()}_shadow(){if(!this.shadowRoot)try{this.attachShadow({mode:"open"})}catch(t){if(!(t instanceof Error&&"NotSupportedError"===t.name))throw t}return this.shadowRoot}_update(){const t=this._shadow();if(t){const e=i?`<style>:host { ${i} }</style>`:"";let n="<slot></slot>";const{autoScaling:s}=this.dataset;if(void 0!==s){n=`<marp-auto-scaling exportparts="svg:auto-scaling" ${"downscale-only"===s?"data-downscale-only":""}>${n}</marp-auto-scaling>`}t.innerHTML=e+n}}};let o;const a=Symbol();let l;const c="marpitSVGPolyfill:setZoomFactor,",d=Symbol(),h=Symbol();const g=()=>{const t="Apple Computer, Inc."===navigator.vendor,e=t?[u]:[],i={then:e=>(t?(async()=>{if(void 0===l){const t=document.createElement("canvas");t.width=10,t.height=10;const e=t.getContext("2d"),i=new Image(10,10),n=new Promise((t=>{i.addEventListener("load",(()=>t()))}));i.crossOrigin="anonymous",i.src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%201%201%22%3E%3CforeignObject%20width%3D%221%22%20height%3D%221%22%20requiredExtensions%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%3E%3Cdiv%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%20style%3D%22width%3A%201px%3B%20height%3A%201px%3B%20background%3A%20red%3B%20position%3A%20relative%22%3E%3C%2Fdiv%3E%3C%2FforeignObject%3E%3C%2Fsvg%3E",await n,e.drawImage(i,0,0),l=e.getImageData(5,5,1,1).data[3]<128}return l})().then((t=>{null==e||e(t?[u]:[])})):null==e||e([]),i)};return Object.assign(e,i)};let p,m;function u(t){const e="object"==typeof t&&t.target||document,i="object"==typeof t?t.zoom:t;window[h]||(Object.defineProperty(window,h,{configurable:!0,value:!0}),document.body.style.zoom=1.0001,document.body.offsetHeight,document.body.style.zoom=1,window.addEventListener("message",(({data:t,origin:e})=>{if(e===window.origin)try{if(t&&"string"==typeof t&&t.startsWith(c)){const[,e]=t.split(","),i=Number.parseFloat(e);Number.isNaN(i)||(m=i)}}catch(t){console.error(t)}})));let n=!1;Array.from(e.querySelectorAll("svg[data-marpit-svg]"),(t=>{var e,s,r,o;t.style.transform||(t.style.transform="translateZ(0)");const a=i||m||t.currentScale||1;p!==a&&(p=a,n=a);const l=t.getBoundingClientRect(),{length:c}=t.children;for(let i=0;i<c;i+=1){const n=t.children[i];if(n.getScreenCTM){const t=n.getScreenCTM();if(t){const i=null!==(s=null===(e=n.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==s?s:0,c=null!==(o=null===(r=n.y)||void 0===r?void 0:r.baseVal.value)&&void 0!==o?o:0,d=n.children.length;for(let e=0;e<d;e+=1){const s=n.children[e];if("SECTION"===s.tagName){const{style:e}=s;e.transformOrigin||(e.transformOrigin=`${-i}px ${-c}px`),e.transform=`scale(${a}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-l.left}, ${t.f-l.top}) translateZ(0.0001px)`;break}}}}}})),!1!==n&&Array.from(e.querySelectorAll("iframe"),(({contentWindow:t})=>{null==t||t.postMessage(`${c}${n}`,"null"===window.origin?"*":window.origin)}))}function v({once:t=!1,target:e=document}={}){const i=function(t=document){if(t[d])return t[d];let e=!0;const i=()=>{e=!1,delete t[d]};Object.defineProperty(t,d,{configurable:!0,value:i});let n=[],s=!1;(async()=>{try{n=await g()}finally{s=!0}})();const r=()=>{for(const e of n)e({target:t});s&&0===n.length||e&&window.requestAnimationFrame(r)};return r(),i}(e);return t?(i(),()=>{}):i}p=1,m=void 0;const w=Symbol(),b=(e=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(((e=document)=>{const i=window[a];i||customElements.define("marp-auto-scaling",s);for(const n of Object.keys(t)){const s=`marp-${n}`,a=t[n].proto();(o??(o=!!document.createElement("div",{is:"marp-auto-scaling"}).outerHTML.startsWith("<div is"),o))&&a!==HTMLElement?i||customElements.define(s,r(a,{style:t[n].style}),{extends:n}):(i||customElements.define(s,r(HTMLElement,t[n])),e.querySelectorAll(`${n}[is="${s}"]`).forEach((t=>{t.outerHTML=t.outerHTML.replace(new RegExp(`^<${n}`,"i"),`<${s}`).replace(new RegExp(`</${n}>$`,"i"),`</${s}>`)})))}window[a]=!0})(e),e[w])return e[w];const i=v({target:e}),n=()=>{i(),delete e[w]},l=Object.assign(n,{cleanup:n,update:()=>b(e)});return Object.defineProperty(e,w,{configurable:!0,value:l}),l},y=document.currentScript;b(y?y.getRootNode():document)}();
 </script></foreignObject></svg></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@4.1.1/lib/bespoke.js.LICENSE.txt */

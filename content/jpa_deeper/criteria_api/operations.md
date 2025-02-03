@@ -5,6 +5,7 @@ weight = 20
 
 > [!ressource] Ressources
 > - [JakartaEE - Using the Criteria API to Create Queries](https://jakarta.ee/learn/docs/jakartaee-tutorial/current/persist/persistence-criteria/persistence-criteria.html)
+> - [Criteria Update/Delete – The easy way to implement bulk operations with JPA2.1](https://thorben-janssen.com/criteria-updatedelete-easy-way-to/)
 
 ## Types d'opération
 Il n’est possible de réaliser que trois types d’opérations avec l’API Criteria qui sont la lecture, la modification et la suppression (SELECT, UPDATE et DELETE). Chacune de ces opérations a ses propres classes qui sont :
