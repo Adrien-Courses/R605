@@ -4,7 +4,7 @@ weight = 50
 +++
 
 > [!ressource] Ressources
-> - [https://github.com/Adrien-Courses/R605-TP-JPA.git](https://github.com/Adrien-Courses/R605-TP-JPA.git)
+> - https://github.com/Adrien-Courses/R605-TP-JPA-Mapping
 
 ## 1. Télécharger et lancer le projet
 - Lancer Docker Desktop

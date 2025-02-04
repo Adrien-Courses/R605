@@ -5,6 +5,7 @@ weight = 10
 
 > [!ressource] Ressource
 > - https://github.com/Adrien-Courses/R605-TP-JPA-FETCH
+> - [Correction https://github.com/Adrien-Courses/R605-TP-JPA-FETCH-correction](https://github.com/Adrien-Courses/R605-TP-JPA-FETCH-correction)
 > - [Initializing a Proxy Entity with Hibernate](https://howtodoinjava.com/hibernate/use-hibernate-initialize-to-initialize-proxycollection/)
 
 ## 1. Télécharger et lancer le projet

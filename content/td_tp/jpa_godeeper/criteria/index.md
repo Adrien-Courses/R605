@@ -4,7 +4,8 @@ weight = 20
 +++
 
 > [!ressource] Ressource
-> https://github.com/Adrien-Courses/R605-TP-JPA-criteria-api
+> - https://github.com/Adrien-Courses/R605-TP-JPA-criteria-api
+> - [Correction https://github.com/Adrien-Courses/R605-TP-JPA-criteria-api-correction](https://github.com/Adrien-Courses/R605-TP-JPA-criteria-api-correction)
 
 ## 1. Télécharger et lancer le projet
 - Lancer Docker Desktop
