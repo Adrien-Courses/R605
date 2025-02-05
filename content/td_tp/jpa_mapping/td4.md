@@ -6,9 +6,6 @@ weight = 60
 > [!ressource] Ressources
 > - [How does JPA orphanRemoval=true differ from the ON DELETE CASCADE](https://stackoverflow.com/a/60838256/9399016)
 
-> [!warning] Note
-> On notera la **non**-présence de `CASCADE_TYPE.ALL`, car dans le cas d'une suppression `CASCADE_TYPE.REMOVE` et `orphanRemoval` sont redondants[^1]
-
 ```mermaid
 erDiagram
     COMMANDE {
@@ -51,7 +48,7 @@ public class LigneDetail {
 ## Sans orphanRemoval
 > If your relationship does not have orphan removal, then updating the child from the parent’s collection alone won’t trigger a update.
 
-Par exemple, nous souhaitons supprimer une `ligneDetail` d'une `commande`
+Par exemple, nous souhaitons supprimer une `ligneDetail` d'une `commande` et en utilisant la méthode `persist()`
 
 ```java
 @Test
@@ -65,27 +62,19 @@ public void testRemoveLigneDetail() {
     //  Récupérer une ligne associée à la commande (ici la première ligne)
     LigneDetail ligneDetail = commande.getLigneDetails().get(0);
 
-    transaction.commit();
-}
-```
+    commande.removeLigneDetail(ligneDetail);
 
-Dans ce cas, le simple fait de supprimer le `LigneDetail` de la collection du parent ne met pas automatiquement à jour la clé étrangère dans la base de données. 
-Sans `ligneDetail.setCommande(null)`, Hibernate ne saura pas qu'il est censé rompre cette relation. Cela dépend de l'ordre de validation et des types de cascade :
-
-```java
-@Test
-public void testRemoveLigneDetail() {
-    Session session = sessionFactory.openSession();
-    Transaction transaction = session.beginTransaction();
-    
-    Commande commande = session.find(Commande.class, 2L);
-    LigneDetail ligneDetail = commande.getLigneDetails().get(0);
-
-    ligneDetail.setCommande(null); // ADD THIS
+    em.persist(commande) // au lieu de remove()
 
     transaction.commit();
 }
 ```
+
+- `commande.removeLigneDetail(ligneDetail);` permet de dé-référencement des deux côté de la relation
+- En effet, le persist() update la ligneDetail en base avec un FK `NULL`
+
+Néanmoins nous souhaiterons dire que lorsque la FK est null alors supprimer la ligne
+- On peut utiliser effectivement `remove()`, mais gardons le `persist()` pour l'exemple
 
 ## Avec orphanRemoval
 Si nous modifions notre entité `Commande` pour ajouter l'option `orphanRemoval`
@@ -95,7 +84,7 @@ Si nous modifions notre entité `Commande` pour ajouter l'option `orphanRemoval`
 private List<LigneDetail> ligneDetails = new ArrayList<LigneDetail>();
 ```
 
-Alors la suppression de l'enfant de la collection du parent suffira pour qu'Hibernate le supprime de la base de données. Ainsi `ligneDetail.setCommande(null);` n'est plus requis.
+Cette fois-ci le fait de garder `persist()` fonctionnera 
 
 > [!definition] Définition
 > `orphanRemoval` is an entirely ORM-specific thing. It marks "child" entity to be removed when it's no longer referenced from the "parent" entity, e.g. when you remove the child entity from the corresponding collection of the parent entity. [^1]
