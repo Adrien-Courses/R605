@@ -1,7 +1,7 @@
 +++
 title = "TP3 JPA Fetching Correction"
 weight = 11
-tags = ["explorerexclude"]
+<!-- tags = ["explorerexclude"] -->
 +++
 
 ## a) Compléter getAllClient()
