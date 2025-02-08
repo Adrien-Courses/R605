@@ -31,6 +31,7 @@ Et c'est la version *TomEE WebProfile* qui répond à minima à ce besoin
 
 ![alt text](tomee_installation.png)
 
+<!-- 
 ## Tester la configuration
 ### Créer un projet web de test
 
@@ -50,3 +51,12 @@ Et c'est la version *TomEE WebProfile* qui répond à minima à ce besoin
     - Ajouter (add) le projet créé
     ![Add and remove tomee](tomcat_add_and_remove.png)
 4. Accéder à http://localhost:8080/nom-du-projet (e.g. http://localhost:8080/test)
+
+-->
+
+## Déployer 
+- Déployer le projet sur Tomcat (glisser-déposer vers le serveur)
+    - Dans l'onglet "Server" > Clic Droit > "Add and Remove" 
+    - Ajouter (add) le projet créé
+    ![Add and remove tomee](tomcat_add_and_remove.png)
+- Accéder à http://localhost:8080/nom-du-projet (e.g. http://localhost:8080/test)

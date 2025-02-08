@@ -25,7 +25,7 @@ Et c'est la version *TomEE WebProfile* qui répond à minima à ce besoin
 ## Créer un Dynamic Web Project
 - Créer ou récupérer un dynamic web project
 
-## Configurer IntelliJ
+## Déployer
 1. Edit Configuration --> Add new --> TomEE
 2. Compléter le Application serveur en renseignant le chemin vers le dossier TomEE (e.g. C:/java/tomee)
 3. On Update Action : Hot swap
