@@ -3,6 +3,9 @@ title = "TP5 EE Container"
 weight = 10
 +++
 
+> [!ressource] Ressource
+> https://github.com/Adrien-Courses/R605-TP-JPA-EE-container.git
+
 > [!danger] Rappel
 > Dans la section dédiée au [transaction JPA]({{< relref "jpa/specification/transaction/index" >}}) nous avons souligné deux cas
 > - si nous sommes dans un contexte Java SE (l'ensemble des TP précédent) nous devions gérer les transactions et l'injection de dépendances
