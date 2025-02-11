@@ -42,10 +42,33 @@ Note : pour créer des objets JSON vous pouvez regarder
 - Créer un service `StudentService` sous forme d’un EJB pour gérer les étudiants.
 - Créer une ressource REST `StudentController` pour exposer les opérations via une API REST.
 
+Exemple 
+`curl -X GET "http://localhost:8080/jpa-ee-container/students" -H "Accept: application/json"`
+
 ### Partie 1b. Rajouter les Soirées
 Les étudiants peuvent participer à des soirées; lorsqu'on récupère un étudiant nous souhaitons lister les soirées où il a participer.
 
 <!-- Si ne retourne pas dto alors pb de référence circulaire --->
+
+
+-- M'appeler 
+- comment régler les références circulaires ?
+- comment éviter la `LazyInitializationException`
+
+<!--
+1. DTO de réponse
+
+2. On va rajouter une méthode DANS le DAO findWithSoirees
+public Student getStudent(Long id) {
+    // Student student = studentDao.find(id);
+    // Hibernate.initialize(student.getSoirees()); // horrible
+    
+    Student student = studentDao.findWithSoirees(id);
+    
+    return student;
+}
+
+-->
 
 ### Partie 2. Pagination
 L'objectif de cette deuxième partie est d'ajouter une fonctionnalité de pagination aux requêtes de récupération des données dans notre GenericDAO.
@@ -60,6 +83,26 @@ Modifier en conséquence `StudentService` pour exploiter la pagination et `Stude
 Response getAllStudents(@QueryParam("page") @DefaultValue("0") int page, @QueryParam("size") @DefaultValue("10") int size) {
 }
 ```
+
+-- M'appeler
+- à quoi ressemble le retour de l'API ?
+
+<!--
+1, Il faut la page + taille ET également le nombre d'élément total
+
+    public List<T> findAllPaginated(int page, int size) {
+        return em.createQuery("SELECT e FROM " + entityClass.getSimpleName() + " e", entityClass)
+                .setFirstResult(page * size)
+                .setMaxResults(size)
+                .getResultList();
+    }
+
+    // Méthode pour compter le nombre total d'entités
+    public long count() {
+        return em.createQuery("SELECT COUNT(e) FROM " + entityClass.getSimpleName() + " e", Long.class)
+                .getSingleResult();
+    }
+-->
 
 ### Partie 3. Spécification/Criteria API
 Nous allons ajouter une méthode `findByCriteria(Map<String, Object> criteria)` qui permet de rechercher des entités selon des conditions dynamiques.

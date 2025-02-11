@@ -9,9 +9,9 @@ weight = 30
 > [!definition] Définition
 > Les projections sont des techniques qui permettent de sélectionner et de récupérer uniquement les données nécessaires d'une base de données.
 
-Elles permettent ainsi 
-- réduisant la quantité de données transférées
-- améliorant donc la performance du système
+Elles permettent ainsi de
+- réduire la quantité de données transférées
+- améliorer donc la performance du système
 
 Ainsi au lieu de tout récupérer (`SELECT *`), nous sélectionnons les colonnes qui nous intéressent 
 
