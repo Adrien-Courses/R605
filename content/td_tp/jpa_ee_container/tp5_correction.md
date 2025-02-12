@@ -156,7 +156,7 @@ Nous avons un problème de référence circulaire car :
 ```
 
 Plusieurs options permettent d'éviter les références circulaires :
-- supprimer l'attribut `student` dans la classe `Soirees`, mais ceci casse la relation bidirectionnelle, et comme rappelé dans le paragraphe [OneToMany relation-bidirectionnelle]({{<relref "jpa/mapping_associations/one-to-many#relation-bidirectionnelle" >}}) <br><br>
+- supprimer l'attribut `student` dans la classe `Soirees`, mais ceci casse la relation bidirectionnelle, et comme rappelé dans le paragraphe [OneToMany relation-bidirectionnelle]({{< relref "jpa/mapping_associations/one-to-many#relation-bidirectionnelle" >}}) <br><br>
 
 - une autre option consiste à rajouter l'annotation `@JsonIgnore` sur l'attribut `student` dans la classe `Soirees` pour ne pas afficher les étudiants au format JSON. Mais pour moi cette solution n'est pas la bonne car elle contourne le problème. <br><br>
 
