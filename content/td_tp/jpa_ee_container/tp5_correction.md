@@ -196,10 +196,11 @@ Néanmoins, comment récupérer *tous les étudiants avec leurs soirées* ?
 Il faut comme dans le cas précédent créer une jointure. Néanmoins au lieu de créer une nouvelle méthode dans `StudentDAO` essayons de créer une méthode générique
 - Pour ce faire, nous allons utiliser une liste pour représenter notre jointure, dans laquelle nous préciserons les attributs de jointure (ici `a` et `b`)
 ```
-SELECT *
-FROM Table t
-JOIN t.a
-JOINT t.b
+SELECT s
+FROM Student s
+JOIN s.soirees
+JOIN s.y
+JOIN s.z
 ```
 
 ```java
@@ -233,10 +234,11 @@ Il nous reste un point à aborder. Comment rechercher des étudiants ?
 - pour ce faire on va se baser sur l'API Criteria
 
 ```
-SELECT *
-FROM Table t
+SELECT s
+FROM Student s
 WHERE name = :name
-AND x = :x
+AND age = :age
+AND y = :y
 ```
 
 Pour représenter nos critère nous allons utilise une `Map<String, Object>`, dans le `GenericDAO` nous codons la méthode suivante
@@ -279,4 +281,16 @@ public List<Student> searchStudents(String name, Integer age) {
     // Join à soirée
     return findByCriteria(criteria, List.of("soirees"));
     }
+```
+
+Attention, vous ne pouvons pas coder simplement
+
+```java
+findByCriteria(criteria, Map.of("name", name, "age", age));
+```
+
+Car si `name` ou `age` sont null, alors vous allez vous retrouver avec la requête suivante qui faussera les résultats
+```
+WHERE name = NULL
+AND age = NULL
 ```
