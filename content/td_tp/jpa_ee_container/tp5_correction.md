@@ -102,7 +102,7 @@ public class StudentService {
     ...
     public Student findWithSoiree(Long id) {
         Student student = studentDao.find(id);
-        student.getSoirees(); // Illegal
+        student.getSoirees(); // Illegal LazyInitializationException
         return student;
     }
 }
