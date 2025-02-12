@@ -283,7 +283,7 @@ public List<Student> searchStudents(String name, Integer age) {
     }
 ```
 
-Attention, vous ne pouvons pas coder simplement
+Attention, nous ne pouvons pas coder simplement
 
 ```java
 findByCriteria(criteria, Map.of("name", name, "age", age));
