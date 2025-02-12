@@ -12,9 +12,9 @@ weight = 11
 > - si nous utilisons un container EE, alors nous pouvons nous passer de la gestion des transactions et déléguer l'injection au [CDI]({{< relref "cdi" >}})
 
 ## Structure du projet
-Le projet est structuré par domaine technique, les différents packages représentes nos différentes couches `Controller`, `Service` et `Repository/DAO`
+Le projet est structuré par domaine technique, les différents packages représentent nos différentes couches `Controller`, `Service` et `Repository/DAO`
 
-De plus, nous avons un `GenericDAO<T>` qui va nous permettre d'éviter le code boilerplate. Et comme souligné ci-dessus étant donné que nous sommes dans un contexte *container EE* nous n'avons pas besoin de gérer explicitement les transactions.
+De plus, nous avons un `GenericDAO<T>` qui va nous permettre d'éviter le code boilerplate. Et comme souligné ci-dessus, étant donné que nous sommes dans un contexte *container EE* nous n'avons pas besoin de gérer explicitement les transactions.
 
 ```java
 @Stateless
@@ -43,6 +43,7 @@ public class GenericDao<T extends  BaseEntity> {
 
 - `@PersistenceContext` via TomEE nous bénéficions du [CDI]({{< relref "cdi" >}}) qui permet d'injecter la dépendance `EntityManager`
 - `entityClass` nous permet de connaître la classe concrète
+- pas besoin de gérer les transactions
 
 
 ## Partie 1
