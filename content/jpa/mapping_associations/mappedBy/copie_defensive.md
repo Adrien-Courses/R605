@@ -5,69 +5,38 @@ weight = 60
 
 > [!ressource] Ressources
 > - [José Paumard - Protéger le contenu d'une relation multivaluée par copie défensive](https://youtu.be/dwX66leY3WM?list=PLzzeuFUy_CnhVfJIKyc3okTiiCc0anutx)
-> - [How to synchronize bidirectional entity associations with JPA and Hibernate](https://vladmihalcea.com/jpa-hibernate-synchronize-bidirectional-entity-associations/)
-> - [Save Child Objects Automatically Using JPA](https://www.baeldung.com/jpa-save-child-objects-automatically)
 
-```java
-public class Commune {
-    @ManyToOne
-    public Departement departement
-}
+Précédemment, nous avons vu que le *mappedBy* permet de synchroniser les deux côté de la relation. Mais rien ne nous empêche d'écrite le code suivant.
+
+```java 
+public class Departement { @OneToMany(mappedBy="departement") public List<Commune> communes }
+public class Commune { @ManyToOne public Departement departement }
 ```
 
-```java
-public class Departement {
-    @OneToMany(mappedBy="departement")
-    public List<Commune> communes
-}
-```
-
-## Le problème
-Nous souhaitons récupérer l'ensemble des communes du département et par erreur nous les supprimons. Si nous appelons une méthode de persistance (`entityManager.merge()`) après avoir vidé la liste, JPA essaiera de mettre à jour la base de données.
+Puis de récupérer la liste des communes d'un département et de les supprimer ou d'ajouter une nouvelle commune sans utiliser les méthode add/remove qui sont garante de la synchronisation.
 
 ```java
-List<Commune> communes = departement.getCommunes();
-communes.clear();
+departement.getCommunes().clear();
+departement.getCommunes().add(new Commune()); // possible mais pas propre
 ```
 
-## La copie défensive
-Ainsi, par précaution l'ensemble des modifications de la liste `commune` doivent avoir lieu à l'intérieur de la classe `Département`. Dans notre cas, la méthode `getCommunes()` devrait retourner une *copie défensive* de la liste
+Dans sa vidéo, José Paumard nous présente la copie défensive. C'est-à-dire que la méthode `getCommunes()` ne retourne pas la vraie liste mais une copie
+
 ```java
 public List<Commune> getCommunes() {
-    return new ArrayList<>(this.communes);
+    // return this.communes; DEVIENT
+    return new ArrayList<>(communes)
 }
 ```
 
-## Mais ...
-Mais seule la *copie défensive* ne suffit pas, en effet nous pouvons avoir besoin d'ajouter et de supprimer une commune à un département.
+En créant une nouvelle liste :
+- `departement.getCommunes().clear()` n'aura plus d'effet sur les informations en base de données car la liste (new ArrayList<>) est une nouvelle liste non managée par JPA ([cycle de vie]({{< relref "jpa/specification/cyle_de_vie" >}}))
+- MAIS les objets de type `Commune`, eux reste managé par JPA, nous pouvons faire `departement.getCommunes().get(0).setName("new name")` et ceci sera persisté en base de données
 
-Supposons la méthode suivante dans la classe `Commune` 
-```java
-void setDepartement(Departement d) {
-    this.departement = d;
-    d.getCommunes().add(this); // this étant la nouvelle commune à ajouter au département
-}
-```
 
-Ceci ne fonctionnera pas car `getCommunes()` renvoie une *copie défensive*. Ainsi si on persiste en l'état nous n'aurons pas en base de données la nouvelle communes du département. Or c'est bien ce que l'on souhaite réaliser, mettre à jour la liste des communes du département en base de données. Pour régler ce problème, nous allons ajouter les méthodes suivantes à notre `Departement`
+## Copie défensive, une bonne idée ?
+La copie défensive permet d'éviter qu'un développeur passe outre les méthode `addCommune` et `removeCommune`. Néanmoins l'objectif d'une entité est de propager l'état, si on souhaite faire une action sur une entité il ne nous faut pas une copie (qui est par définition non managée par JPA).
 
-```java
-public void addCommune(Commune c) {
-    this.communes.add(c);
-}
+> No, you don’t need defensive copies. Those will actually work against you with Hibernate since the goal o an entity is to propagate changes. Otherwise, you’d use a DTO. [^1]
 
-public void removeCommune(Commune c) {
-    this.communes.remove(c);
-}
-```
-
-```java
-void setDepartement(Departement d) {
-    this.departement = d;
-    d.addCommune(this); // this étant la nouvelle commune à ajouter au département
-}
-```
-
-La *copie défensive* impose donc de créer des méthodes permettant de muter ces éléments internes
-
-> The reason for this issue is that, for the bidirectional relationship, we need to explicitly specify the reference to the parent entity.
+[^1]: https://vladmihalcea.com/the-best-way-to-map-a-onetomany-association-with-jpa-and-hibernate/

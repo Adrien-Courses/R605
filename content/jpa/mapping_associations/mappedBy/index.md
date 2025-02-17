@@ -5,6 +5,8 @@ weight = 50
 
 > [!ressource] Ressources
 > - [What is the difference between Unidirectional and Bidirectional JPA and Hibernate associations?](https://stackoverflow.com/questions/5360795/what-is-the-difference-between-unidirectional-and-bidirectional-jpa-and-hibernat)
+> - [How to synchronize bidirectional entity associations with JPA and Hibernate](https://vladmihalcea.com/jpa-hibernate-synchronize-bidirectional-entity-associations/)
+
 
 > [!affirmation] Affirmation
 > Si on ne précise pas le `mappedBy` une table de jointure sera créée, voir par exemple [OneToMany relation]({{< relref "one-to-many.md" >}})
