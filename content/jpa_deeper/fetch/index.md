@@ -6,6 +6,7 @@ weight = 10
 > [!ressource] Ressource
 > - http://orm.bdpedia.fr/optimisation.html
 > - https://blog.paumard.org/cours/jpa/chap03-entite-chargement.html
+> [ Build faster persistence layers with Spring Data JPA 3 by Thorben Janssen @ Spring I/O 2024 ](https://youtu.be/t27Uozc2Z58)
 
 > [!definition] Définition
 > - `FetchType.LAZY` : indique que la relation doit être chargée à la demande ;
@@ -88,6 +89,8 @@ Et bien ça dépend.
 En complément, nous allons mettre un nom sur cette problématique.
 
 > The N+1 query problem happens when the data access framework executed N additional SQL statements to fetch the same data that could have been retrieved when executing the primary SQL query (JOIN)
+
+![alt text](n1query.png)
 
 Supposons la relation une `Voiture` à plusieurs `Roue` => `@OneToMany`
 - Supposons maintenant qu'il faille parcourir toutes les voitures et, pour chacune d'entre elles, afficher la liste des roues. L'implémentation O/R naïve ferait ce qui suit
