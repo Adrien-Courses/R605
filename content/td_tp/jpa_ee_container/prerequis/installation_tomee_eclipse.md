@@ -17,10 +17,38 @@ Et c'est la version *TomEE WebProfile* qui répond à minima à ce besoin
 
 ## Téléchargement
 - Télécharger une version Eclipse Enterprise Edition
-- Télécharger la version zip 10.1 de TomEE WebProfice [https://tomee.apache.org/download.html](https://tomee.apache.org/download.html)
+- Télécharger la version zip 10.1 de TomEE WebProfile [https://tomee.apache.org/download.html](https://tomee.apache.org/download.html)
 
 ## Installer TomEE
 1. De-zipper Tomcat dans le répertoire de votre choix (e.g. C:/java/tomee)
+
+## Créer un Dynamic Web Project
+- Créer ou récupérer un dynamic web project
+- Pour un projet Maven "File --> Import --> Maven --> Existing Maven Project"
+
+### Propriétés Maven pour postes IUT
+Si c'est un projet Maven, sur les postes de l'IUT il faut modifier les paramètres maven suivants
+- Eclipse --> Windows --> Preference --> Rechercher Maven et modifier les paramètres de User Settings pour mettre un emplacement vers votre disque `z:`
+
+![alt text](image.png)
+
+```xml
+<!-- Contenu du fichier settings.xml -->
+<settings>
+    <localRepository>z/.m2/repository</localRepository>  <!-- important -->
+    <proxies>
+        <proxy>
+            <id>iut-proxy</id>
+            <active>true</active>
+            <protocol>http</protocol>
+            <host>cache.iut-rodez.fr</host>
+            <port>8080</port>
+        </proxy>
+    </proxies>
+</settings>
+```
+
+Et cliquez sur "Update", le 
 
 ## Configurer Eclipse
 1. Aller dans l'onglet "Window" > "Show View" > "Servers"

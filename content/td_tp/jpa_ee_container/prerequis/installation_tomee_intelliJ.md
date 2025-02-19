@@ -25,6 +25,27 @@ Et c'est la version *TomEE WebProfile* qui répond à minima à ce besoin
 ## Créer un Dynamic Web Project
 - Créer ou récupérer un dynamic web project
 
+### Propriétés Maven pour postes IUT
+Si c'est un projet Maven, sur les postes de l'IUT il faut modifier les paramètres maven suivants
+- Settings --> Maven --> User Settings file et Local Repository pour mettre un emplacement vers votre disque `z:`
+
+![alt text](maven_intellij.png)
+
+```xml
+<!-- Contenu du fichier settings.xml -->
+<settings>
+    <proxies>
+        <proxy>
+            <id>iut-proxy</id>
+            <active>true</active>
+            <protocol>http</protocol>
+            <host>cache.iut-rodez.fr</host>
+            <port>8080</port>
+        </proxy>
+    </proxies>
+</settings>
+```
+
 ## Déployer
 1. Edit Configuration --> Add new --> TomEE
 2. Compléter le Application serveur en renseignant le chemin vers le dossier TomEE (e.g. C:/java/tomee)
