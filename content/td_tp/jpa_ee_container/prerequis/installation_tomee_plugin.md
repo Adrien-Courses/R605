@@ -39,7 +39,7 @@ Le plugin Maven TomEE permet de gérer un serveur Apache TomEE directement depui
 </build>
 ```
 
-Une fois le plugin ajouté, vous pouvez utiliser les commandes suivantes `mvn tomee:run`
+Une fois le plugin ajouté, vous pouvez utiliser les commandes suivantes `mvn package tomee:run`
 
 ```
 [INFO] Installed '/Users/adriencaubel/Documents/projects/workspace-iut-mvc2/R601-TP-celsius-fahrenheit/target/R601-TP-celsius-fahrenheit-1.0-SNAPSHOT.war' 
