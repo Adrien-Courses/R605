@@ -50,4 +50,10 @@ Une fois le plugin ajouté, vous pouvez utiliser les commandes suivantes `mvn to
 Accéder au serveur en récupérant le nom de l'applicatif `R601-TP-celsius-fahrenheit-1.0-SNAPSHOT` http://localhost:8080/R601-TP-celsius-fahrenheit-1.0-SNAPSHOT
 
 ### Application inexistante
+
+```
+[WARNING] '/Users/adriencaubel/Documents/projects/workspace-iut-mvc2/R601-TP-celsius-fahrenheit/target/R601-TP-celsius-fahrenheit-1.0-SNAPSHOT.war' 
+          doesn't exist, ignoring (maybe run mvn package before this plugin)
+```
+
 Si lors du lancement vous avez une erreur vous précisant que le fichier `.war` n'existe pas dans `target/`, lancer la commande `mvn clean package`
