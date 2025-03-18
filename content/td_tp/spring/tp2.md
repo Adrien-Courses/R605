@@ -1,8 +1,10 @@
 +++
-title = "TP2"
+title = "TP2 Spring Rest+JPA"
 weight = 20
 +++
 
+> [!ressource] Ressource
+> - https://github.com/Adrien-Courses/-R601-TP-SPRINGJPA-Complement
 
 ## Rappel TP5-JPA
 Dans le [TP5]({{< relref "td_tp/jpa_ee_container/tp5_correction" >}}), nous avons
@@ -33,3 +35,7 @@ Puis nous avons complexifié notre application pour y intégrer
 ## Consignes
 > [!affirmation] Objectif
 > Reprendre le TP5 pour le traduire avec Spring Data JPA
+
+- Optimisation des lectures
+- Paginations
+- Specifications
