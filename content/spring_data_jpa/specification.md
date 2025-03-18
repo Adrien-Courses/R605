@@ -66,3 +66,19 @@ public CustomerSpecifications {
 }
 ```
 
+## Utiliser des prédicats
+Nous pouvons maintenant utiliser nos deux prédicats, car pour rappel `CustomerRepository` étend `JpaSpecificationExecutor`
+
+```java
+customerRepository.findAll(hasBirthday());
+customerRepository.findAll(isLongTermCustomer());
+```
+
+```java
+public class CustomerService {
+    public List<Customer> giveReductionToLoyalCustomer() {
+        return customerRepository.findAll(where(customerHasBirthday()).and(isLongTermCustomer()));
+    }
+}
+
+```

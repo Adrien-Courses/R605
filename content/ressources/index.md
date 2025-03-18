@@ -66,3 +66,11 @@ weight = 99
     frameborder="0"
     allowfullscreen>
 </iframe>
+
+<iframe 
+    src="ressources/static/slides/09_Spring_data_jpa/slide.html"
+    width="100%" 
+    height="600" 
+    frameborder="0"
+    allowfullscreen>
+</iframe>
