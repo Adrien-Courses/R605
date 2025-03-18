@@ -4,7 +4,7 @@ weight = 10
 +++
 
 > [!ressource] Ressource
-> -
+> - https://github.com/Adrien-Courses/R605-TP-JPA-join-vs-joinfetch
 > - Lancez une première fois puis renommez le fichier `data.sql` en `.data.sql`
 
 Dans de TD nous allons voir la différence entre un `JOIN` et un `JOINFETCH` au travers des Spécifications JPA
@@ -97,6 +97,10 @@ Néanmoins quand on affiche le JSON on va faire un tarif.getTarifPeriode() qui v
 
 => Le join ne se tratuit pas comme un vrai join sql
 
+
+C'est TarifMapper.toDTO quand on va faire tarif.getPeriodes() qui va refaire un SELECT sur toutes les périodes (les 6) car elles n'ont pas été load en base de données
+
+Tandis que comme le joinfecth les load dejà, tarif.getPeriodes() va aller les chercher en cache (seulement les 2)
 
 -->
 
