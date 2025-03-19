@@ -84,6 +84,8 @@ curl --request POST \
 Faire l'endpoint pour récupérer toutes les commandes
 - on veut également avoir un attribut `total` qui montre le prix total de la commande
 
+**=> Depuis postman ou votre navigateurs récupérer toutes les commandes**
+
 #### Complément
 Dans le `application.yml` ajoutez `spring.jpa.open-in-view=false`
 - [What is this spring.jpa.open-in-view=true property in Spring Boot?](https://stackoverflow.com/questions/30549489/what-is-this-spring-jpa-open-in-view-true-property-in-spring-boot)
