@@ -8,6 +8,12 @@ weight = 55
 > - [Query By Example in Spring Data JPA: A Clean Approach to Dynamic Queries - Dan Vegas](https://www.danvega.dev/blog/spring-data-jpa-query-by-example)
 > - [Spring Data Query By Example - Vlad Mihalcea](https://vladmihalcea.com/spring-data-query-by-example/)
 
+
+- Probe: The actual example of a domain object with populated fields.
+- ExampleMatcher: The ExampleMatcher carries details on how to match particular fields. It can be reused across multiple Examples.
+- => Example: An Example consists of the probe and the ExampleMatcher. It is used to create the query.
+
+
 Cette approche simplifie la création de requêtes complexes sans avoir à écrire de nombreuses méthodes de repository ou des requêtes JPQL complexes
 
 ```java

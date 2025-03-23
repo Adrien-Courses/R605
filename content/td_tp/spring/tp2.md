@@ -4,8 +4,7 @@ weight = 20
 +++
 
 > [!ressource] Ressource
-> - https://github.com/Adrien-Courses/-R601-TP-SPRINGJPA-Complement
-
+> - https://github.com/Adrien-Courses/R601-TP-SPRINGJPA-Complement
 ## Rappel TP5-JPA
 Dans le [TP5]({{< relref "td_tp/jpa_ee_container/tp5_correction" >}}), nous avons
 
