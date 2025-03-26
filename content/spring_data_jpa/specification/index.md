@@ -34,7 +34,7 @@ CriteriaQuery<Customer> query = builder.createQuery(Customer.class);
 Root<Customer> root = query.from(Customer.class);
 
 Predicate hasBirthday = builder.equal(root.get(Customer_.birthday), today);
-Predicate isLongTermCustomer = builder.lessThan(root.get(Customer_.createdAt), today.minusYears(2); 
+Predicate isLongTermCustomer = builder.lessThan(root.get("createdAt"), today.minusYears(2); 
 
 query.where(builder.and(hasBirthday, isLongTermCustomer));
 
@@ -51,7 +51,7 @@ public CustomerSpecifications {
   public static Specification<Customer> customerHasBirthday() {
     return new Specification<Customer> {
       public Predicate toPredicate(Root<T> root, CriteriaQuery query, CriteriaBuilder cb) {
-        return cb.equal(root.get(Customer_.birthday), today);
+        return cb.equal(root.get("birthday"), today);
       }
     };
   }
@@ -59,7 +59,7 @@ public CustomerSpecifications {
   public static Specification<Customer> isLongTermCustomer() {
     return new Specification<Customer> {
       public Predicate toPredicate(Root<T> root, CriteriaQuery query, CriteriaBuilder cb) {
-        return cb.lessThan(root.get(Customer_.createdAt), new LocalDate.minusYears(2));
+        return cb.lessThan(root.get("createdAt"), new LocalDate.minusYears(2));
       }
     };
   }
