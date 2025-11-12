@@ -1,5 +1,5 @@
 +++
-title = "Transactions"
+title = "Transactions optionnelles ?"
 weight = 50
 +++
 
@@ -89,3 +89,40 @@ public class UserService {
     }
 }
 ```
+
+## Autre cas
+On modifie une entité managée (récupérée de la BDD) mais en dehors d'une transaction dans le cas sans container
+```java
+EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("jpa-test");
+EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+entityManager.getTransaction().begin();
+
+Person personne = new Person();
+personne.setNom("John Doe");
+entityManager.persist(personne);
+
+entityManager.getTransaction().commit();
+
+Person backToDb = entityManager.find(Person.class, 1L);
+backToDb.setNom("Update nom");
+// Est-ce que le prénom est mis à jour ? Non
+```
+
+Hibernate détecte la modification, mais ne l’envoie à la base de données que lors d’un `flush()`, et un flush ne se produit que dans une transaction. Donc Hibernate garde la modification en mémoire, mais ne flush pas vers la base.
+
+### Comment forcer la mise à jour ?
+1. Encadrer le code d'une `getTransaction().begin();` et `getTransaction().commit()`
+2. Forcer un flush manuel : `entityManager.flush()` qui synchronise l’état avec la base mais sans transaction.
+
+Si on est dans un cas avec container (Spring, GlassFish, etc) le conteneur gère les transactions via JTA
+
+
+## Résumé
+| Aspect                                        | Java SE (Resource Local)                        | Conteneur JEE / Spring (JTA)              |
+| --------------------------------------------- | ----------------------------------------------- | ----------------------------------------- |
+| **Gestion des transactions**                  | Manuelle (via `EntityTransaction`)              | Automatique (via proxy `@Transactional`)  |
+| **Début de transaction**                      | `tx.begin()`                                    | Ouverture automatique                     |
+| **Fin de transaction**                        | `tx.commit()`                                   | Commit automatique à la fin de la méthode |
+| **Dirty checking**                            | Oui, mais flush uniquement dans une transaction | Oui, flush automatique à la fin           |
+| **Effet du `setNom()` sans commit explicite** | ⚠️ Ignoré (pas de flush)                         | ✅ Pris en compte (flush au commit)        |
