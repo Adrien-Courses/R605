@@ -52,6 +52,8 @@ try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/
 }
 ```
 
+![jdbc_connection](jdbc_connection.png)
+
 ## 2. Accès à la base de données
 Une fois la connexion établie, il est possible d'interagir avec une base de données, notamment pour exécuter des requêtes SQL. De même, nous devons invoquer la méthode `close()` (try-with-ressources) pour indiquer que l'exploitation est terminée.
 

@@ -1,6 +1,6 @@
 +++
 title = "DataSource"
-weight = 30
+weight = 10
 +++
 
 Pour le moment nous créons une connexion à la base de données via le `DriverManager`. Mais depuis la version 2.0 de l'API JDBC nous pouvons utiliser l'interface `DataSource`
@@ -31,3 +31,20 @@ dataSource.setPort(3306);
 dataSource.setDatabaseName("client");
 ...
 ```
+
+## Schéma
+Il est presque identique à celui présenté dans [la page précédente]({{< relref "jdbc/api_jdbc/#établir-la-connexion" >}}). Ici `javax.sql.DataSource` délègue l'acquisition de la connexion au `DriverManager`
+
+![jdbc-connection2](jdbc-connection2.png)
+  
+1. La couche de données de l'application demande à la `DataSource` une connexion à la base de données
+
+2. La `DataSource` utilise le pilote sous-jacent pour ouvrir une connexion physique
+
+3. Une connexion physique est créée et un socket TCP est ouvert
+
+4. La `DataSource` n'ajoute aucune abstraction au dessus de la connexion JDBC. Elle se contente de transmettre à l'application la connexion physique brute créée par le pilote JDBC.
+
+5. L'application exécute des instructions à l'aide de la connexion à la base de données acquise
+
+6. Lorsque la connexion n'est plus nécessaire, l'application ferme la connexion physique ainsi que le socket TCP sous-jacent.
