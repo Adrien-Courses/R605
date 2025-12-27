@@ -2,7 +2,7 @@ import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
 
 /**
- * Quartz 4.0 Configuration
+ * Quartz 4 Configuration
  *
  * See https://quartz.jzhao.xyz/configuration for more information.
  */
@@ -18,8 +18,7 @@ const config: QuartzConfig = {
     locale: "fr-FR",
     baseUrl: "r605.adriencaubel.fr",
     ignorePatterns: ["private", "templates", ".obsidian"],
-    defaultDateType: "created",
-    generateSocialImages: false,
+    defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
@@ -56,7 +55,12 @@ const config: QuartzConfig = {
   },
   plugins: {
     transformers: [
-      Plugin.FrontMatter({ delims: "+++", language: "toml" }),
+      Plugin.FrontMatter({ delimiters: "+++", language: "toml" }),
+      Plugin.OxHugoFlavouredMarkdown(),
+      Plugin.GitHubFlavoredMarkdown(),
+      Plugin.CreatedModifiedDate({
+        priority: ["frontmatter", "git", "filesystem"],
+      }),
       Plugin.SyntaxHighlighting({
         theme: {
           light: "github-light",
@@ -64,15 +68,10 @@ const config: QuartzConfig = {
         },
         keepBackground: false,
       }),
-      Plugin.OxHugoFlavouredMarkdown({
-        wikilinks: true
-      }),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
       Plugin.TableOfContents(),
-      Plugin.CrawlLinks({ 
-        markdownLinkResolution: "shortest"
-      }),
+      Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
     ],
@@ -89,7 +88,10 @@ const config: QuartzConfig = {
       }),
       Plugin.Assets(),
       Plugin.Static(),
+      Plugin.Favicon(),
       Plugin.NotFoundPage(),
+      // Comment out CustomOgImages to speed up build time
+      //Plugin.CustomOgImages(),
     ],
   },
 }

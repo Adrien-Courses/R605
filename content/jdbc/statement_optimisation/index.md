@@ -1,6 +1,6 @@
 +++
 title = "Statement Optimisation"
-weight = 99
+weight = 20
 +++
 
 Non étudié, parties assez complexes

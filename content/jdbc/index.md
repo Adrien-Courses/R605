@@ -1,5 +1,5 @@
 +++
-title = "JDBC"
+title = "JDBC & BDD incontournables"
 weight = 10
 +++
 

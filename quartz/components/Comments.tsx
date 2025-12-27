@@ -2,7 +2,6 @@ import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } fro
 import { classNames } from "../util/lang"
 // @ts-ignore
 import script from "./scripts/comments.inline"
-import { boolean } from "yargs"
 
 type Options = {
   provider: "giscus"
@@ -28,17 +27,9 @@ function boolToStringBool(b: boolean): string {
 export default ((opts: Options) => {
   const Comments: QuartzComponent = ({ displayClass, fileData, cfg }: QuartzComponentProps) => {
     // check if comments should be displayed according to frontmatter
-    
-
-    {/* COMMENT ONLY ON PAGE WITH comments: true
-      const disableComment: boolean =
+    const disableComment: boolean =
       typeof fileData.frontmatter?.comments !== "undefined" &&
       (!fileData.frontmatter?.comments || fileData.frontmatter?.comments === "false")
-      */}
-
-    const disableComment: boolean =
-      (!fileData.frontmatter?.comments || fileData.frontmatter?.comments === "false")
-
     if (disableComment) {
       return <></>
     }

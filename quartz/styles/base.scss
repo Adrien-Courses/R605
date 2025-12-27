@@ -25,7 +25,7 @@ section {
   border-radius: 5px;
 }
 ::selection {
-  background: color-mix(in srgb, var(--tertiary) 60%, rgba(255, 255, 255, 0));
+  background: color-mix(in srgb, var(--tertiary) 60%, rgba(48, 40, 40, 0));
   color: var(--darkgray);
 }
 
@@ -220,6 +220,7 @@ a {
         padding: 0;
         & > * {
           flex: 1;
+          max-height: 24rem;
         }
         & > .toc {
           display: none;
@@ -261,10 +262,6 @@ a {
       @media all and (min-width: 2000px) {
         width: 37vw; // Specific width for large-desktop
       }
-    }
-
-    & footer {
-      margin-left: 0; // Adjust footer margin specifically if needed
     }
   }
 }

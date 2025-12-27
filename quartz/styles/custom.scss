@@ -39,6 +39,13 @@ img {
     font-weight: 400;
 }
 
+.folder-title {
+    color: #565656 !important;
+    font-weight: 300 !important;
+    font-size: 16px !important;
+    font-family: var(--bodyFont) !important;
+}   
+
 .folder-outer a {
     color: #565656 !important;
     font-weight: 300 !important;
@@ -60,9 +67,6 @@ img {
     padding-bottom: 1rem;
   }
 
-.folder-outer {
-    border-inline-start: 1px solid rgba( 237,238,243,1 );
-}
 
 
 
@@ -87,11 +91,8 @@ img {
         --bg: #db424210;
         --callout-icon: var(--callout-icon-danger);
     }
-}
+  }
 
-code {
-    font-size: 0.8em !important;
-    background: rgb(255, 250, 233);
-    border: rgb(248,232,200) 1px solid;
-    padding: 0rem .1rem 0rem .2rem;
+.explorer-content > ul > li {
+    padding-bottom: 1rem;
 }

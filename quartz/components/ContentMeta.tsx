@@ -43,9 +43,15 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
       }
 
       return (
+          {segments}
+      )
+      /** 
+      return (
         <p show-comma={options.showComma} class={classNames(displayClass, "content-meta")}>
+          {segments}
         </p>
       )
+      */
     } else {
       return null
     }
