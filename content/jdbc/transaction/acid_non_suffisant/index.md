@@ -10,6 +10,9 @@ weight = 30
 Les deux sections précédentes sur le [Contrôle de la concurrence]({{< relref "jdbc/transaction/controle_concurrence/index" >}}) et le [Niveau d'isolation]({{< relref "jdbc/transaction/isolation_level/index" >}}) permettent d'assurer une transaction ACID au sens base de données.
 
 ## Pourquoi ACID n'est pas suffisant ?
+
+![](https://youtu.be/Qcpsx2INYdU)
+
 ACID garantit la cohérence technique des transactions au niveau de la base de données, mais cela ne suffit plus dès que l’on raisonne en transactions logiques métier, souvent réparties sur plusieurs interactions.
 1. Une première transaction lit des données et les expose à l’utilisateur (=> une transaction)
 2. ’utilisateur modifie ces données côté frontend, puis les renvoie au backend (=> une seconde transaction)
@@ -52,7 +55,7 @@ Dès lors qu’une logique métier s’étend sur plusieurs transactions :
 ## Solution
 > Pushing database transaction boundaries into the application layer **requires an application-level concurrency control**. To ensure application-level repeatable reads we need to preserve state across multiple user requests, but in the absence of database locking, we need to rely on an application-level concurrency control. [^2]
 
-Une solution consiste à délégué le travail à la couche applicative, par exemple en faisant du [Optimistic locking décrit dans la page suivante]({{< relref "optimistic_locking" >}}).
+Une solution consiste à délégué le travail à la couche applicative, par exemple en faisant du [Optimistic locking décrit dans la page suivante]({{< relref "jdbc/transaction/acid_non_suffisant/optimistic_locking/index" >}}).
 
 
 [^2]: [https://vladmihalcea.com/preventing-lost-updates-in-long-conversations/](https://vladmihalcea.com/preventing-lost-updates-in-long-conversations/) - Conclusion 

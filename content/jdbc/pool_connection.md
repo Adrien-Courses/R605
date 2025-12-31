@@ -33,6 +33,9 @@ est également raccourci.
 une exception d'échec d'acquisition de connexion.
 5. Lorsque le client ferme la connexion logique, celle-ci est libérée et retourne au pool sans fermer la connexion physique sous-jacente.
 
+Ainsi, l'exception classique `Connection is not available, request timed out after 30000ms` est levé pendant l'étape 4 car nous n'avons pas réussi à acquérir une connexion à temps (latence réseau ou requête trop longue)
+
+### Cycle de vie
 Le cycle de vie logique de la connexion se présente comme suit
 
 ![pool_schema](pool_schema.png)

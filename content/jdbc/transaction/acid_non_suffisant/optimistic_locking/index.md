@@ -6,15 +6,13 @@ weight = 10
 > [!ressource] Ressource
 > - [Optimistic Offline Lock - Martin Fowler](https://martinfowler.com/eaaCatalog/optimisticOfflineLock.html)
 > - [Optimistic Locking in JPA (pas en JDBC)](https://www.baeldung.com/jpa-optimistic-locking)
-> - [Optimistic vs. Pessimistic locking - StackOverflow](https://stackoverflow.com/questions/129329/optimistic-vs-pessimistic-locking)
-> - [Pessimistic vs Optimistic Locking](https://newsletter.systemdesigncodex.com/p/pessimistic-vs-optimistic-locking)
 
 > [!affirmation] Affirmation
 > Pour coordonner les changements d'état, le contrôle de la concurrence au niveau de l'application on utilise le verrouillage explicite (*explicit locking*), qui se décline en deux variantes : le verrouillage pessimiste et le verrouillage optimiste.
 
 ## Verrouillage optimiste
 > [!definition] Définition
->  Le verrouillage optimiste repose sur la détection des modifications apportées aux entités en vérifiant leur **attribut de version**.
+>  Il part du principe que « les conflits sont rares ». Au lieu de verrouiller les données à l'avance, il permet à plusieurs utilisateurs d'accéder et même de modifier les mêmes données simultanément, et ne vérifie les conflits qu'au moment de la validation.
 
 L'algorithme de verrouillage optimiste fonctionne comme suit :
 1. Lorsqu'un client lit une ligne particulière, sa version accompagne les autres champs

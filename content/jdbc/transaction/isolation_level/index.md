@@ -5,6 +5,7 @@ weight = 20
 
 > [!ressource] Ressource
 > - [Database Isolation Levels](https://bytebytego.com/guides/what-are-database-isolation-levels/)
+> - [A beginner’s guide to transaction isolation levels in enterprise Java - Vlad Mihalcea](https://vladmihalcea.com/a-beginners-guide-to-transaction-isolation-levels-in-enterprise-java/)
 
 > Imaginez deux utilisateurs essayant d'accéder ou de modifier simultanément les mêmes données. Comment vous assurez-vous que les données ne sont pas corrompues ? C'est là que les niveaux d'isolation entrent en jeu.
 

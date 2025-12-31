@@ -1,6 +1,6 @@
 +++
 title = "Autocommit"
-weight = 30
+weight = 50
 +++
 
 Par défaut, chaque `Connection` débute en *auto-commit=true*. Par conséquent, chaque *Statement* sera exécuté dans une transaction séparée. ce mode *auto-commit=true* ne nous permet pas de valider un groupe d'opérations dans la même transaction.

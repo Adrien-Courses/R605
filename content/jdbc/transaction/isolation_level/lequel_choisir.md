@@ -36,4 +36,4 @@ La plupart des SGBD choisissent READ COMMITTED comme niveau d'isolation par déf
 ## Lequel choisir ?
 Au final ca dépend de cas métier. 
 
-Quelques exemples dans l'article suivant [Understanding Isolation Levels in Transactions with Java Spring](https://medium.com/@a.r.m.monesan_9577/understanding-isolation-levels-in-transactions-with-java-spring-c414b43b6df1)
+- Quelques autres dans l'article suivant [Understanding Isolation Levels in Transactions with Java Spring](https://medium.com/@a.r.m.monesan_9577/understanding-isolation-levels-in-transactions-with-java-spring-c414b43b6df1)

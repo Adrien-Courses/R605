@@ -1,28 +1,7 @@
 +++
-title = "Cycle de vie entité JPA"
-weight = 40
+title = "Exemple concret"
+weight = 10
 +++
-
-> [!ressource] Ressources
-> - [José Paumard - Cycle de vie d'une entité JPA](https://youtu.be/gsBWy6YyhjI?list=PLzzeuFUy_CnhVfJIKyc3okTiiCc0anutx)
-> - [Vlad Mihalcea - A beginner’s guide to entity state transitions with JPA and Hibernate](https://vladmihalcea.com/a-beginners-guide-to-jpa-hibernate-entity-state-transitions/) <br><br>
->
-> - [TD1 JPA Cycle de vie]({{< relref "td_tp/jpa/td1" >}}) - Mise en oeuvre de l’illustration décrite ci-dessous
-
-
-![cycle de vie](jpa/specification/images/cycle_de_vie.png)
-
-1. `UserJPA user = new UserJPA()`
-Lorsqu'on crée une nouvelle en JPA, elle se retrouve dans l'état `NEW`
-
-1. `entityManager.persist(user)`
-Lorsqu'on fait un `persist()` sur l'entité, alors elle passe dans l'état `MANAGED`. Cela signifie que l'entité est connue par un `EntityManager`
-
-1. `entityManager.detach(user)`
-Lorsqu'on détache une entité, nous disons à JPA que l'entité n'est plus managée par JPA mais elle continue néanmoins à garder des informations comme quoi elle est la représentation de quelque chose qui existe en base. Pour re-attacher il faudra utiliser la méthode `merge()`
-
-1. `entityManager.remove(user)`
-Finalement, si nous n'avons plus besoin de cet utilisateur nous allons faire un `remove()`. Par conséquent, l'entité va être dans l'état `REMOVED`. Note, à ce moment l'entité n'est pas supprimé en base il faudra attendre les opérations de *commit*
 
 ## Illustration
 Pour illustrer l'importance du cycle de vie, considérons la table `Cours` suivante
