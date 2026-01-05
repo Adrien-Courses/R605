@@ -6,6 +6,8 @@ weight = 11
 > [!ressource] Ressources
 > - [The best way to map a @OneToMany relationship with JPA and Hibernate](https://vladmihalcea.com/the-best-way-to-map-a-onetomany-association-with-jpa-and-hibernate/)
 
+![](https://youtu.be/fuLaCgzzMBA)
+
 ## Relation unidirectionnelle
 Nous souhaitons représenter la relation un utilisateur peut avoir plusieurs commandes. C’est la classe Commande qui tiendra l’association, en effet, si nous représentons la structure relationnelle SQL nous avons
 - une classe `Utilisateur` qui contient contient une collection de `commandes`

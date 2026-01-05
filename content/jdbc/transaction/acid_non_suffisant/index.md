@@ -55,7 +55,9 @@ Dès lors qu’une logique métier s’étend sur plusieurs transactions :
 ## Solution
 > Pushing database transaction boundaries into the application layer **requires an application-level concurrency control**. To ensure application-level repeatable reads we need to preserve state across multiple user requests, but in the absence of database locking, we need to rely on an application-level concurrency control. [^2]
 
-Une solution consiste à délégué le travail à la couche applicative, par exemple en faisant du [Optimistic locking décrit dans la page suivante]({{< relref "jdbc/transaction/acid_non_suffisant/optimistic_locking/index" >}}).
+Une solution consiste à délégué le travail à la couche applicative, par exemple 
+- en faisant du [Pessimistic Locking]({{< relref "jdbc/transaction/acid_non_suffisant/pessimistic_locking/index" >}}) (app stateful).
+- ou en faisant du [Optimistic locking]({{< relref "jdbc/transaction/acid_non_suffisant/optimistic_locking/index" >}}) (app stateless).
 
 
 [^2]: [https://vladmihalcea.com/preventing-lost-updates-in-long-conversations/](https://vladmihalcea.com/preventing-lost-updates-in-long-conversations/) - Conclusion 

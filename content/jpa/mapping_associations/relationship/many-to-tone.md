@@ -1,7 +1,68 @@
 +++
 title = "@ManyToOne"
-weight = 20
+weight = 10
 +++
+
+> [!ressource]
+> - [ManyToOne JPA and Hibernate association best practices](https://vladmihalcea.com/manytoone-jpa-hibernate/)
+
+## @ManyToOne unidirectionnelle 
+
+![manytoone](manytoone.png)
+
+Au lieu de mapper la colonne de clé étrangère `post_id`, `PostComment` utilise une relation `@ManyToOne`
+avec l'entité parent `Post`. `PostComment` peut être associé à une référence d'objet `Post` existante,
+et `PostComment` peut également être récupéré avec l'entité `Post`.
+
+```java
+public class PostComment {
+    private Integer post_id; // ❌ préférer faire une référence
+}
+```
+
+```java
+public class PostComment {
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
+}
+```
+
+### Code SQL généré
+
+Si l'attribut `@ManyToOne` est défini sur une référence d'entité Post valide, alors Hibernate génère une instruction `INSERT` qui remplit la colonne `post_id` avec l'identifiant de l'entité Post associée.
+
+```java
+Post post = entityManager.find(Post.class, 1L);
+PostComment comment = new PostComment("My review");
+comment.setPost(post);
+entityManager.persist(comment);
+```
+
+Donnera l'instruction SQL
+
+```sql
+INSERT INTO post_comment (post_id, review, id) VALUES (1, 'My review', 2)
+```
+
+Si plus tard, si l'attribut `Post` de `PostComment` est défini à `null`, nous obtiendrons
+
+```java
+comment.setPost(null);
+```
+
+Un update avec un `SET = NULL`
+
+```sql
+UPDATE post_comment SET post_id = NULL, review = 'My review' WHERE id = 2
+```
+
+## @ManyToOne bidirectionnelle  
+
+Voir la section sur le `@OneToMany`
+
+
+<!---
 
 Supposons que nous avons un Order et un OrderLine. 
 - Nous pouvons choisir d’avoir une relation unidirectionnelle `OneToMany` entre Order et OrderLine (Order contiendrait une collection de OrderLines). 
@@ -9,6 +70,47 @@ Supposons que nous avons un Order et un OrderLine.
 - Enfin, nous pouvons choisir d’avoir les deux, auquel cas l’association devient une relation bidirectionnelle `OneToMany/ManyToOne`.
 
 Au final nous retombons sur le même sujet que la section précédent.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--->
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!--- 

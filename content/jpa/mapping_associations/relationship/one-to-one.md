@@ -1,12 +1,15 @@
 +++
 title = "@OneToOne"
-weight = 10
+weight = 30
 +++
 
 > [!ressource] Ressources
 > - [KooR - Mapping d'une relation @OneToOne](https://koor.fr/Java/TutorialJEE/jee_jpa_one_to_one.wp)
+> - [The best way to map a @OneToOne relationship with JPA and Hibernate](https://vladmihalcea.com/the-best-way-to-map-a-onetoone-relationship-with-jpa-and-hibernate/)
 
-La première relation que nous allons découvrir avec la `1:1`. Elle consiste à assurer la correspondance entre deux entités de manière exclusive, où chaque instance d'une entité est directement liée à une unique instance de l'autre entité.
+![](https://youtu.be/GRV69QNSdVg)
+
+Cette relation consiste à assurer la correspondance entre deux entités de manière exclusive, où chaque instance d'une entité est directement liée à une unique instance de l'autre entité.
 - Une personne à un unique passeport
 - Un passeport appartient à une seule personne
 

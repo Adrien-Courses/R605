@@ -14,26 +14,15 @@ weight = 30
 Lancer l'image docker présente dans le `Dockerfile` : `docker compose up`
 
 ## 2. Consigne
-Étudier la notion de *Connection Pool*
-
-La classe `InitDatabase` permet de créer et insérer 1000 lignes dans la table suivante :
-```
-+------+------------------+
-| id   | data             |
-+------+------------------+
-| 1    | Sample Data 0    |
-| 2    | Sample Data 1    |
-| n    |      ...         |
-| 1000 | Sample Data 1000 |
-```
+Étudier la notion de *Connection Pool*. Nous simulons le transfert d'argent d'un compte source à un compte destination.
 
 ### Sans Pool
-- Compléter la classe `WithoutPooling` pour déterminer le temps d'exécution de la lecture des 1000 lignes
+- Exécuter la classe `WithoutPooling` pour déterminer le temps d'exécution de l'insertion de 100 lignes, puis de 1000 lignes.
 
 ### Avec Pool
 
 > [!ressource] Ressource
 > [BasicDataSource Configuration Parameters](https://commons.apache.org/proper/commons-dbcp/configuration.html)
 
-En vous appuyant sur une bibliothèque qui permet d'effectuer du *pooling* (e.g. `commons-dbcp2`) effectuer le même traitement que précédemment.
+En vous appuyant sur une bibliothèque qui permet d'effectuer du *pooling* (e.g. `commons-dbcp2`) effectuer le même traitement que précédemment. Changer la taille de la pool.
  

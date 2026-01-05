@@ -6,7 +6,8 @@ weight = 15
 > [!ressource] Ressource
 > - [The anatomy of Connection Pooling - Vlad Mihalcea](https://vladmihalcea.com/the-anatomy-of-connection-pooling/)
 > - [Maximum number of database connections](https://vladmihalcea.com/maximum-database-connections/)
-> [TD1 JDBC - Pool Connection]({{< relref "td_tp/jdbc/td1" >}})
+> - [The best way to determine the optimal connection pool size](https://vladmihalcea.com/optimal-connection-pool-size/)
+> - [TD1 JDBC - Pool Connection]({{< relref "td_tp/jdbc/td1" >}})
 
 ## Ouvrir une connexion est une opération coûteuse
 
