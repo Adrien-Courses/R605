@@ -4,7 +4,7 @@ weight = 10
 +++
 
 > [!ressource] Ressource
-> [https://github.com/Adrien-Courses/R605-TP-JPA-cycledevie](https://github.com/Adrien-Courses/R605-TP-JPA-cycledevie)
+> [https://github.com/Adrien-Courses/R605-TP-IsolationLocking-PhantomRead](https://github.com/Adrien-Courses/R605-TP-IsolationLocking-PhantomRead)
 
 ## 1. Télécharger et lancer le projet
 
