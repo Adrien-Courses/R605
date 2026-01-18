@@ -3,10 +3,4 @@ Ressource = "test"
 weight = 100
 +++
 
-<iframe 
-    src="ressources/2025/site/index.html"
-    width="100%" 
-    height="600" 
-    frameborder="0"
-    allowfullscreen>
-</iframe>
+<embed src="/static/pdf/2025_2026/01_JDBC.pdf" width="100%" height="500px"/>
