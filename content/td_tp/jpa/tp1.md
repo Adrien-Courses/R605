@@ -15,9 +15,9 @@ Lancer l'image docker présente dans le `Dockerfile` : `docker compose up`
 ## 2. Consigne
 
 > [!affirmation] Objectif
-> L'objectif de ce TP est de se familiariser avec JPA et les opérations réalisable au travers de l'EntityManager
+> L'objectif de ce TP est de se familiariser avec JPA et les opérations réalisables au travers de l'EntityManager
 
-1. Configurer l'accès à la base de données dans le fichier `src/main/resources/META-INF/persistance.xml` <br><br>
+1. Configurer l'accès à la base de données dans le fichier `src/main/resources/META-INF/persistence.xml` <br><br>
 
 2. Créer une entité (via une classe) `Person` avec les attributs `id`, `nom` et `age` <br><br>
 

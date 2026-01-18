@@ -8,4 +8,4 @@ weight = 40
 > - [The best way to fetch a Spring Data JPA DTO Projection](https://vladmihalcea.com/spring-jpa-dto-projection/)
 
 > [!affirmation] Rappel
-> - Nous avons déjà aborder les projection avec JPA, voir [Projection]({{< relref "jpa_deeper/projection" >}})
+> - Nous avons déjà abordé les projections avec JPA, voir [Projection]({{< relref "jpa_deeper/projection" >}})

@@ -34,7 +34,7 @@ public class EtudiantService {
 
     public List<Etudiant> trouverEtudiantsParDepartement(String departement) {
         Etudiant probe = new Etudiant();
-        probe.setDepartement(departement); // On écrit un probe en settant le département
+        probe.setDepartement(departement); // On écrit un probe en définissant le département
 
         return repository.findAll(Example.of(probe));
     }

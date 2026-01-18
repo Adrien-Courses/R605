@@ -6,7 +6,7 @@ weight = 11
 > [!definition] Définition
 > Un composant, au contraire, est un objet sans identifiant, qui ne peut être persistant que par rattachement à une entité.
 
-La notion de composant résulte du constat qu’une ligne dans une base de données peut parfois être décomposée en plusieurs sous-ensemble dotés chacun d’une logique autonome.
+La notion de composant résulte du constat qu’une ligne dans une base de données peut parfois être décomposée en plusieurs sous-ensembles dotés chacun d’une logique autonome.
 - Réutilisable dans plusieurs entités
 - Pas de table séparée
 - Mappage intégré dans la table principale
@@ -27,7 +27,7 @@ Client
 
 Via les composants nous n'avons pas à écrire l'ensemble des attributs dans nos deux classes Java mais pouvons coder une classe `Adresse` qui :
 - n'a pas d'identifiant unique
-- ne sera pas représenté sous la forme d'une table
+- ne sera pas représentée sous la forme d'une table
 
 Permettant ainsi la réduction du code dupliqué
 
@@ -68,7 +68,7 @@ public class Societe {
 ```
 
 ## Surcharge nom colonne
-Supposons une petite différence au niveau du nom des colonne en base de données
+Supposons une petite différence au niveau du nom des colonnes en base de données
 - les deux tables ont la notion d'adresse mais pas le même nom d'attribut
 
 ```

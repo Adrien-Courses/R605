@@ -15,8 +15,8 @@ weight = 10
 Lorsqu'on travaille avec JPA (Java Persistence API), il est essentiel de comprendre comment sont chargées les relations entre entités pour optimiser les performances de l'application. Deux stratégies principales existent : *Lazy Fetching* (chargement paresseux) et *Eager Fetching* (chargement immédiat).
 
 ## Default fetching
-- Par défaut, `@OneToMany` et `@ManyToMany` adopte une approche Lazy Fetching
-- Par défaut, `@OneToOne` et `@ManyToOne` adapte une approche Eager Fetching
+- Par défaut, `@OneToMany` et `@ManyToMany` adoptent une approche Lazy Fetching
+- Par défaut, `@OneToOne` et `@ManyToOne` adoptent une approche Eager Fetching
 
 ## Fetch Lazy
 Les relations ne sont pas chargées immédiatement lors de la requête initiale. Elles sont récupérées uniquement lorsqu'elles sont explicitement accédées dans le code.
@@ -42,7 +42,7 @@ Etudiant etudiant = entityManager.find(Etudiant.class, etudiantId);
 List<Livre> livres = etudiant.getLivresLus();
 ```
 
-Comme `LAZY` deux requêtes SQL vont être nécessaires
+Comme c'est du `LAZY`, deux requêtes SQL vont être nécessaires
 - `SELECT * FROM etudiant WHERE id = ?;`
 - puis `SELECT * FROM livre WHERE etudiant_id = ?;`
 
@@ -92,7 +92,7 @@ En complément, nous allons mettre un nom sur cette problématique.
 
 ![alt text](n1query.png)
 
-Supposons la relation une `Voiture` à plusieurs `Roue` => `@OneToMany`
+Supposons qu'une relation de `Voiture` à plusieurs `Roue` => `@OneToMany`
 - Supposons maintenant qu'il faille parcourir toutes les voitures et, pour chacune d'entre elles, afficher la liste des roues. L'implémentation O/R naïve ferait ce qui suit
   - `SELECT * FROM Cars;`
   - Puis pour chaque voiture `SELECT * FROM Wheel WHERE CarId = ?`
@@ -105,4 +105,4 @@ LEFT JOIN Wheel w ON c.id = w.car_id;
 
 ```
 
-Plusieurs solutions existent, nous en étudierons dans le [TP3 JPA Fetching]({{< relref "td_tp/jpa_godeeper/fetching" >}})
+Plusieurs solutions existent, nous en étudierons certaines dans le [TP3 JPA Fetching]({{< relref "td_tp/jpa_godeeper/fetching" >}})

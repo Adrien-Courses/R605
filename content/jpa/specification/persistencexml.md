@@ -6,7 +6,7 @@ weight = 10
 > [!ressource] Ressources
 > - [Décrire une unité de persistence dans un fichier persistence.xml](https://youtu.be/A51OKCrpMOI?list=PLzzeuFUy_CnhVfJIKyc3okTiiCc0anutx)
 
-Le fichier persistence.xml contient la configuration de base pour le mapping notamment en fournissant les informations sur la connexion à la base de données à utiliser. Il est stocké dans  `resources/META-INF/persitence.xml`
+Le fichier persistence.xml contient la configuration de base pour le mapping notamment en fournissant les informations sur la connexion à la base de données à utiliser. Il est stocké dans  `resources/META-INF/persistence.xml`
 - L'ensemble des classes des entités qui compose l'unité de persistance peut être spécifié explicitement dans le fichier persistence.xml ou déterminé dynamiquement à l'exécution par recherche de toutes les classes possédant une annotation @javax.persistence.Entity.
 - Des propriétés génériques connues par JPA (url de connexion, user et password)
 - Des propriétés spécifiques à l'ORM choisi (ici Hibernate)
@@ -43,7 +43,7 @@ Le fichier persistence.xml contient la configuration de base pour le mapping not
 </persistence>
 ```
 
-Toutes ces propriétés sont regroupés dans une notion de `persitence-unit` qui est propre à JPA. Avec JPA, une application peut avoir plusieurs persitence-units et chacune étant associée à un `provider` (e.g. `HibernatePersistenceProvider`).
+Toutes ces propriétés sont regroupées dans une notion de `persistence-unit` qui est propre à JPA. Avec JPA, une application peut avoir plusieurs persistence-units et chacune étant associée à un `provider` (e.g. `HibernatePersistenceProvider`).
 
 Ainsi, on pourrait avoir 3 classes gérées par Hibernate et 2 autres classes gérées par EclipseLink.
 

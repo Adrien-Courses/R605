@@ -4,8 +4,8 @@ weight = 10
 +++
 
 ## Prérequis
-- Avoir Java d'installé : `java --version`
-- Avoir Maven d'installé : `mvn --version`
+- Avoir Java installé : `java --version`
+- Avoir Maven installé : `mvn --version`
 
 ## Dans Eclipse
 1. File -> Import -> Existing Maven Projects

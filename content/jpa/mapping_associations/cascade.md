@@ -39,7 +39,7 @@ public class Pet {
 }
 ```
 
-Puis nous créons les instances suivante
+Puis nous créons les instances suivantes
 
 ```java
 Owner owner = new Owner("John Doe");
@@ -51,7 +51,7 @@ owner.addPet(pet1);
 owner.addPet(pet2);
 ```
 
-Si nous souhaitons persister en base de données l'ensemble des elements alors nous devons faire les appels suivant
+Si nous souhaitons persister en base de données l'ensemble des éléments alors nous devons faire les appels suivants
 
 ```java
 EntityManager em = emf.createEntityManager();

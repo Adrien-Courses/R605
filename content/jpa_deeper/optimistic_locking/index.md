@@ -14,7 +14,7 @@ Note, ci-dessous nous allons coder avec Spring Data JPA pour limiter les détail
 > - https://github.com/Adrien-Courses/R605-TD-Spring-optimistic-locking
 *Que se passe-t-il si nous modifions en même temps une même ressource ?*
 
-Supposons la règle métier suivante "Une commande ne peut pas avoir plus d'un item", mais à un moment donné on ajoute en même un item à une même commande, si nous ne gérons rien alors l'invariant ne sera pas respecté.
+Supposons la règle métier suivante "Une commande ne peut pas avoir plus d'un item", mais à un moment donné on ajoute en même temps un item à une même commande, si nous ne gérons rien alors l'invariant ne sera pas respecté.
 
 Pour simuler notre cas :
 1. Lancer une première requête HTTP avec un `Thread.sleep()` de 10 secondes après avoir ajouter l'item à la commande
@@ -53,8 +53,8 @@ public void addOrderLine(String name) throws IllegalAccessException {
 
 1. `addItem()` est appelé, il récupère la commande id=1 et ajoute une ligne
 2. `addItemBis()` est appelé, il récupère la commande id=1, ajoute la ligne et dedans on vérifie si items.size() == 0; c'est bien le cas
-3. `addItemBis()` se finie, on a donc un item dans notre commande
-4. `addItem()` se finie, on a un deuxième item dans notre commande => pas bon au niveau métier
+3. `addItemBis()` se termine, on a donc un item dans notre commande
+4. `addItem()` se termine, on a un deuxième item dans notre commande => pas bon au niveau métier
 
 ## Optimistic locking
 > [!ressource] Ressource
@@ -64,12 +64,12 @@ Cela permet à chaque opération d'obtenir la version actuelle du magasin de don
 
 Ensuite, la version est testée par rapport au magasin de données à chaque fois que l'agrégat est réécrit. Si la version n'est pas synchronisée (c'est-à-dire si quelqu'un d'autre a écrit dans le magasin pendant que l'opération était en cours de traitement), l'opération échoue.
 
-- Il faut ajouter une colonne `@Version` qui sera géré par Hibernate
-- Lors de la requête SQL la version sera vérifié et si elle ne correspond pas à celle récupéré lors du `findy` une exception est levée
+- Il faut ajouter une colonne `@Version` qui sera gérée par Hibernate
+- Lors de la requête SQL la version sera vérifiée et si elle ne correspond pas à celle récupérée lors du `find` une exception est levée
 
 ### Explication
 1. `addItem()` est appelé, il récupère la commande id=1 et ajoute une ligne
-   - La version est celle stocké en base, disons version=1
+- La version est celle stockée en base, disons version=1
 
 2. `addItemBis()` est appelé, il récupère la commande id=1, ajoute la ligne et dedans on vérifie si items.size() == 0; c'est bien le cas
     - Ceci génère la trace suivante, la version initiale était 1, lors de l'insertion on regarde si la version est toujours 1 et c'est bien le cas
@@ -91,7 +91,7 @@ Hibernate:
 2025-05-27T20:04:29.292+02:00 TRACE 72904 --- [nio-4545-exec-3] org.hibernate.orm.jdbc.bind              : binding parameter [4] as [BIGINT] - [1]
 ```
 
-4. `addItem()` se finie
+4. `addItem()` se termine
    - On vérifie s'il existe toujours la ligne avec la version du point *1.*, c'est-à-dire `version=1`
   
 ```

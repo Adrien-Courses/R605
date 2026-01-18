@@ -12,7 +12,7 @@ Spring Data JPA agit comme une couche au-dessus de JPA et vous offre deux façon
 - Vous pouvez définir votre propre requête JPQL ou native en utilisant une annotation `@Query`
 
 ## Depuis une méthode
-Supposons une classe `Produit` qui dispose du champs `nom` et puis nous définissons la méthode suivante
+Supposons une classe `Produit` qui dispose du champ `nom` et que nous définissons la méthode suivante
 
 ```java
 public interface ProduitRepository extends JpaRepository<Produit, Long> {

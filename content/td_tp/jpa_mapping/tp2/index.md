@@ -19,7 +19,7 @@ Lancer l'image docker présente dans le `Dockerfile` : `docker compose up`
 
 
 ### a) Créer les entités
-Une `Promotion` est composé de `Cours`. Écrire les entités JPA pour représenter cette relation unidirectionnelle
+Une `Promotion` est composée de `Cours`. Écrire les entités JPA pour représenter cette relation unidirectionnelle
 - Attention, dans cette première itération nous voulons 3 tables
 
 ```mermaid
@@ -69,7 +69,7 @@ Insérer des données (sans utiliser l'attribut `cascade`)
 Modifier votre code, pour ne plus avoir besoin de persister à la fois les cours et la promotion
 
 ### d) Deux relations unidirectionnelles
-Nous souhaitons pouvoir naviguer dans les deux sens, adapter le code pour créer deux relations unidirectionnelle 
+Nous souhaitons pouvoir naviguer dans les deux sens, adapter le code pour créer deux relations unidirectionnelles 
 - nous en profiterons pour renommer la table de jointure en `tj_promotion_cours` et les colonnes en `promotion_fk` et `cours_fk`
 
 <!--
@@ -100,7 +100,7 @@ mysql> DESCRIBE tj_promotion_cours;
 ```
 
 ### e) Éviter la table de jointure
-Par défaut le l'outil JPA génère une table de jointure pour une relation 1 vers N unidirectionnelle . Mais nous pouvons facilement utiliser le principes des clés étrangères.
+Par défaut l'outil JPA génère une table de jointure pour une relation 1 vers N unidirectionnelle . Mais nous pouvons facilement utiliser le principe des clés étrangères.
 - Adapter le code pour avoir une relation bidirectionnelle 
 
 ```

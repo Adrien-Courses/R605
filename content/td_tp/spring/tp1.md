@@ -64,7 +64,7 @@ erDiagram
   - Les autres Contrôleurs n'ont pas été codés
 
 ### Créer une commande
-Complémenter les classes `*Service` et `*Repository` afin de pour créer une nouvelle commande
+Compléter les classes `*Service` et `*Repository` afin de créer une nouvelle commande
 - Il faut que tous les articles soient actifs pour créer une commande
 
 ```
@@ -84,7 +84,7 @@ curl --request POST \
 Faire l'endpoint pour récupérer toutes les commandes
 - on veut également avoir un attribut `total` qui montre le prix total de la commande
 
-**=> Depuis postman ou votre navigateurs récupérer toutes les commandes**
+**=> Depuis postman ou votre navigateur récupérer toutes les commandes**
 
 #### Complément
 Dans le `application.yml` ajoutez `spring.jpa.open-in-view=false`
@@ -93,7 +93,7 @@ Dans le `application.yml` ajoutez `spring.jpa.open-in-view=false`
 
 Pour résoudre voir [Optimisation des lectures]({{< relref "jpa_deeper/fetch/" >}})
 <!--
-Si dans le controlleur en désactivement le open-in-view
+Si dans le contrôleur en désactivant le open-in-view
 
     @GetMapping
     public ResponseEntity<List<Commande>> getAllCommandes() {
@@ -101,7 +101,7 @@ Si dans le controlleur en désactivement le open-in-view
     	return ResponseEntity.ok(commandes);
     }
 
-bhè ca ne peut pas fonctionner car article et client ne sont pas laod lazy
+bhè ca ne peut pas fonctionner car article et client ne sont pas load lazy
 -> il faudrait dans getallcommandes service puis repository soit entity graph soit join soir hibernate.initialize (cf jpa_deeper/fetch/)
 
 

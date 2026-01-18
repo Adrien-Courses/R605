@@ -17,7 +17,7 @@ CONTAINER ID   IMAGE          COMMAND                  CREATED        STATUS    
    - `root` étant l'utilisateur
    - `-p` vous demandera de saisir le mot de passe
 
-## Commandes sql
+## Commandes SQL
 Afficher les BDD disponibles
 ```
 mysql> show databases;
@@ -48,7 +48,7 @@ mysql> show tables;
 +-------------------------+
 ```
 
-Requête SQL classiques
+Requêtes SQL classiques
 ```
 mysql> SELECT * from client;
 +----+-------+------+

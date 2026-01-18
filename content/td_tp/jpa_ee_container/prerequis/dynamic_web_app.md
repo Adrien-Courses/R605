@@ -4,7 +4,7 @@ weight = 6
 +++
 
 ## Prérequis
-- Nous allons utilisé TomEE, téléchargeable ici [TomEE Webprofile ZIP](https://www.apache.org/dyn/closer.cgi/tomee/tomee-10.0.0-M3/apache-tomee-10.0.0-M3-webprofile.zip)
+- Nous allons utiliser TomEE, téléchargeable ici [TomEE Webprofile ZIP](https://www.apache.org/dyn/closer.cgi/tomee/tomee-10.0.0-M3/apache-tomee-10.0.0-M3-webprofile.zip)
    - TomEE embarque nativement une CDI implémentation
 - Jax-RS est une spécification pour implémenter les services REST en Java
   - Jersey est une implémentation très populaire (GlassFish et Payara)
@@ -78,7 +78,7 @@ Avec TomEE l'écriture du `web.xml` est très simple
 > [!ressource] Ressources
 > - [TomEE - DataSource Configuration](https://tomee.apache.org/latest/docs/datasource-config.html)
 
-Le fichier `persistance.xml` ou on précise le provider ainsi que ces propriétés.
+Le fichier `persistence.xml` où on précise le provider ainsi que ses propriétés.
 - Le provider va permettre de créer automatiquement dès le lancement de l'application les tables.
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>

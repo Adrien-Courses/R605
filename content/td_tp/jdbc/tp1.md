@@ -18,4 +18,4 @@ Lancer l'image docker présente dans le `Dockerfile` : `docker compose up`
 3. Insérer un nouveau client
 4. Récupérer le contenu de la table 
 
-A tout moment vous pouvez [accéder à la base de données du container]({{< relref "td_tp/prerequis/docker_exec/index" >}})
+À tout moment vous pouvez [accéder à la base de données du container]({{< relref "td_tp/prerequis/docker_exec/index" >}})

@@ -3,17 +3,17 @@ title = "Intégration TomEE/Eclipse"
 weight = 7
 +++
 
-## Les différentes instance de TomEE
+## Les différentes instances de TomEE
 > Apache TomEE has four distributions, each supporting a slightly different set of technologies and aimed to give you a choice in what you want included out-of-the-box. When in doubt, choose Apache TomEE Plume.
 
 ![TomEE instances](tomee_instances.png)
 
-Dans l'ensemble des exercices proposées dans ce site nous aurons besoins :
+Dans l'ensemble des exercices proposés dans ce site nous aurons besoin :
 - de pouvoir effectuer des requêtes HTTP
 - de pouvoir persister nos données
 - d'avoir de l'injection de dépendances (CDI)
 
-Et c'est la version *TomEE WebProfile* qui répond à minima à ce besoin
+Et c'est la version *TomEE WebProfile* qui répond a minima à ce besoin
 
 ## Téléchargement
 - Télécharger une version Eclipse Enterprise Edition
@@ -48,7 +48,7 @@ Si c'est un projet Maven, sur les postes de l'IUT il faut modifier les paramètr
 </settings>
 ```
 
-Et cliquez sur "Update", le 
+Et cliquez sur "Update". 
 
 ## Configurer Eclipse
 1. Aller dans l'onglet "Window" > "Show View" > "Servers"

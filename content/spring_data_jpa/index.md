@@ -10,7 +10,7 @@ Dans ce cours nous avons étudié l'API JPA, au travers des différents cours :
 - Cycle de vie d'une entité
 - Définition d'une entité
 - Association / Mapping
-- L'API Criteria et les Projection
+- L'API Criteria et les Projections
 
 Puis dans le TP5, nous avons commencé à structurer un projet en définissant :
 - un DAO Générique
@@ -25,7 +25,7 @@ L'ensemble de ces concepts vont nous permettre de comprendre plus rapidement Spr
 - Requêtes avancées via JPQL, SQL natif, Criteria API et Specifications
 - Gestion des transactions automatique
 
-Spring Data JPA est donc une abstraction de JPA (elle même une abstraction de JDBC)
+Spring Data JPA est donc une abstraction de JPA (elle-même une abstraction de JDBC)
 
 ![springdatajpa.png](springdatajpa.png)
 

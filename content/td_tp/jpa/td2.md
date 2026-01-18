@@ -17,7 +17,7 @@ Lancer l'image docker présente dans le `Dockerfile` : `docker compose up`
 ## 2. Consigne
 
 > [!affirmation] Objectif
-> Après avoir étudier le cycle de vie dans le TD précédent, regardons la notion de cache L1
+> Après avoir étudié le cycle de vie dans le TD précédent, regardons la notion de cache L1
 
 ```java
 public static void initializeData() {
@@ -49,7 +49,7 @@ public static void initializeData() {
 ```
 
 Si nous nous rendons en BDD et exécutons le code suivant `SELECT * FROM Course` quel va être le résultat ?
-- En vous appuyant sur l'article en ressource expliqué le résultat
+- En vous appuyant sur l'article en ressource expliquez le résultat
 
 ### Complément
 En supprimant la boucle, l'id ne commence pas à 1, pourquoi ?

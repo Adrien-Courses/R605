@@ -8,10 +8,10 @@ weight = 5
 
 > You can map each of them as a uni- or bidirectional association. That means you can either model them as an attribute on only one of the associated entities or on both.** That has no impact on your database mapping, but it defines in which direction you can use the relationship in your domain model and JPQL or Criteria queries**.
 
-Un premier constat, très important: *en java nous pouvons représenter l’association de trois manières*. Supposons le cas d'une personne et d'un passeport.
+Un premier constat, très important: *en Java nous pouvons représenter l’association de trois manières*. Supposons le cas d'une personne et d'un passeport.
 
 - Dans une `Personne` on place un lien vers un `Passeport` (unidir.)
-- Dans une `Passeport` on place un lien vers une `Personne` (unidir.)
+- Dans un `Passeport` on place un lien vers une `Personne` (unidir.)
 - On place un lien dans les deux côtés (bidir.)
 
 ```java
@@ -40,7 +40,7 @@ public class Passeport {
 - Les performances (e.g. [@OneToMany unidirectionnelle performance]({{< relref "one-to-many#performance" >}}))
 
 ## Exemple
-Si nous souhaitons représenter qu'une Commande et constituer de plusieurs lignes (LigneCommande) alors le code suivant est suffisant
+Si nous souhaitons représenter qu'une Commande est constituée de plusieurs lignes (LigneCommande) alors le code suivant est suffisant
 ```java
 @Entity
 public class Order {

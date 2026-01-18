@@ -10,7 +10,7 @@ weight = 25
 > By default, methods inherited from CrudRepository inherit the transactional configuration from SimpleJpaRepository. For read operations, the transaction configuration readOnly flag is set to true. All others are configured with a plain @Transactional so that default transaction configuration applies.
 
 ```java
-class SimpleJpaRepository<I, ID> implements CrusRepository<I, ID> {
+class SimpleJpaRepository<I, ID> implements CrudRepository<I, ID> {
     @Transactional
     public <S extends T> S save(S entity) {
         Assert.notNull(entity, "Entity must not be null");

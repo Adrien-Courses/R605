@@ -13,12 +13,12 @@ On lancera le code depuis la méthode `main()`
 **Correction**
 - Utiliser l'injection de dépendance
 - Fermer le entityManager + utiliser try catch
-  - On ferme l'entityManager car sinon la connexion reste ouverte jusqu'à la fin de l'appel (e.g jusqu'au frontend) -> perte de performance (connexion non rendu au pool)
+  - On ferme l'entityManager car sinon la connexion reste ouverte jusqu'à la fin de l'appel (e.g jusqu'au frontend) -> perte de performance (connexion non rendue au pool)
 
 ## b) Compléter getFicheClient(int)
 De la même manière que `getAllClient()` compléter `getFicheClient(int)` pour afficher les informations suivantes
 - email et nom du client
-- la liste des commandes du clients ainsi que ses favoris
+- la liste des commandes du client ainsi que ses favoris
 
 ```java
 public void getFicheClient(int clientId) {
@@ -50,7 +50,7 @@ Pour ce faire plusieurs possibilité, c'est le point d)
 Ci-dessous plusieurs solutions pour répondre au problème
 
 1. **Propriété enable_lazy_load_no_trans**
-- Combien de requête sont exécutées ?
+- Combien de requêtes sont exécutées ?
   
 Cinq
 
@@ -118,7 +118,7 @@ johndoe@example.com John Doe
 ```
 
 2. **Hibernate.initialize()**  
-   - Combien de requête sont exécutées ?
+   - Combien de requêtes sont exécutées ?
 
 ```java
 public Client getClientByIdWithDetailsHibernateInitiaze(int clientId) {
@@ -139,7 +139,7 @@ public Client getClientByIdWithDetailsHibernateInitiaze(int clientId) {
 
 
 2. **JOIN FETCH** : faire des jointures SQL
-   - Combien de requête sont exécutées ?
+   - Combien de requêtes sont exécutées ?
 
 NOTE : 
 - avec cette solution on doit remplacer `List` par un `Set` dans la classe `Client` sinon `MultipleBagFetchException`
@@ -193,7 +193,7 @@ where
 ```
 
 3. **Entity Graph** : section *4. Named Entity Graph* de l'article https://thorben-janssen.com/5-ways-to-initialize-lazy-relations-and-when-to-use-them/
-   - Combien de requête sont exécutés ?
+   - Combien de requêtes sont exécutées ?
 
 ```java
 @Entity
@@ -258,7 +258,7 @@ where
 Note : on peut garder `List` avec cette solution
 
 ## 4. Compléments
-Pour les étudiants en avance, vous pouvez coder les méthodes suivante :
+Pour les étudiants en avance, vous pouvez coder les méthodes suivantes :
 - `saveClient(Client client)`
 - `saveOrUpdateClient(Client client)` (merge)
 - `addCommandeToClient(int clientId, Commande commande)`
@@ -291,4 +291,4 @@ public void addCommandeToClient(int clientId, Commande commande) {
 }
 ```
 
-Note : si on avait simplement utiliser `getClientById()` alors la liste des commandes n'aurait pas été dans l'état `MANAGE` donc `LazyInitializationException`
+Note : si on avait simplement utilisé `getClientById()` alors la liste des commandes n'aurait pas été dans l'état `MANAGE` donc `LazyInitializationException`

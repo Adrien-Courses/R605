@@ -24,5 +24,5 @@ Lancer l'image docker présente dans le `Dockerfile` : `docker compose up`
 > [!ressource] Ressource
 > [BasicDataSource Configuration Parameters](https://commons.apache.org/proper/commons-dbcp/configuration.html)
 
-En vous appuyant sur une bibliothèque qui permet d'effectuer du *pooling* (e.g. `commons-dbcp2`) effectuer le même traitement que précédemment. Changer la taille de la pool.
+En vous appuyant sur une bibliothèque qui permet d'effectuer du *pooling* (e.g. `commons-dbcp2`) effectuez le même traitement que précédemment. Changez la taille du pool.
  

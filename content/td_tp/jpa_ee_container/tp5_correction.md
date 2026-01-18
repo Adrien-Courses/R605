@@ -69,7 +69,7 @@ public class StudentService {
 ### 2. Rajouter les soirées
 - Nous avons donc une relation `OneToMany`, on fera attention aux éléments suivants :
   - utiliser `mappedBy` pour avoir une relation bidirectionnelle 
-  - ne pas oublier les méthode `addSoiree(Soiree s)` et `removeStudent(Soiree s)` pour garantir la synchronisation des objets
+  - ne pas oublier les méthodes `addSoiree(Soiree s)` et `removeStudent(Soiree s)` pour garantir la synchronisation des objets
 
 > [!definition] Attention
 > La relation est en réalité n:m et pas 1:n, mais passons ...
@@ -109,7 +109,7 @@ public class StudentService {
 }
 ```
 
-- Si nous réalisons le code ci-dessus, alors une `LazyInitializationException` sera levée; en effet nous ne pouvons pas accéder à la liste des soirée si nous ne sommes pas dans la même transaction. (cf [TP3]({{<relref "td_tp/jpa_godeeper/fetching/#implémenter-plusieurs-solutions" >}}))
+- Si nous réalisons le code ci-dessus, alors une `LazyInitializationException` sera levée; en effet nous ne pouvons pas accéder à la liste des soirées si nous ne sommes pas dans la même transaction. (cf [TP3]({{<relref "td_tp/jpa_godeeper/fetching/#implémenter-plusieurs-solutions" >}}))
 - Une solution consiste donc à utiliser une JOINTURE, en codant une nouvelle méthode dans `StudentDao`
 
 ```java
@@ -127,7 +127,7 @@ public class StudentDao {
 ### 3b. Afficher un étudiant et ses soirées (JSON)
 Nous avons un problème de référence circulaire car :
 - un `student` à un attribut `soirees`
-- et une `soirees` à un attribut `student`
+- et une `soiree` à un attribut `student`
 
 ```
 {
@@ -160,7 +160,7 @@ Plusieurs options permettent d'éviter les références circulaires :
 
 - une autre option consiste à rajouter l'annotation `@JsonIgnore` sur l'attribut `student` dans la classe `Soirees` pour ne pas afficher les étudiants au format JSON. Mais pour moi cette solution n'est pas la bonne car elle contourne le problème. <br><br>
 
-- En effet, le problème vient du faire que nous retournons à la Vue notre schéma relationnelle. Or, comme vu dans le premier cours nous n'avons pas à exposer notre architecture de base de données à notre Vue. En effet si dans les étudiants avions un champs `password` souhaitons-nous le retourner dans le JSON ?! Par conséquent, la solution est de créer un `StudentDTO`
+- En effet, le problème vient du fait que nous retournons à la Vue notre schéma relationnel. Or, comme vu dans le premier cours nous n'avons pas à exposer notre architecture de base de données à notre Vue. En effet si dans les étudiants nous avions un champ `password` souhaitons-nous le retourner dans le JSON ?! Par conséquent, la solution est de créer un `StudentDTO`
     - Et dans la couche Service ou Controller (au choix) nous ferons la conversion entre `Student` et `StudentDTO`: `public StudentDTO toDTO(Student student)`
 
 
@@ -185,7 +185,7 @@ public class GenericDao<T extends  BaseEntity> {
 
 - Pour coder la pagination SQL nous allons utiliser un `createQuery` puis deux méthodes
   - la première permettant d'aller au premier résultat à remonter
-  - la deuxième pour spécifier le nombre d'élément à remonter
+  - la deuxième pour spécifier le nombre d'éléments à remonter
 
 => Par conséquent, en 4 lignes, nous venons de coder la pagination pour l'ensemble de nos classes.
 
@@ -241,7 +241,7 @@ AND age = :age
 AND y = :y
 ```
 
-Pour représenter nos critère nous allons utilise une `Map<String, Object>`, dans le `GenericDAO` nous codons la méthode suivante
+Pour représenter nos critères nous allons utiliser une `Map<String, Object>`, dans le `GenericDAO` nous codons la méthode suivante
 
 ```java
 public List<T> findByCriteria(Map<String, Object> criterias, List<String> fetchRelations) {

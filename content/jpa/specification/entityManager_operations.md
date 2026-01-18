@@ -27,6 +27,6 @@ List<Person> persons = em.createQuery("SELECT p FROM Person p", Person.class)
 ```
 
 > [!definition] Attention
-> Les opération `persist()` et `remove()` ne seront réellement persister en base de données après un commit `em.getTransaction().commit()` (cf [transactions]({{< relref "jpa/specification/transaction" >}}))
+> Les opérations `persist()` et `remove()` ne seront réellement effectuées en base de données qu'après un commit `em.getTransaction().commit()` (cf [transactions]({{< relref "jpa/specification/transaction" >}}))
 
 ![write_behing_cache](write_behing_cache.png)

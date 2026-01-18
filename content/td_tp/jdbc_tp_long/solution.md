@@ -7,7 +7,7 @@ draft = true
 ## Qui gère les transactions ?
 >  Où placer la gestion de transaction ?
 
-Elle ne peut pas être dans les DAO, car si de la logique métier à besoin d'appeler plusieurs DAO et qu'il faut commit/rollback l'ensemble alors seul la couche Service est au courant de se besoin.
+Elle ne peut pas être dans les DAO, car si de la logique métier a besoin d'appeler plusieurs DAO et qu'il faut commit/rollback l'ensemble alors seule la couche Service est au courant de ce besoin.
 Donc la gestion des transactions est de la responsabilité du service
 
 ## Deux utilisateurs empruntent le même livre en même temps 
@@ -28,7 +28,7 @@ Il peut y avoir une *race condition*
 Bug : Un livre ne peut être emprunté que par une seule personne à la fois.
 
 ### Isolation par défaut : REPEATABLE READ
-Ne garantie pas l'exclusion mutuelle
+Ne garantit pas l'exclusion mutuelle
 
 Donc :
 - deux transactions peuvent lire available = true

@@ -3,7 +3,7 @@ title = "Parent/Child side"
 weight = 4
 +++
 
-En base de données relationnelle, la *foreign-key* est associé au *child side* seulement. Le *parent side*, n'a aucune connaissance de qu'une relation parent-enfant existe.
+En base de données relationnelle, la *foreign-key* est associée au *child side* seulement. Le *parent side*, n'a aucune connaissance qu'une relation parent-enfant existe.
 
 Ainsi, d'un point de vue base de données nous avons uniquement une relation unidirectionnelle (*child side FK* référence *parent side PK*)
 

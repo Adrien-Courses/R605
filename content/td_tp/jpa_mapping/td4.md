@@ -70,10 +70,10 @@ public void testRemoveLigneDetail() {
 }
 ```
 
-- `commande.removeLigneDetail(ligneDetail);` permet de dé-référencement des deux côté de la relation
+- `commande.removeLigneDetail(ligneDetail);` permet de dé-référencer les deux côtés de la relation
 - En effet, le persist() update la ligneDetail en base avec un FK `NULL`
 
-Néanmoins nous souhaiterons dire que lorsque la FK est null alors supprimer la ligne
+Néanmoins nous souhaiterions dire que lorsque la FK est null alors supprimer la ligne
 - On peut utiliser effectivement `remove()`, mais gardons le `persist()` pour l'exemple
 
 ## Avec orphanRemoval

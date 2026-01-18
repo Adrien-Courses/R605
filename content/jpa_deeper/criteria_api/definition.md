@@ -10,7 +10,7 @@ weight = 1
 ## Définition
 > The Java Persistence Criteria API is used to define dynamic queries through the construction of object-based query definition objects, rather than use of the string-based approach of JPQL. The criteria API allows dynamic queries to be built programmatically offering better integration with the Java language than a string-based 4th GL approach. 
 
-Dans le passé, Hibernate proposait également sa propre API propriétaire Criteria. Elle est obsolète dans Hibernate 5 et vous devez l'éviter lors de la mise en œuvre de nouveaux cas d'utilisation. **Since Hibernate 5.2, the Hibernate Criteria API is deprecated, and new development is focused on the JPA Criteria API.**. L'ensemble des avantages de l'une et autre API est l'excellant article [Migrating from Hibernate’s to JPA’s Criteria API](https://thorben-janssen.com/migration-criteria-api/)
+Dans le passé, Hibernate proposait également sa propre API propriétaire Criteria. Elle est obsolète dans Hibernate 5 et vous devez l'éviter lors de la mise en œuvre de nouveaux cas d'utilisation. **Since Hibernate 5.2, the Hibernate Criteria API is deprecated, and new development is focused on the JPA Criteria API.**. L'ensemble des avantages de l'une et l'autre API est décrit dans l'excellent article [Migrating from Hibernate’s to JPA’s Criteria API](https://thorben-janssen.com/migration-criteria-api/)
 
 ## Exemple 
 Le code suivant retourne toutes les instances de type `Pet`. Nous détaillerons dans la page suivante le code ci-dessous
@@ -30,7 +30,7 @@ C'est l'équivalent de la requête
 SELECT * FROM Pet
 ```
 
-L'exemple ci-dessus est simpliste et l'utilisation de la méthode suivante aurait suffit
+L'exemple ci-dessus est simpliste et l'utilisation de la méthode suivante aurait suffi
 
 ```java
 List<Pet> = em.createQuery("SELECT p FROM Pet p", Pet.class).getResultList();
@@ -66,9 +66,9 @@ pets.sort(Comparator.comparing(Pet::getName));
 De plus, en SQL nous avons la possibilité d'écrire une requête qui répond à ce besoin.
 
 **Résultat**
-Il y aura deux appel SQL (FETCH.LAZY)
+Il y aura deux appels SQL (FETCH.LAZY)
 - un premier pour récupérer le `owner`
-- et le second lorsqu'on execute la méthode `owner.getPets()` 
+- et le second lorsqu'on exécute la méthode `owner.getPets()` 
 
 ```
 [Hibernate] 
@@ -113,7 +113,7 @@ for (Pet pet : filteredPets) {
 ```
 
 **Résultat**
-Un seul appel SQl
+Un seul appel SQL
 
 ```java
 [Hibernate] 
@@ -159,7 +159,7 @@ List<Pet> filteredPets = q.getResultList();
 - Les performances sont généralement meilleures car la requête est optimisée par le fournisseur JPA.
 
 **Résultat**
-Un seul appel SQl
+Un seul appel SQL
 
 ```java
 [Hibernate] 
@@ -180,7 +180,7 @@ Un seul appel SQl
 ```
 
 ### Complément : JOIN FETCH
-On notera que dans les deux dernière solution nous n'avons que le `pet` représenté par `p1_0`. 
+On notera que dans les deux dernières solutions nous n'avons que le `pet` représenté par `p1_0`. 
 - Si nous souhaitons en plus récupérer le propriétaire en appelant `pet.getOwner().getName()` alors une nouvelle requête SQL est exécutée
 
 ```
@@ -210,7 +210,7 @@ On notera que dans les deux dernière solution nous n'avons que le `pet` représ
         o1_0.id=?
 ```
 
-Ainsi, si nous souhaitons à la fois charger les animaux et le propriétaires en une seule requête nous pouvons utiliser le `JOIN FETCH`
+Ainsi, si nous souhaitons à la fois charger les animaux et les propriétaires en une seule requête nous pouvons utiliser le `JOIN FETCH`
 
 ```java
 Long ownerId = 1L; // Replace with the actual owner ID
@@ -258,4 +258,4 @@ Lors du `pet.getOwner().getName()` le propriétaire est déjà chargé
 ```
 
 ## Conclusion
-L'API criteria permet de remplacer les mot-clés JPQL (`SELECT`, `FROM`, `WHERE`) par des équivalent `select()`, `from()`, `where()` ...
+L'API criteria permet de remplacer les mot-clés JPQL (`SELECT`, `FROM`, `WHERE`) par des équivalents `select()`, `from()`, `where()` ...

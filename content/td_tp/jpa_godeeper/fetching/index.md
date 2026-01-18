@@ -18,11 +18,11 @@ Lancer l'image docker présente dans le `Dockerfile` : `docker compose up`
 > [!affirmation] Objectif
 > Comprendre le fetching et commencer à créer une architecture en couche
 
-Un clients :
+Un client :
 - peut avoir effectué plusieurs commandes
 - peut avoir ajouté des articles en favoris
 
-Nous avons donc représenter l'entité `Client` suivante
+Nous avons donc représenté l'entité `Client` suivante
 
 ```java
 @Entity
@@ -43,13 +43,13 @@ public class Client {
 ```
 
 En plus des entités, nous avons deux classes supplémentaires
-- `ClientDAO` qui permet de manipuler nos entités, par exemple la méthode `getAllClients()` permets de récupérer tous les clients
+- `ClientDAO` qui permet de manipuler nos entités, par exemple la méthode `getAllClients()` permet de récupérer tous les clients
 - `ClientService` qui représente la couche service, elle permet d'ajouter de la logique métier
 
 ## 3. Consignes
 Nous simulons la construction d'une API pour un siteweb
-- premièrement nous souhaitons avoir un tableau (HTML) avec la liste des clients avec deux colonne leur email et leur nom
-- ensuite, nous pouvons cliquer sur un des client pour afficher la *fiche client* qui contient plus d'information
+- premièrement nous souhaitons avoir un tableau (HTML) avec la liste des clients avec deux colonnes leur email et leur nom
+- ensuite, nous pouvons cliquer sur un des clients pour afficher la *fiche client* qui contient plus d'informations
   - email + nom du client
   - et également l'ensemble de ses commandes et de ses favoris
 
@@ -119,8 +119,8 @@ Ci-dessous plusieurs solutions pour répondre au problème
 > [!ressource] Ressource
 > [The hibernate.enable_lazy_load_no_trans Anti-Pattern](https://vladmihalcea.com/the-hibernate-enable_lazy_load_no_trans-anti-pattern/)
 
-   - On peut ajouter dans le fichier `persistance.xml` la propriété ci-dessous qui permet de bypass tous les problèmes liés au lazy.
-   - Combien de requête sont exécutées ?
+   - On peut ajouter dans le fichier `persistance.xml` la propriété ci-dessous qui permet de bypasser tous les problèmes liés au lazy.
+   - Combien de requêtes sont exécutées ?
 
 ```xml
 <property name="hibernate.enable_lazy_load_no_trans" value="true" />
@@ -196,14 +196,14 @@ johndoe@example.com John Doe
 Supprimer la propriété pour les prochaines questions
 
 ### 2. Hibernate.initialize()
-   - Combien de requête sont exécutées ?
+   - Combien de requêtes sont exécutées ?
 <!--
-3 requete executé -> pas foufou perf donc regarder autre chose
+3 requêtes exécutées -> pas foufou perf donc regarder autre chose
 -->
 
 ### 3. JOIN FETCH
 Faire des jointures SQL en utilisant `createQuery()` et JPQL
-   - Combien de requête sont exécutées ?
+   - Combien de requêtes sont exécutées ?
 <!--
 TypedQuery<Client> query = entityManager.createQuery(
     "SELECT c FROM Client c " +
@@ -218,7 +218,7 @@ client = query.getResultStream().findFirst().orElse(null);
 
 CECI va provoquer l'exception MultipleBagFetchException
 - => remplacer List par Set dans les oneToMany
-- coder deux méthode fetchOrder() et fetchFavoris()
+- coder deux méthodes fetchOrder() et fetchFavoris()
 
 Sinon la réponse est 1
 select
@@ -247,7 +247,7 @@ where
 
 ### 4.Entity Graph
 Section *4. Named Entity Graph* de l'article https://thorben-janssen.com/5-ways-to-initialize-lazy-relations-and-when-to-use-them/
-   - Combien de requête sont exécutés ?
+   - Combien de requêtes sont exécutées ?
 
 <!--
 Pareil que JOIN FETCH
@@ -257,7 +257,7 @@ Ici List<> fonctionne
 
 
 ## 4. Compléments
-Pour les étudiants en avance, vous pouvez coder les méthodes suivante :
+Pour les étudiants en avance, vous pouvez coder les méthodes suivantes :
 - `saveClient(Client client)`
 - `saveOrUpdateClient(Client client)` (merge)
 - `addCommandeToClient(int clientId, Commande commande)`

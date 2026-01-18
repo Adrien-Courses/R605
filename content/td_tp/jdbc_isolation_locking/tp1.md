@@ -19,7 +19,7 @@ Modèle simplifié :
 Règle métier : **Le nombre de réservations pour un événement ne doit jamais dépasser sa capacité.**
 
 ### 1. Exécuter le test
-Il n'y a qu'une seule place de disponible, mais deux thread concurrent réserve la place.
+Il n'y a qu'une seule place de disponible, mais deux threads concurrents réservent la place.
 
 - Executer le test
 - Et vérifier qu'il échoue (2 places réservées au lieu d'une)

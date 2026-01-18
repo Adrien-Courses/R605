@@ -8,11 +8,11 @@ weight = 50
 > - [63.6. La gestion des transactions hors Java EE](https://www.jmdoudoux.fr/java/dej/chap-jpa.htm#jpa-6)
 
 
-Dans la section dédiée à JDBC nous avions abordé rapidement l'api JTA. De son côté JPA propose une gestion des transactions grâce à l'interface `EntityTransaction`.
+Dans la section dédiée à JDBC nous avions abordé rapidement l'API JTA. De son côté JPA propose une gestion des transactions grâce à l'interface `EntityTransaction`.
 
 - `void begin()` 	Débuter la transaction
 - `void commit()` 	Valider la transaction
-- `void roolback()` 	Annuler la transaction
+- `void rollback()` 	Annuler la transaction
 - `boolean isActive()` 	Déterminer si la transaction est active
 
 ```java
@@ -55,7 +55,7 @@ Le conteneur Java EE propose un support des transactions grâce à l'API JTA : c
 - En incluant seulement la dépendance hibernate
 - Nous n’exécutons pas notre code dans un conteneur
 
-Ainsi, si nous ne précisons pas explicitement le début et la fin de la transaction aucune données ne sera persisté dans l'exemple ci-dessous
+Ainsi, si nous ne précisons pas explicitement le début et la fin de la transaction aucune donnée ne sera persistée dans l'exemple ci-dessous
 ```java
 @Test
 public void testAddLigneDetail() {
@@ -106,10 +106,10 @@ entityManager.getTransaction().commit();
 
 Person backToDb = entityManager.find(Person.class, 1L);
 backToDb.setNom("Update nom");
-// Est-ce que le prénom est mis à jour ? Non
+// Est-ce que le nom est mis à jour ? Non
 ```
 
-Hibernate détecte la modification, mais ne l’envoie à la base de données que lors d’un `flush()`, et un flush ne se produit que dans une transaction. Donc Hibernate garde la modification en mémoire, mais ne flush pas vers la base.
+Hibernate détecte la modification, mais ne l’envoie à la base de données que lors d’un `flush()`, et un flush ne se produit que dans une transaction. Donc Hibernate garde la modification en mémoire, mais n'effectue pas de flush vers la base.
 
 ### Comment forcer la mise à jour ?
 1. Encadrer le code d'une `getTransaction().begin();` et `getTransaction().commit()`

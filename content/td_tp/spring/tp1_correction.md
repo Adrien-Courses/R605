@@ -44,7 +44,7 @@ public Commande createCommande(CommandeRequestModel commandeRequestModel) {
 La principale difficulté est sur le type de retour 
 
 1. Que se passe-t-il si on retourne directement un objet de type `Commande` ?
-- On a des références circulaire
+- On a des références circulaires
 ```java
 @GetMapping
 public ResponseEntity<List<Commande>> getAllCommandes() {
@@ -104,7 +104,7 @@ private List<CommandeResponseModel> toResponseModel(List<Commande> commandes) {
 ### Complément
 Dans le `application.yml` ajoutez `spring.jpa.open-in-view=false`
 - Nous avons donc une `LazyInitializeException` pourquoi ?
-  - Car dans le constructeur de `CommandeResponseModel` on essaie d'accéder aux clients et au articles. Or comme nous sommes en dehors du contexte de transaction, exception
+  - Car dans le constructeur de `CommandeResponseModel` on essaie d'accéder aux clients et aux articles. Or comme nous sommes en dehors du contexte de transaction, exception
   - => Pour résoudre ceci, lorsque nous chargeons une commande nous devons également charger les clients et article (cf [Optimisation des lectures]({{< relref "jpa_deeper/fetch/" >}}))
 
 Dans `CommandeRepository` on ajoute une méthode `findAllWithClientAndArticles`

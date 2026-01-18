@@ -8,7 +8,7 @@ weight = 10
 
 > [!danger] Rappel
 > Dans la section dédiée au [transaction JPA]({{< relref "jpa/specification/transaction/index" >}}) nous avons souligné deux cas
-> - si nous sommes dans un contexte Java SE (l'ensemble des TP précédent) nous devions gérer les transactions et l'injection de dépendances
+> - si nous sommes dans un contexte Java SE (l'ensemble des TP précédents) nous devions gérer les transactions et l'injection de dépendances
 > - si nous utilisons un container EE, alors nous pouvons nous passer de la gestion des transactions et déléguer l'injection au [CDI]({{< relref "cdi" >}})
 
 L'objectif de ce TP est donc de découvrir ces concepts en implémentant une architecture en couche tout en factorisant le code nécessaire.
@@ -16,7 +16,7 @@ L'objectif de ce TP est donc de découvrir ces concepts en implémentant une arc
 ## 1. Installer TomEE et lancer le projet
 Pour ce projet, nous avons besoin d'un container EE, nous allons utiliser TomEE.
 
-1. Installer TomEE et l'intégrer avec [Eclipse]({{< relref "installation_tomee_eclipse" >}}) ou [IntelliJ]({{< relref "installation_tomee_intelliJ" >}}) <br><br>
+1. Installer TomEE et l'intégrer avec [Eclipse]({{< relref "installation_tomee_eclipse" >}}) ou [IntelliJ]({{< relref "installation_tomee_intellij" >}}) <br><br>
 
 2. Télécharger et [importer le projet Maven dans Eclipse]({{< relref "td_tp/prerequis/impoter_project_maven/index" >}}) <br><br>
 3. Lancer Docker Desktop + `docker compose up` pour la base de données
@@ -46,7 +46,7 @@ Exemple
 `curl -X GET "http://localhost:8080/jpa-ee-container/students" -H "Accept: application/json"`
 
 ### Partie 1b. Rajouter les Soirées
-Les étudiants peuvent participer à des soirées; lorsqu'on récupère un étudiant nous souhaitons lister les soirées où il a participer.
+Les étudiants peuvent participer à des soirées; lorsqu'on récupère un étudiant nous souhaitons lister les soirées où il a participé.
 
 <!-- Si ne retourne pas dto alors pb de référence circulaire --->
 
@@ -116,7 +116,7 @@ Predicate predicate2 = cb.equal(pet.get(Pet_.color), "brown"); // création d'un
 cq.where(predicate1.and(predicate2)); // chaine via and
 ```
 
-- Puis dans les classes concrètent qui hérite de `GenericDAO` nous allons créer nos Prédicats puis appeler cette méthode
+- Puis dans les classes concrètes qui héritent de `GenericDAO` nous allons créer nos prédicats puis appeler cette méthode
   - Coder `List<Student> searchStudents(String name, Integer age)`
   - qui va créer un prédicat puis appeler la méthode `findByCriteria`
 
@@ -135,7 +135,7 @@ cq.where(predicate1.and(predicate2)); // chaine via and
 
 
 <!--
-Verison améliorer car il faut traiter les LazyException, au lieu de faire un foreach puis Hibernate.initialiaz() on peut s'appuyer sur JOIN
+Version améliorée car il faut traiter les LazyException, au lieu de faire un foreach puis Hibernate.initialiaz() on peut s'appuyer sur JOIN
 
     public List<T> findByCriteria(Map<String, Object> criterias) {
     	CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -179,6 +179,6 @@ Verison améliorer car il faut traiter les LazyException, au lieu de faire un fo
 
 
 ### Complément
-Pour ce qui ont fini, vous pouvez rajouter la notion d'héritage
+Pour ceux qui ont fini, vous pouvez rajouter la notion d'héritage
 - Étudiant et Professeurs sont des Personnes
 - Les Personnes peuvent participer à des soirées

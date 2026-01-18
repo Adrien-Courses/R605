@@ -109,10 +109,10 @@ Pour les questions 3. et 4. de la partie 2 nous pouvons remarquer la chose suiva
 
 
 #### Pourquoi ?
-- Commençons  par `getLibrariesWithBooksByAuthor(String authorName)` ou la Root est `Library`
+- Commençons  par `getLibrariesWithBooksByAuthor(String authorName)` où la Root est `Library`
   - utilise la relation `OneToMany` vers les Book et que par défaut il y a du `FETCH.LAZY` aucune requête additionnelle est créée
 
-- Maintenant si on s'intéresse à `getBooksByLibraryName(String libraryName)` ou la Root est `Book`
+- Maintenant si on s'intéresse à `getBooksByLibraryName(String libraryName)` où la Root est `Book`
   - utilise la relation `ManyToOne` vers la library et que par défaut il y a du `FETCH.EAGER` donc Hibernate essaie de complètement initialiser l'entité Library
     > Hibernate uses a secondary select instead. This is because the entity query fetch policy cannot be overridden, so **Hibernate requires a secondary select to ensure that the EAGER association is fetched** prior to returning the result to the user. [^1]
 

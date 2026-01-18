@@ -10,7 +10,7 @@ weight = 20
 
 ![](interface_repository.png)
 
-Les implémentations de cette interfaces nous permettent de pouvoir accéder facilement aux opérations de CRUD et de Pagination par exemple. Évitant ainsi à tous les DAO de recoder ce même boilerplate (comme dans le TP5).
+Les implémentations de cette interface nous permettent de pouvoir accéder facilement aux opérations de CRUD et de Pagination par exemple. Cela évite ainsi à tous les DAO de recoder ce même boilerplate (comme dans le TP5).
 
 ```java
 public interface CrudRepository<T, ID> extends Repository<T, ID> {
@@ -39,15 +39,15 @@ public interface PagingAndSortingRepository<T, ID>  {
 ```
 
 ## Créer notre repository
-Supposons que nous avons codé une entité JPA `Student` et que nous souhaitions pouvoir effectuer des opérations de CRUD sur celle-ci. Dans ce cas, nous n'avons besoin que de définir une nouvelle classe qui hérite de `JPARepository` (elle même héritant de `PagingAndSortingRepository` et `CrudRepository`)
+Supposons que nous avons codé une entité JPA `Student` et que nous souhaitions pouvoir effectuer des opérations de CRUD sur celle-ci. Dans ce cas, nous n'avons besoin que de définir une nouvelle classe qui hérite de `JpaRepository` (elle-même héritant de `PagingAndSortingRepository` et `CrudRepository`)
 
 ```java
-public interface StudentRepository extends JPARepository<Student, Long> {
+public interface StudentRepository extends JpaRepository<Student, Long> {
     // pas besoin de coder les opérations de CRUD
 }
 ```
 
-Nous n'avons pas besoin de coder les opérations de CRUD, elles sont hérités. Et nous pouvons très simplement utiliser notre nouvelle interface
+Nous n'avons pas besoin de coder les opérations de CRUD, elles sont héritées. Et nous pouvons très simplement utiliser notre nouvelle interface
 
 ```java
 main() {

@@ -8,6 +8,6 @@ Lorsqu'il s'agit de modéliser des bases de données relationnelles dans le mond
 Dans les sections suivantes, nous explorerons en détail le Mapping Objet/Relationnel (O/R) des associations, en mettant en lumière les bonnes pratiques, les pièges courants et les subtilités qui accompagnent l'utilisation des relations dans JPA.
 
 ## Sommaire
-- Premièrement, nous définir la notion de relation unidirectionnelle et bidirectionnelle 
-- Puis seulement ensuite étudier les relations
+- Premièrement, nous définirons la notion de relation unidirectionnelle et bidirectionnelle 
+- Puis seulement ensuite nous étudierons les relations
   - Tout en détaillant les bonnes pratiques, notamment le problème de la copie défensive

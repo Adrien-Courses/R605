@@ -10,7 +10,7 @@ weight = 20
 
 > Each EntityManager belongs to an EntityManagerFactory with an associated persistence unit. A persistence unit defines a set of related entities which map to a single database. Entities belonging to the same [persistence unit](https://docs.oracle.com/cd/E19798-01/821-1841/bnbrj/index.html) may participate in associations. [^1]
 
-Les interactions entre la base de données et les beans entités sont assurées par un objet de type `javax.persistence.EntityManager` : il permet de lire et rechercher des données mais aussi de les mettre à jour (ajout, modification, suppression). L'EntityManager est donc au coeur de toutes les actions de persistance.
+Les interactions entre la base de données et les beans entités sont assurées par un objet de type `javax.persistence.EntityManager` : il permet de lire et rechercher des données mais aussi de les mettre à jour (ajout, modification, suppression). L'EntityManager est donc au cœur de toutes les actions de persistance.
 
 ```java
 EntityManagerFactory emf = Persistence.createEntityManagerFactory("MaBaseDeTestPU");    

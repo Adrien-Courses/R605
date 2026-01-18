@@ -51,10 +51,10 @@ oct. 22, 2024 8:26:45 PM org.hibernate.engine.transaction.jta.platform.internal.
 INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 ```
 
-Attention, nous utilisons ici `<property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create" />` avec `drop-and-create` ceci efface toutes les tables et les recrées à chaque lancement
+Attention, nous utilisons ici `<property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create" />` avec `drop-and-create` ceci efface toutes les tables et les recrée à chaque lancement
 
 ## Créer les entités
-Une `Promotion` est composé de `Cours`. Écrire les entités JPA pour représenter cette relation unidirectionnelle
+Une `Promotion` est composée de `Cours`. Écrire les entités JPA pour représenter cette relation unidirectionnelle
 
 {{< mermaid align="center" zoom="true" >}}
 classDiagram
@@ -106,7 +106,7 @@ public class Cours {
 }
 ```
 
-Lorsque vous relancer le `main()` nous pouvons regarder les logs est voir ce qu'il sait passé côté base de données
+Lorsque vous relancez le `main()` nous pouvons regarder les logs est voir ce qu'il s'est passé côté base de données
 
 ![log_apres_creation_entities](images/log_apres_creation_entities.png)
 
@@ -116,7 +116,7 @@ mysql > USE training-jpa;
 mysql > SHOW TABLES;
 ```
 
-Nous remarquons que 3 tables ont été créé
+Nous remarquons que 3 tables ont été créées
 ```
 +------------------------+
 | Tables_in_training-jpa |
@@ -144,7 +144,7 @@ Nous pouvons également inspecter cette table de jointure via la commande `DESCR
 
 ```java
 /**
- * Si on n'utilise pas le CascadeType.ALL, nous devons d'abord perister les cours puis seulement la promotion ensuite
+ * Si on n'utilise pas le CascadeType.ALL, nous devons d'abord persister les cours puis seulement la promotion ensuite
  */
 public class DeuxPersist {
 
@@ -195,7 +195,7 @@ public class DeuxPersist {
 }
 ```
 
-Nous pouvons vérifier le contenue des tables, par exemple
+Nous pouvons vérifier le contenu des tables, par exemple
 ```
 mysql> SELECT * FROM Promotion_Cours;
 +--------------+----------------+
@@ -207,7 +207,7 @@ mysql> SELECT * FROM Promotion_Cours;
 ```
 
 ## Comment éviter de persister 2 fois ?
-Néanmoins, dans la solution précédente, nous avons du persister :
+Néanmoins, dans la solution précédente, nous avons dû persister :
 - en premier l'ensemble des cours
 - puis seulement la promotion
 
@@ -330,10 +330,10 @@ public class Promotion {
 }
 ```
 
-- Si vous êtes attentif; vous remarquerez dans la log que JPA n'a pas réussit à supprimer les tables Promotion` et `Cours`
+- Si vous êtes attentif; vous remarquerez dans la log que JPA n'a pas réussi à supprimer les tables Promotion` et `Cours`
 - En effet, `Promotion_Cours` n'étant plus référencée par JPA elle n'a pas été supprimée
 - Or, cette table contient des FK vers `Promotion` et `Cours`
-- Qui ne peuvent donc pas être supprimé à leur tours.
+- Qui ne peuvent donc pas être supprimées à leur tour.
 
 Il faut donc `DROP TABLE Promotion_Cours;` manuellement
 
@@ -358,7 +358,7 @@ mysql> SELECT * FROM tj_promotion_cours;
 ```
 
 ## Éviter la table de jointure
-La génération par défaut le l'outil JPA pour une relation 1 vers N unidirectionnelle est une table de jointure. Mais nous pouvons facilement utiliser le principes des clés étrangères. Pour cela l'entité source, dans notre cas `Promotion` doit être configurée avec l'attribut `mappedBy`.
+La génération par défaut l'outil JPA pour une relation 1 vers N unidirectionnelle est une table de jointure. Mais nous pouvons facilement utiliser le principe des clés étrangères. Pour cela l'entité source, dans notre cas `Promotion` doit être configurée avec l'attribut `mappedBy`.
 
 ```java
 @Entity

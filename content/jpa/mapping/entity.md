@@ -29,11 +29,11 @@ public class Sport implements Serializable {
 
 ## Entité et Table 
 - Une entité, déclarée par l’annotation `@Entity` définit une classe Java comme étant persistante et donc associée à une table dans la base de données.
-- Par défaut, une entité est associée à la table portant le même nom que la classe. Mais il est possible d'indiquer le nom de la table d’indiquer le nom de la table par une annotation `@Table`
+- Par défaut, une entité est associée à la table portant le même nom que la classe. Mais il est possible d'indiquer le nom de la table par une annotation `@Table`
 
 ## Constructeur
 
-- La norme JPA requiert créer un constructeur vide pour chaque entité.  
+- La norme JPA requiert de créer un constructeur vide pour chaque entité.  
 
 ## Identifiant
 

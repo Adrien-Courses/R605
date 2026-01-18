@@ -25,14 +25,14 @@ Note :
 
 ## Types de Projections
 
-JPA supportent principalement trois types de projections :
+JPA supporte principalement trois types de projections :
 -  **Projections d'entités** : Récupération complète des entités.
--  **Projections de valeurs scalaires** : Sélection de colonne spécifique
+-  **Projections de valeurs scalaires** : Sélection de colonnes spécifiques
 -  **Projections DTO** : Utilisation d'objets personnalisés pour transporter des données spécifiques.
   
 
 ### Projection d'entité
-C'est la plus commune, on récupère toute l'entité soit via un `find()` soit avec JPQL
+C'est la plus commune, on récupère toute l'entité, soit via un `find()`, soit avec JPQL
 
 ```
 TypedQuery<Book> query = entityManager.createQuery("SELECT b FROM Book b", Book.class);
@@ -53,7 +53,7 @@ for (Object[] result : results) {
 }
 ```
 
-Très pratique, mais pas très lisible, il serait intéressant d'utiliser un type précis au lieux de `Object` => DTO
+Très pratique, mais pas très lisible, il serait intéressant d'utiliser un type précis au lieu de `Object` => DTO
 
 ### Projections DTO (Data Transfer Object)
 Les projections DTO impliquent l'utilisation de classes personnalisées pour encapsuler les données nécessaires, offrant une structure claire.
@@ -74,12 +74,12 @@ List<BookDTO> bookDTOs = query.getResultList();
 ```
 
 ## Note importante
-Contrairement au projection d'entité, les projections scalaire et DTO ne font plus partie du contexte de persistance et ne suivent plus le cycle de vie. 
-- Ainsi si vous mettez à jour le DTO, la nouvelle donnée ne sera pas persister en base de donnée
-- Par conséquent **les projections scalaire et DTO ne peuvent être utilisé que pour de la lecture**
+Contrairement aux projections d'entités, les projections scalaires et DTO ne font plus partie du contexte de persistance et ne suivent plus le cycle de vie. 
+- Ainsi si vous mettez à jour le DTO, la nouvelle donnée ne sera pas persistée en base de données
+- Par conséquent **les projections scalaires et DTO ne peuvent être utilisées que pour de la lecture**
   
 ### Choisir sa projection
 Le choix du type de projection dépend du cas d'utilisation :
 
-- Opérations d'écriture : Les projections d'entités sont obligatoire en raison de la gestion automatique du cycle de vie des entités par le contexte de persistance.
+- Opérations d'écriture : Les projections d'entités sont obligatoires en raison de la gestion automatique du cycle de vie des entités par le contexte de persistance.
 - Opérations en lecture seule : Les projections de valeurs scalaires ou DTO sont préférables pour réduire le surcoût et améliorer les performances.

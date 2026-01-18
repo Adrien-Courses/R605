@@ -10,8 +10,8 @@ Dans le [TP5]({{< relref "td_tp/jpa_ee_container/tp5_correction" >}}), nous avon
 
 ### Partie 1
 - Structurer l'application en 3 classes `Controller`, `Service` et `DAO`
-- Puis créer un `GenericDao` car les méthodes de CRUD sont souvent similaire, que vous récupérer un objet `X` ou `Y` c'est la même opération en base de données, juste le type générique qui change
-- Néanmoins le `GenericDao` se limite au opérations simples (CRUD), si vous souhaitez effectuer une jointure par exemple nous devons écrire notre propre méthode. Dans le TP5, nous voulions par exemple récupérer les étudiants avec leurs soirées
+- Puis créer un `GenericDao` car les méthodes de CRUD sont souvent similaires, que vous récupérez un objet `X` ou `Y` c'est la même opération en base de données, juste le type générique qui change
+- Néanmoins le `GenericDao` se limite aux opérations simples (CRUD), si vous souhaitez effectuer une jointure par exemple nous devons écrire notre propre méthode. Dans le TP5, nous voulions par exemple récupérer les étudiants avec leurs soirées
 
 ```java
 public class StudentDao {
@@ -36,5 +36,5 @@ Puis nous avons complexifié notre application pour y intégrer
 > Reprendre le TP5 pour le traduire avec Spring Data JPA
 
 - Optimisation des lectures
-- Paginations
+- Pagination
 - Specifications

@@ -61,7 +61,7 @@ Chaque livre peut être emprunté ou disponible.
 Créer les classes pour représenter le domaine métier
 
 #### Créer la couche DAO
-Vous créerez les interfaces *puis* les implémentations pour les livres et les réservation
+Vous créerez les interfaces *puis* les implémentations pour les livres et les réservations
 
 Les actions suivantes sont demandées pour les livres
 - créer un livre
@@ -69,9 +69,9 @@ Les actions suivantes sont demandées pour les livres
 - lister tous les livres
 - mettre à jour un livre existant
 
-Les actions suivantes sont demandée pour une réservation
+Les actions suivantes sont demandées pour une réservation
 - créer une réservation
-- trouver toutes les réservation d'un client
+- trouver toutes les réservations d'un client
 
 <!--- 
 ```java
@@ -87,7 +87,7 @@ public interface LoanDAO {
     List<Loan> findByBorrower(String borrower);
 }
 ```
-puis créer les implémentation
+puis créer les implémentations
 
 ATTENTION : aucune logique métier dans le DAO
 -->

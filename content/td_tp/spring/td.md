@@ -7,15 +7,15 @@ weight = 10
 > - https://github.com/Adrien-Courses/R605-TP-JPA-join-vs-joinfetch
 > - Lancez une première fois puis renommez le fichier `data.sql` en `.data.sql`
 
-Dans de TD nous allons voir la différence entre un `JOIN` et un `JOINFETCH` au travers des Spécifications JPA
+Dans ce TD nous allons voir la différence entre un `JOIN` et un `JOINFETCH` au travers des Spécifications JPA
 
 ## 2. Consignes
 Nous avons deux tables `Tarif` et `TarifPeriode`.
 - Les tarifs sont associés à un article (ici un String)
-- et les tarifs ne sont pas uniques, suivant la périodes ils varient
+- et les tarifs ne sont pas uniques, suivant la période ils varient
 
-C'est pour cette raison que nous avons une relation "un tarif à plusieurs tarifPeriode"
-- par exemple, le tarif `id=1` à trois période chacune d'une durée d'un an
+C'est pour cette raison que nous avons une relation "un tarif a plusieurs TarifPériodes"
+- par exemple, le tarif `id=1` a trois périodes chacune d'une durée d'un an
 
 ```
 mysql> show tables;
@@ -80,27 +80,27 @@ public class TarifSpecifications {
 }
 ```
 
-**Coder** : observer la méthode `avecTarifValide` et exécutez les requêtes suivantes
+**Coder** : observer la méthode `avecTarifPeriodeValide` et exécutez les requêtes suivantes
 - `http://localhost:8080/tarifs?dateDebut=2023-01-01`
 - `http://localhost:8080/tarifs?dateDebut=2024-01-01`
 
 Le résultat vous semble-t-il fonctionnellement juste ? Que remarquez-vous ?
-- Analysez les requêtes SQL, pour vous aidez mettez un point d'arrêt ligne 25 dans `TarifService`
+- Analysez les requêtes SQL, pour vous aider mettez un point d'arrêt ligne 25 dans `TarifService`
 
 <!--
-Même les dates antérieurs en 2023 et 2024 sont éxecutés
-En effet, le JOIN ne récupère pas les données -> quand on les affiche via le DTO on va faire un SELECT vers chaqu'un des TarifPeriode
+Même les dates antérieures en 2023 et 2024 sont exécutées
+En effet, le JOIN ne récupère pas les données -> quand on les affiche via le DTO on va faire un SELECT vers chacun des TarifPeriode
 
-DOnc ligne 24 on a bien seulement Tarif qui est chargé et dont la jointure à bien fonctionner car en 2024 nius n'avons pas l'article B
-Néanmoins quand on affiche le JSON on va faire un tarif.getTarifPeriode() qui va déclancher 3 SELECT
+Donc ligne 24 on a bien seulement Tarif qui est chargé et dont la jointure a bien fonctionné car en 2024 nous n'avons pas l'article B
+Néanmoins quand on affiche le JSON on va faire un tarif.getTarifPeriode() qui va déclencher 3 SELECT
 
 
-=> Le join ne se tratuit pas comme un vrai join sql
+=> Le join ne se traduit pas comme un vrai join sql
 
 
 C'est TarifMapper.toDTO quand on va faire tarif.getPeriodes() qui va refaire un SELECT sur toutes les périodes (les 6) car elles n'ont pas été load en base de données
 
-Tandis que comme le joinfecth les load dejà, tarif.getPeriodes() va aller les chercher en cache (seulement les 2)
+Tandis que comme le joinfetch les load déjà, tarif.getPeriodes() va aller les chercher en cache (seulement les 2)
 
 -->
 

@@ -235,9 +235,9 @@ public void testRemoveLigneDetailWorkingConventional() {
 > [!ressource] Ressource
 > Voir également [MappedBy et copie défensive]({{< relref "/jpa/mapping_associations/mappedBy/index" >}})
 
-**Comment s'assurer que les développeurs n'oublie pas de synchroniser les deux côté de la relation ?**
+**Comment s'assurer que les développeurs n'oublient pas de synchroniser les deux côtés de la relation ?**
 
-Dans la classe `Commande` il est recommandé d'ajouter les méthodes suivante qui viennent simplement remplacer dans nos exemple les deux appels
+Dans la classe `Commande` il est recommandé d'ajouter les méthodes suivantes qui viennent simplement remplacer dans nos exemples les deux appels
 ```java
 commande.getLigneDetails().remove(ligneDetail); // ADD THIS
 ligneDetail.setCommande(null); // ADD THIS
@@ -247,7 +247,7 @@ ligneDetail.setCommande(null); // ADD THIS
 public class Commande {
 	public void addLigneDetails(LigneDetail ligneDetail) {
         ligneDetail.setCommande(this); // this référence la commande
-        igneDetails.add(ligneDetail);
+        ligneDetails.add(ligneDetail);
 	}
 
     public void removeLigneDetails(LigneDetail ligneDetail) {
@@ -271,7 +271,7 @@ public void improvement() {
     // DEVIENT
     commande.removeLigneDetails(ligneDetail)
 
-    em.persist(commande); // optionnelle car commande est un objet MANAGED
+    em.persist(commande); // optionnel car commande est un objet MANAGED
 }
 ```
 

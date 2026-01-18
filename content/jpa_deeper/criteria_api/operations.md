@@ -8,9 +8,9 @@ weight = 20
 > - [Criteria Update/Delete – The easy way to implement bulk operations with JPA2.1](https://thorben-janssen.com/criteria-updatedelete-easy-way-to/)
 
 ## Types d'opération
-Il n’est possible de réaliser que trois types d’opérations avec l’API Criteria qui sont la lecture, la modification et la suppression (SELECT, UPDATE et DELETE). Chacune de ces opérations a ses propres classes qui sont :
+Il n'est possible de réaliser que trois types d'opérations avec l'API Criteria qui sont la lecture, la modification et la suppression (SELECT, UPDATE et DELETE). Chacune de ces opérations a ses propres classes qui sont :
   - `CriteriaQuery` pour le SELECT.
-  - `CriteriaUpdate` pour l’UPDATE.
+  - `CriteriaUpdate` pour l'UPDATE.
   - `CriteriaDelete` pour le DELETE.
 
 ## La classe CriteriaBuilder
@@ -48,7 +48,7 @@ List<Pet> allPets = q.getResultList(); // permet d'exécuter la requête
 ```
 
 ## Les expressions de prédicats
-Les **expressions de prédicats** sont les éléments de base pour définir les conditions de filtrage dans une requête Criteria. Voici quelques exemples d’utilisation :
+Les **expressions de prédicats** sont les éléments de base pour définir les conditions de filtrage dans une requête Criteria. Voici quelques exemples d'utilisation :
 
 - `cb.equal(root.get("name"), "John")` : Filtre les entités où le champ `name` est égal à "John".
 - `cb.greaterThan(root.get("age"), 18)` : Filtre les entités où l'`age` est supérieur à 18.
@@ -76,7 +76,7 @@ cq.select(pet)
   )
   .orderBy(cb.asc(pet.get("name")));
 
-// Executer la requête
+// Exécuter la requête
 TypedQuery<Pet> q = em.createQuery(cq);
 List<Pet> filteredPets = q.getResultList();
 ```
@@ -84,7 +84,7 @@ List<Pet> filteredPets = q.getResultList();
 ### Exemple update
 
 > [!definition] Attention
-> A toujours exécuter le code dans une transaction
+> À toujours exécuter le code dans une transaction
 
 ```java
 // Start a transaction

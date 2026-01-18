@@ -12,6 +12,6 @@ weight = 30
 ![criteria vs jpql](criteria_jpql.png)
 
 ## Hibernate 6 
-> JPQL est compilé en SQM, et l'API Critères crée immédiatement les nœuds SQM, ce qui améliore son efficacité.
+> JPQL est compilé en SQM, et l'API Criteria crée immédiatement les nœuds SQM, ce qui améliore son efficacité.
 
 ![criteria vs jpql](criteria_jpql2.png)
