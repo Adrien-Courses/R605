@@ -1,5 +1,5 @@
 +++
-title = "Ressources 2024/2025"
+title = "Ressources"
 weight = 99
 +++
 
