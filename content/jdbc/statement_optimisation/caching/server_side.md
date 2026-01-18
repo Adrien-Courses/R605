@@ -10,12 +10,12 @@ weight = 10
 
 ## Statement lifecycle
 
-![statemebnt_lifecycle.png](statemebnt_lifecycle.png)
+![statement_lifecycle.png](statemebnt_lifecycle.png)
 
 Quand une requête préparée arrive pour la première fois :
 1. Parsing : La base de données parse le SQL et vérifie la syntaxe
 2. Optimize : Génère un plan d’exécution
-3. Executor : Execute le plan d'exécution pour traiter les données
+3. Executor : Exécute le plan d'exécution pour traiter les données
 
 L'étape 2. est très coûteuse : Analyse des statistiques (cardinalité, sélectivité), Évaluation de plusieurs plans possibles, Choix des algorithmes (index scan, full scan, join methods, etc.). Recalculer un plan à chaque exécution serait prohibitivement cher, c'est pour cette raison qu'il est stocké en cache.
 

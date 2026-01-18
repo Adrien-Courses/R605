@@ -3,7 +3,7 @@ title = "Optimistic Locking Exemple"
 weight = 10
 +++
 
-Dans une application web moderne (REST, microservices) est par nature stateless :
+Une application web moderne (REST, microservices) est par nature stateless :
 chaque requête est indépendante, et aucun état applicatif n’est conservé entre deux appels.
 La question devient donc : **comment conserver l’information nécessaire au contrôle de concurrence sans rendre l’application stateful ?**
 
@@ -41,7 +41,7 @@ Ainsi, à chaque requête d’écriture, Hibernate peut vérifier que l’entit�
                 command.balance()
         );
 
-        // Si aucune ligne n'est mise à jour, cela signifie que la version à changer
+        // Si aucune ligne n'est mise à jour, cela signifie que la version a changé
         if (updatedRows == 0) {
             throw new OptimisticLockException(
                 "Concurrent modification detected for account " + command.id()

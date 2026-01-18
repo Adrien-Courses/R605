@@ -3,7 +3,7 @@ title = "Lequel choisir ?"
 weight = 10
 +++
 
-Chaque [niveau d'isolation]({{< relref "jdbc/transaction/isolation_level/index" >}}) a ces avantages et inconvénients.
+Chaque [niveau d'isolation]({{< relref "jdbc/transaction/isolation_level/index" >}}) a ses avantages et inconvénients.
 
 ## Serializable
 Les SGBD n’utilisent pas SERIALIZABLE par défaut pour une raison simple mais fondamentale : le coût en performance, en concurrence et en complexité est trop élevé pour la majorité des usages.
@@ -28,12 +28,12 @@ Donc :
 
 ## Read Committed
 La plupart des SGBD choisissent READ COMMITTED comme niveau d'isolation par défaut car :
-- il permet d'avoir des performances élevés
-- tout en évitant les anomalies fatales comme le *dirty writes* et le *dirty reads* (mais les autres anomalie peuvent compromettre les données)
+- il permet d'avoir des performances élevées
+- tout en évitant les anomalies fatales comme le *dirty writes* et le *dirty reads* (mais les autres anomalies peuvent compromettre les données)
 
 ![read commited](read_commited.png)
 
 ## Lequel choisir ?
-Au final ca dépend de cas métier. 
+Au final, ça dépend des cas métier. 
 
 - Quelques autres dans l'article suivant [Understanding Isolation Levels in Transactions with Java Spring](https://medium.com/@a.r.m.monesan_9577/understanding-isolation-levels-in-transactions-with-java-spring-c414b43b6df1)

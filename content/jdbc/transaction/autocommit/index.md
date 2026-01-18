@@ -3,7 +3,7 @@ title = "Autocommit"
 weight = 50
 +++
 
-Par défaut, chaque `Connection` débute en *auto-commit=true*. Par conséquent, chaque *Statement* sera exécuté dans une transaction séparée. ce mode *auto-commit=true* ne nous permet pas de valider un groupe d'opérations dans la même transaction.
+Par défaut, chaque `Connection` débute en *auto-commit=true*. Par conséquent, chaque *Statement* sera exécuté dans une transaction séparée. Ce mode *auto-commit=true* ne nous permet pas de valider un groupe d'opérations dans la même transaction.
 
 ## Avec auto-commit=true
 Dans l'exemple suivant, une somme d'argent est transférée entre deux comptes bancaires. Le solde
@@ -30,8 +30,7 @@ En raison du mode *auto-commit*, **si la deuxième instruction échoue, seules c
 
 ## Avec auto-commit=false
 Le mode de validation automatique par défaut doit être désactivé et la transaction devra être gérée
-manuellement. La transaction est validée si toutes les instructions s'exécutent avec succès et une annulation est
-déclenchée en cas d'échec
+manuellement. La transaction est validée si toutes les instructions s'exécutent avec succès, sinon une annulation est déclenchée en cas d'échec
 
 ```java
 try(Connection connection = dataSource.getConnection()) {
@@ -54,6 +53,6 @@ try(Connection connection = dataSource.getConnection()) {
 }
 ```
 
-Ici on déclare `connection.setAutoCommit(false);`, ce qui nous oblige a gérer manuellement la transaction
-- `connection.commit();` si tout ce déroule correctement
+Ici on déclare `connection.setAutoCommit(false);`, ce qui nous oblige à gérer manuellement la transaction
+- `connection.commit();` si tout se déroule correctement
 - `connection.rollback();` qui annulera l'ensemble des transferts

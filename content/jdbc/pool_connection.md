@@ -34,7 +34,7 @@ est également raccourci.
 une exception d'échec d'acquisition de connexion.
 5. Lorsque le client ferme la connexion logique, celle-ci est libérée et retourne au pool sans fermer la connexion physique sous-jacente.
 
-Ainsi, l'exception classique `Connection is not available, request timed out after 30000ms` est levé pendant l'étape 4 car nous n'avons pas réussi à acquérir une connexion à temps (latence réseau ou requête trop longue)
+Ainsi, l'exception classique `Connection is not available, request timed out after 30000ms` est levée pendant l'étape 4 car nous n'avons pas réussi à acquérir une connexion à temps (latence réseau ou requête trop longue)
 
 ### Cycle de vie
 Le cycle de vie logique de la connexion se présente comme suit
@@ -50,12 +50,12 @@ Ce proxy permet notamment de détourner le comportement des méthodes `getConnec
 
 ## Exemple
 
-Plusieurs librairies existent pour gérer les pool de connexions
+Plusieurs librairies existent pour gérer les pools de connexions
 - Apache DBCP (Database Connection Pool)
 - c3p0
 - HikariCP
 
-A partir de ce moment, nous n'allons plus utiliser la classe `MySqlDataSource` mais une datasource plus générique `BasicDataSource` de Apache DBCP (nous utilisons cette librairie). Apache DBCP sera capable de devenir le driver à utiliser via l'url
+À partir de ce moment, nous n'allons plus utiliser la classe `MySqlDataSource` mais une datasource plus générique `BasicDataSource` de Apache DBCP (nous utilisons cette librairie). Apache DBCP sera capable de devenir le driver à utiliser via l'url
 
 
 ```java
@@ -64,16 +64,16 @@ dataSource.setUrl("url");
 dataSource.setUsername("username");
 dataSource.setPassword("password");
 
-Connection connection = dataSource.getConnection(); // Crée une connection et l'ajoute dans le pool
+Connection connection = dataSource.getConnection(); // Crée une connexion et l'ajoute dans le pool
 ...
-connection.close(); // La connection ne sera pas fermée MAIS rendu dans le pool (la marque disponible)
+connection.close(); // La connexion ne sera pas fermée MAIS rendue dans le pool (la marque disponible)
 ```
 
-Si nous avons besoin de deux connexion
+Si nous avons besoin de deux connexions
 - soit la première connexion est marquée comme disponible alors on l'utilise et nous n'aurons qu'une connexion dans notre pool
 - soit elle n'est pas disponible et une nouvelle connexion est ouverte
 
-Note : un pool de connexion n'est pas forcément excessif car le traitement d'une requête est rapide. Néanmoins, si les connexion ne sont pas rendues (`.close()`) ou que les requêtes ne sont pas optimisée (trop longue) alors effectivement notre pool de connexions peut venir conséquent.
+Note : un pool de connexions n'est pas forcément excessif car le traitement d'une requête est rapide. Néanmoins, si les connexions ne sont pas rendues (`.close()`) ou que les requêtes ne sont pas optimisées (trop longue) alors effectivement notre pool de connexions peut devenir conséquent.
 
 ## Pré-ouvrir des connexions
 On peut également pré-ouvrir des connexions, car nous savons qu'au minimum nous aurons besoin de *n* connexions.
@@ -89,4 +89,4 @@ Si on se met en débug juste après l'exécution du `.getDataSource()` et que no
 
 ![pool connexion](../images/poolconnection2.png)
 
-(Note : dbeaver ouvrir de lui deux connexions pour fonctionner)
+(Note : DBeaver ouvre de lui-même deux connexions pour fonctionner)

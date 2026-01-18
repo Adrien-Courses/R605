@@ -39,4 +39,4 @@ if (isolation == Connection.TRANSACTION_SERIALIZABLE) {
 }
 ```
 
-Node : Avec JPA/Hibernate nous pouvons également le modifier
+Note : Avec JPA/Hibernate nous pouvons également le modifier

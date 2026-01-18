@@ -46,5 +46,5 @@ Résultat
 
 ![deadlock](deadlock.png)
 
-## 2PL problèmes
+## Problèmes du 2PL
 Je vous invite à lire la partie suivante [MVCC - Pourquoi MVCC, défauts du 2PL ?]({{< relref "jdbc/transaction/mvcc#pourquoi-mvcc-défauts-du-2pl-" >}})

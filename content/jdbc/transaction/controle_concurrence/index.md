@@ -14,12 +14,12 @@ Dans un système où plusieurs transactions s’exécutent simultanément, l’a
 ![le problème](le_probleme.png)
 
 1. Alice et Bob lisent (read) un compte
-2. Bod le met à jour et le commit
+2. Bob le met à jour et le commit
 3. Alice fait le même, mais ne réalise pas que Bob avait déjà changé la ligne. => Conflit
 
 
 ## Solutions
 Pour gérer les conflits de données, plusieurs mécanismes de contrôle de la concurrence ont été développés au fil des ans.
 Il existe essentiellement deux stratégies pour gérer les collisions de données :
-- **Eviter les conflits (*Conflict Avoidance)*** : par exemple, le [verrouillage en deux phases]({{< relref "two_phase_locking" >}}), nécessite un verrouillage pour contrôler l'accès aux ressources partagées;
-- **Détecter les conflits (*Conflict Detection)*** par exemple, le [contrôle de concurrence multiversions]({{< relref "mvcc" >}}), offre une meilleure concurrence, au prix d'un assouplissement de la sérialisabilité et de l'acceptation éventuelle de diverses anomalies de données.
+- **Eviter les conflits (*Conflict Avoidance*)** : par exemple, le [verrouillage en deux phases]({{< relref "two_phase_locking" >}}), nécessite un verrouillage pour contrôler l'accès aux ressources partagées;
+- **Détecter les conflits (*Conflict Detection*)** par exemple, le [contrôle de concurrence multiversions]({{< relref "mvcc" >}}), offre une meilleure concurrence, au prix d'un assouplissement de la sérialisabilité et de l'acceptation éventuelle de diverses anomalies de données.

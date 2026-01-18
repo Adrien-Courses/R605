@@ -8,7 +8,7 @@ weight = 10
 > - [Optimistic Locking in JPA (pas en JDBC)](https://www.baeldung.com/jpa-optimistic-locking)
 
 > [!affirmation] Affirmation
-> Pour coordonner les changements d'état, le contrôle de la concurrence au niveau de l'application on utilise le verrouillage explicite (*explicit locking*), qui se décline en deux variantes : le verrouillage pessimiste et le verrouillage optimiste.
+> Pour coordonner les changements d'état via le contrôle de la concurrence au niveau de l'application, on utilise le verrouillage explicite (*explicit locking*), qui se décline en deux variantes : le verrouillage pessimiste et le verrouillage optimiste.
 
 ## Verrouillage optimiste
 > [!definition] Définition

@@ -41,4 +41,4 @@ Le niveau **SERIALIZABLE** offre la garantie la plus forte : l’exécution conc
 | SERIALIZABLE        | ✅ prevented | ✅ prevented      | ✅ prevented | ✅ prevented |
 
 ## Conséquence
-On peut donc peut implémenter tous les niveaux d’isolation avec par exemple Two-Phase Locking, mais seul le niveau SERIALIZABLE correspond à un 2PL strict garantissant la sérialisabilité.
+On peut donc implémenter tous les niveaux d’isolation avec par exemple Two-Phase Locking, mais seul le niveau SERIALIZABLE correspond à un 2PL strict garantissant la sérialisabilité.

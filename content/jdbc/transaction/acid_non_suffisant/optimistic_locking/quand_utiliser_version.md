@@ -15,11 +15,11 @@ Pour terminer cette section sur le versionning des entités, quand doit-on utili
 ## Exemple concret 
 
 ### Deux applications
-Comme vu dans [Stateless anti-pattern]({{< relref "jdbc/transaction/application_level/#stateless-conversation-anti-pattern" >}}) lorsque deux applications distinctes accèdent à la même base de donnée
+Comme vu dans [Stateless anti-pattern]({{< relref "jdbc/transaction/application_level/#stateless-conversation-anti-pattern" >}}) lorsque deux applications distinctes accèdent à la même base de données
 
 ### Deux personnes distinctes modifient
-Supposons un service client qui accèdent à vos données pour les mettre à jour.
-Si deux personnes de ce même service modifie en même temps vos données, la dernière personne a les enregistrer écrasera les autres
+Supposons un service client qui accède à vos données pour les mettre à jour.
+Si deux personnes de ce même service modifient en même temps vos données, la dernière personne à enregistrer écrasera les autres
 
 ### Deux onglets du navigateur
 ```
@@ -31,12 +31,12 @@ Onglet B annule -> status = CANCELED
 ```
 
 - ❌ La modification de l’onglet A est perdue
-- ❌ Bug métier invisible (la commande a été validée, peut être même payé et demandé à être expédié)
+- ❌ Bug métier invisible (la commande a été validée, peut-être même payé et demandée à être expédiée)
 
 => Le raisonnement "on a une seule application, donc pas besoin de versionning" est donc faux
 
 ## Conclusion
 
-En cas d'accès concurrent, alors une exception est levée est doit être transmise à l'utilisateur en lui demandant de rafraichir sa page par exemple
+En cas d'accès concurrent, alors une exception est levée et doit être transmise à l'utilisateur en lui demandant de rafraîchir sa page par exemple
 
 ![alt text](staeful_version.png)

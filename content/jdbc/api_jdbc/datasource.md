@@ -20,13 +20,13 @@ Connection connection = dataSource.getConnection();
 ```
 
 ## Avantage DataSource
-Nous ne sommes pas obligé de donnée l'url de connexion exacte qui est propre à chaque drivers :
+Nous ne sommes pas obligés de donner l'url de connexion exacte qui est propre à chaque driver :
 - `jdbc:mysql://`
 - `jdbc:postgres://`
 
 Nous allons simplement donner le serveur, le port ou encore la table
 ```java
-dataSource.setServeurName("localhost");
+dataSource.setServerName("localhost");
 dataSource.setPort(3306);
 dataSource.setDatabaseName("client");
 ...
@@ -43,7 +43,7 @@ Il est presque identique à celui présenté dans [la page précédente]({{< rel
 
 3. Une connexion physique est créée et un socket TCP est ouvert
 
-4. La `DataSource` n'ajoute aucune abstraction au dessus de la connexion JDBC. Elle se contente de transmettre à l'application la connexion physique brute créée par le pilote JDBC.
+4. La `DataSource` n'ajoute aucune abstraction au-dessus de la connexion JDBC. Elle se contente de transmettre à l'application la connexion physique brute créée par le pilote JDBC.
 
 5. L'application exécute des instructions à l'aide de la connexion à la base de données acquise
 

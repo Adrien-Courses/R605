@@ -7,11 +7,11 @@ weight = 20
 > - [Transaction Propagation Explained in Detail !](https://medium.com/@javatechie/transaction-propagation-explained-in-detail-8c3a5c39fbb2)
 
 On déclare `autocommit=false` car notre transaction logique utilise un ou plusieurs DAO[^1] pour accomplir une logique métier. 
-Dans l'exemple ci-dessous, lorsqu'on réaliser une commande (*order*) nous allons créer une nouvelle commande avec ces items, puis mettre à jour les réductions 
+Dans l'exemple ci-dessous, lorsqu'on réalise une commande (*order*) nous allons créer une nouvelle commande avec ses items, puis mettre à jour les réductions 
 
 ![declarative transaction](declarative_trx.png)
 
-Par défaut, tout sera exécuté dans une même est uniquement transaction. Mais vous avez la possibilité de choisir la stratégie de propagation, par exemple 3 transactions différentes.
+Par défaut, tout sera exécuté dans une même et unique transaction. Mais vous avez la possibilité de choisir la stratégie de propagation, par exemple 3 transactions différentes.
 
 ## Les stratégies de propagation
 
@@ -34,7 +34,7 @@ Par défaut, tout sera exécuté dans une même est uniquement transaction. Mais
 
 ```java
 // L'exemple utilise est avec Spring pour simplifier
-@Transactionnal(propagation=Propagation.REQUIRED)
+@Transactional(propagation=Propagation.REQUIRED)
 public TradeData placeTrade(TradeData trade) throws Exception { 
     try { 
         insertTrade(trade); 
@@ -55,7 +55,7 @@ public void updateAcct(TradeData trade) throws Exception {...}
 2. `insertTrade()` démarre une nouvelle et indépendante transaction
 3. `updateAcct()` démarre une nouvelle et indépendante transaction
 
-=> Si une erreur ce produit dans `updateAcct()`, alors il y a aura un rollback uniquement de cette transaction. L'insertion du trade, lui ne sera pas rollback.
+=> Si une erreur se produit dans `updateAcct()`, alors il y aura un rollback uniquement de cette transaction. L'insertion du trade, elle, ne sera pas annulée.
 
 Si à la place on déclare `propagation=Propagation.REQUIRED` (ou rien car par défaut), alors nous n'avons qu'une seule et unique transaction.
 

@@ -9,7 +9,7 @@ Imaginons 10 000 insertions
 
 À chaque ligne :
 
-- lient prépare statement
+- Client prépare le statement
 - Envoie au serveur
 - Serveur parse & optimize
 - Exécute

@@ -1,5 +1,5 @@
 +++
-Ressource = "Ressources 2024/2025"
+title = "Ressources 2024/2025"
 weight = 10
 +++
 
