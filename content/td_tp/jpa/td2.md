@@ -51,6 +51,10 @@ public static void initializeData() {
 Si nous nous rendons en BDD et exécutons le code suivant `SELECT * FROM Course` quel va être le résultat ?
 - En vous appuyant sur l'article en ressource expliquez le résultat
 
+<!-- la table est vide tant quo'"n a pas commit, ca reste dans le cache 
+Et je oense que si on joue avec le flush bmode on peut modifier le comportement
+"-->
+
 ### Complément
 En supprimant la boucle, l'id ne commence pas à 1, pourquoi ?
 - [How do Identity, Sequence, and Table (sequence-like) generators work in JPA and Hibernate](https://vladmihalcea.com/hibernate-identity-sequence-and-table-sequence-generator/)
