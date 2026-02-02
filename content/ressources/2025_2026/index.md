@@ -12,3 +12,4 @@ weight = 20
 <embed src="/static/pdf/2025_2026/06_Heritage.pdf" width="100%" height="500px"/>
 <embed src="/static/pdf/2025_2026/07_Fetch.pdf" width="100%" height="500px"/>
 <embed src="/static/pdf/2025_2026/08_Criteria_API.pdf" width="100%" height="500px"/>
+<embed src="/static/pdf/2025_2026/09_Projection.pdf" width="100%" height="500px"/>
