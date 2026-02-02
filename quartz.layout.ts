@@ -57,7 +57,6 @@ export const defaultContentPageLayout: PageLayout = {
             numeric: true,
             sensitivity: "base",
           });
-        
       }
     }),
   ],

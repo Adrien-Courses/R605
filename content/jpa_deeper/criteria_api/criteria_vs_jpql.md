@@ -1,6 +1,6 @@
 +++
 title = "Criteria vs JPQL"
-weight = 30
+weight = 40
 +++
 
 > [!ressource] Ressource
