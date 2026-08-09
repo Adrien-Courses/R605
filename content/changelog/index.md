@@ -9,8 +9,9 @@ Le fil rouge de cette édition est la **performance** : savoir écrire un mappin
 
 **Prévu**
 - [Les limites d'un ORM]({{< relref "limites_orm/" >}}) — ce qu'un ORM ne résout pas, et les cas où revenir à du SQL est le bon réflexe.
-- Le problème du **N+1 select** : le reconnaître dans les logs SQL, comprendre d'où il vient, et les stratégies pour l'éviter.
-- Les **JOIN** : quand les écrire explicitement plutôt que de laisser l'ORM décider, et l'impact sur le nombre de requêtes.
+- Une section dédiée aux [performances]({{< relref "jpa_performance/" >}})
+    - Le problème du **N+1 select** : le reconnaître dans les logs SQL, comprendre d'où il vient, et les stratégies pour l'éviter.
+    - Les **JOIN** : quand les écrire explicitement plutôt que de laisser l'ORM décider, et l'impact sur le nombre de requêtes.
 
 ## 2025-26
 

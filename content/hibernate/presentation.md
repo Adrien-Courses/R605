@@ -10,7 +10,7 @@ Hibernate est l'ORM le plus populaire dans l'écosystème Java qui implémente l
 
 Hibernate est un ORM qui se présente sous forme de librairies Java que nous pouvons ajouter à notre projet
 
-![hibernate project](images/hibernate_projects.png)
+![hibernate project](hibernate_projects.png)
 
 Et pour le moment, nous nous sommes qu’appuyer sur les configurations, les interfaces et les classes proposées par JPA mais Hibernate apporte également quelques compléments.
 

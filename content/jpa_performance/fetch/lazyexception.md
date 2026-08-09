@@ -1,5 +1,5 @@
 +++
-title = "Lazy Exception"
+title = "LazyInitializationException"
 weight = 10
 +++
 
