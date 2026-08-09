@@ -1,5 +1,6 @@
 +++
 title = "TD1 JPA Cycle de vie"
+description = "TD1 JPA : observer le cycle de vie d'une entité en la récupérant deux fois, en la détachant, puis en la rattachant avec merge."
 weight = 20
 +++
 
@@ -15,7 +16,7 @@ Lancer l'image docker présente dans le `Dockerfile` : `docker compose up`
 ## 2. Consigne
 
 > [!affirmation] Objectif
-> Dans ce TD nous mettons en œuvre la section sur le [cycle de vie d'une entité]({{< relref "jpa/specification/cyle_de_vie" >}})
+> Dans ce TD nous mettons en œuvre la section sur le [cycle de vie d'une entité]({{< relref "jpa/specification/cycle_de_vie/index" >}})
 
 ### 2.1 Récupérer deux fois la même entité
 - Compléter le code de la méthode `getSameEntityTwice()` pour récupérer deux fois la même entité, que remarquez-vous ?

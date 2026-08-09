@@ -1,5 +1,6 @@
 +++
 title = "Conséquence"
+description = "Comparaison chiffrée sur 10 000 insertions : le coût du parsing et de la latence avec et sans cache de statements côté client et serveur."
 weight = 30
 +++
 

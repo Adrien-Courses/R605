@@ -1,5 +1,6 @@
 +++
 title = "Two-Phase Locking"
+description = "Le verrouillage en deux phases (2PL) : verrous partagés et exclusifs, phase d'acquisition et de libération, et le risque d'interblocage."
 weight = 10
 +++
 
@@ -55,4 +56,4 @@ Le 2PL est une solution pour gérer les problèmes d'accès concurrent. Mais à 
 - création de latence (attendre que le verrou soit libéré)
 - création de deadlock
 
-Le 2Pl est donc une stratégie pour **éviter les conflits**, regardons maintenant une stratégie pour les **détecter** [MVCC]({{< relref "jdbc/transaction/mvcc" >}}).
+Le 2Pl est donc une stratégie pour **éviter les conflits**, regardons maintenant une stratégie pour les **détecter** [MVCC]({{< relref "jdbc/transaction/isolation/controle_concurrence/mvcc" >}}).

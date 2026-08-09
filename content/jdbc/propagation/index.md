@@ -1,5 +1,6 @@
 +++
 title = "Stratégies de propagation"
+description = "Les sept stratégies de propagation transactionnelle : REQUIRED, REQUIRES_NEW, NESTED, MANDATORY, SUPPORTS, NOT_SUPPORTED et NEVER, avec exemples."
 weight = 60
 +++
 

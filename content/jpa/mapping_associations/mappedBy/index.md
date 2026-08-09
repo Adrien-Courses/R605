@@ -1,5 +1,6 @@
 +++
 title = "Retour mappedBy"
+description = "L'attribut mappedBy expliqué : qui possède la relation, les conséquences sur le SQL généré et sur la cascade, et comment synchroniser les deux côtés."
 weight = 50
 +++
 
@@ -9,7 +10,7 @@ weight = 50
 
 
 > [!affirmation] Affirmation
-> Si on ne précise pas le `mappedBy` une table de jointure sera créée, voir par exemple [OneToMany relation]({{< relref "one-to-many.md" >}})
+> Si on ne précise pas le `mappedBy` une table de jointure sera créée, voir par exemple [OneToMany relation]({{< relref "jpa/mapping_associations/relationship/one-to-many" >}})
 
 
 On revient brièvement sur l'annotation `@mappedBy` et son utilité.

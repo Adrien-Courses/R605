@@ -1,5 +1,6 @@
 +++
 title = "Repeatable Read"
+description = "Le niveau d'isolation REPEATABLE READ illustré pas à pas, et les deux anomalies qui subsistent : lecture fantôme et mise à jour perdue."
 weight = 40
 +++
 

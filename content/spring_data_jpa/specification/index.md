@@ -1,5 +1,6 @@
 +++
 title = "Spécifications"
+description = "Les Specifications de Spring Data JPA : composer dynamiquement des prédicats Criteria réutilisables pour construire des filtres de recherche."
 weight = 50
 +++
 
@@ -9,7 +10,7 @@ weight = 50
 > - [Un des premiers articles sur les Specifications et leur lien avec les Predicate](https://spring.io/blog/2011/04/26/advanced-spring-data-jpa-specifications-and-querydsl)
 
 > [!affirmation] Rappel
-> - Nous avons déjà abordé la notion de spécification avec JPA, voir [API Criteria]({{< relref "jpa_deeper/criteria_api/" >}})
+> - Nous avons déjà abordé la notion de spécification avec JPA, voir [API Criteria]({{< relref "jpa_requetes/criteria_api/" >}})
 
 ```java
 public interface CustomerRepository extends CrudRepository<Customer, Long>, JpaSpecificationExecutor<Customer> {
@@ -26,7 +27,7 @@ public interface Specification<T> {
 }
 ```
 
-Et cette interface vient nous aider à créer facilement des prédicats. En effet, avec [API Criteria]({{< relref "jpa_deeper/criteria_api/" >}}) les prédicats ne sont pas faciles à externaliser et à réutiliser parce qu'il faut d'abord mettre en place le `CriteriaBuilder`, le `CriteriaQuery` et le `Root`.
+Et cette interface vient nous aider à créer facilement des prédicats. En effet, avec [API Criteria]({{< relref "jpa_requetes/criteria_api/" >}}) les prédicats ne sont pas faciles à externaliser et à réutiliser parce qu'il faut d'abord mettre en place le `CriteriaBuilder`, le `CriteriaQuery` et le `Root`.
 
 ```java
 CriteriaBuilder builder = em.getCriteriaBuilder();

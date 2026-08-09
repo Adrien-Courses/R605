@@ -1,5 +1,6 @@
 +++
 title = "Mise en place"
+description = "Mettre en place Spring Data JPA : dépendance Maven, configuration de la base dans application.properties, ddl-auto et activation des logs SQL."
 weight = 10
 +++
 

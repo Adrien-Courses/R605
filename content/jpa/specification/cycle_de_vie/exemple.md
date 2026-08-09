@@ -1,5 +1,6 @@
 +++
 title = "Exemple concret"
+description = "Le cycle de vie d'une entité illustré par le code : récupérer deux fois la même instance, la détacher, puis la rattacher avec merge."
 weight = 10
 +++
 

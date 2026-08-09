@@ -1,5 +1,6 @@
 +++
 title = "Accès concurrent"
+description = "Le problème de l'accès concurrent aux mêmes données : lectures obsolètes, mises à jour écrasées et états intermédiaires incohérents."
 weight= 10
 +++
 

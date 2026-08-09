@@ -1,5 +1,6 @@
 +++
 title = "Composant JPA (Embeddable)"
+description = "Les composants JPA avec @Embeddable et @Embedded : factoriser un groupe de colonnes comme une adresse sans créer de table dédiée."
 weight = 11
 +++
 

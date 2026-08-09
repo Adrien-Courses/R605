@@ -1,5 +1,6 @@
 +++
 title = "Copie défensive"
+description = "La copie défensive d'une collection JPA est-elle une bonne idée ? Le conflit entre encapsulation Java et synchronisation des relations bidirectionnelles."
 weight = 60
 +++
 
@@ -30,7 +31,7 @@ public List<Commune> getCommunes() {
 ```
 
 En créant une nouvelle liste :
-- `departement.getCommunes().clear()` n'aura plus d'effet sur les informations en base de données car la liste (new ArrayList<>) est une nouvelle liste non managée par JPA ([cycle de vie]({{< relref "jpa/specification/cyle_de_vie" >}}))
+- `departement.getCommunes().clear()` n'aura plus d'effet sur les informations en base de données car la liste (new ArrayList<>) est une nouvelle liste non managée par JPA ([cycle de vie]({{< relref "jpa/specification/cycle_de_vie/index" >}}))
 - MAIS les objets de type `Commune`, eux reste managé par JPA, nous pouvons faire `departement.getCommunes().get(0).setName("new name")` et ceci sera persisté en base de données
 
 

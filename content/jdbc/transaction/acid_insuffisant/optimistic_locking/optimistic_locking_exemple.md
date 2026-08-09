@@ -1,5 +1,6 @@
 +++
 title = "Optimistic Locking Exemple"
+description = "Verrouillage optimiste et applications stateless : pourquoi il faut exposer la version au client REST, et comment concevoir les DTO en conséquence."
 weight = 10
 +++
 

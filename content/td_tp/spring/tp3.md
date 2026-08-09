@@ -1,5 +1,6 @@
 +++
 title = "TP3 Query By Example"
+description = "TP3 Spring Data JPA : mettre en œuvre Query By Example pour construire un filtre de recherche sans écrire de requête."
 weight = 30
 +++
 

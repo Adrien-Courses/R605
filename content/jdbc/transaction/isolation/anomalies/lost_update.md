@@ -1,5 +1,6 @@
 +++
 title = "Lost Update"
+description = "L'anomalie de mise à jour perdue (lost update) expliquée pas à pas, et les pistes pour la corriger en SQL comme en Java."
 weight = 10
 +++
 

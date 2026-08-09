@@ -1,5 +1,6 @@
 +++
 title = "TD Join vs JoinFetch"
+description = "TD Spring Data JPA : comparer JOIN et JOIN FETCH sur un même cas, et observer la différence sur les requêtes SQL émises."
 weight = 10
 +++
 

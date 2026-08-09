@@ -1,5 +1,6 @@
 +++
 title = "Mapping JPA Associations"
+description = "Le mapping des associations JPA : bonnes pratiques, pièges courants et subtilités des relations entre entités."
 weight = 40
 +++
 

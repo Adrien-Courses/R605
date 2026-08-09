@@ -1,5 +1,6 @@
 +++
 title = "Quand utiliser @Version"
+description = "Quand faut-il vraiment utiliser @Version : trois scénarios concrets où deux acteurs modifient la même donnée sans le savoir."
 weight = "30"
 +++
 
@@ -15,7 +16,7 @@ Pour terminer cette section sur le versionning des entités, quand doit-on utili
 ## Exemple concret 
 
 ### Deux applications
-Comme vu dans [Stateless anti-pattern]({{< relref "jdbc/transaction/application_level/#stateless-conversation-anti-pattern" >}}) lorsque deux applications distinctes accèdent à la même base de données
+Comme vu dans [Stateless anti-pattern]({{< relref "jdbc/transaction/acid_insuffisant/optimistic_locking/optimistic_locking_exemple" >}}) lorsque deux applications distinctes accèdent à la même base de données
 
 ### Deux personnes distinctes modifient
 Supposons un service client qui accède à vos données pour les mettre à jour.

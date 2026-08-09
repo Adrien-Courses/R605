@@ -1,5 +1,6 @@
 +++
 title = "Transactions Logique"
+description = "La notion de transaction logique métier, étalée sur plusieurs échanges avec l'utilisateur, et la limite des niveaux d'isolation face à ce scénario."
 weight = 10
 +++
 
@@ -27,7 +28,7 @@ weight = 10
 Étant donné que la transaction logique Alice englobe **deux requêtes Web distinctes, chacune étant associée à une transaction de base de données distincte, sans mécanisme de contrôle de concurrence supplémentaire**, même le niveau d'isolation le plus élevé (i.e SERIALIZABLE) ne peut empêcher le phénomène de perte de mise à jour.
 
 ## Limite des niveaux d’isolation
-Le niveau d’isolation — y compris [SERIALIZABLE]({{< relref "jdbc/transaction/isolation_level/lequel_choisir#serializable" >}}) — **ne garantit la cohérence qu'à l’intérieur d’une transaction unique**.
+Le niveau d’isolation — y compris [SERIALIZABLE]({{< relref "jdbc/transaction/isolation/niveau_isolation/lequel_choisir#serializable" >}}) — **ne garantit la cohérence qu'à l’intérieur d’une transaction unique**.
 Dès lors qu’une logique métier s’étend sur plusieurs transactions :
 - L’isolation ne peut plus empêcher les modifications concurrentes
 - Les hypothèses faites lors de la première lecture peuvent devenir invalides
@@ -72,8 +73,8 @@ Un autre exemple, pour illustrer ce même problème
 > Pushing database transaction boundaries into the application layer **requires an application-level concurrency control**. To ensure application-level repeatable reads we need to preserve state across multiple user requests, but in the absence of database locking, we need to rely on an application-level concurrency control. [^2]
 
 Une solution consiste à déléguer le travail à la couche applicative, par exemple 
-- en faisant du [Pessimistic Locking]({{< relref "jdbc/transaction/acid_non_suffisant/pessimistic_locking/index" >}}) (app stateful).
-- ou en faisant du [Optimistic locking]({{< relref "jdbc/transaction/acid_non_suffisant/optimistic_locking/index" >}}) (app stateless).
+- en faisant du [Pessimistic Locking]({{< relref "jdbc/transaction/acid_insuffisant/pessimistic_locking/index" >}}) (app stateful).
+- ou en faisant du [Optimistic locking]({{< relref "jdbc/transaction/acid_insuffisant/optimistic_locking/index" >}}) (app stateless).
 
 
 [^2]: [https://vladmihalcea.com/preventing-lost-updates-in-long-conversations/](https://vladmihalcea.com/preventing-lost-updates-in-long-conversations/) - Conclusion 

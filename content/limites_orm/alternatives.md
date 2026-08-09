@@ -1,5 +1,6 @@
 +++
 title = "Les alternatives (complémentaires)"
+description = "Requêtes natives, JdbcClient et jOOQ : les alternatives à utiliser en complément de JPA, avec une grille de décision selon le besoin."
 weight = 70
 +++
 

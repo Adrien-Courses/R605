@@ -1,12 +1,13 @@
 +++
 title = "LazyInitializationException"
+description = "LazyInitializationException : pourquoi Hibernate ne peut pas charger une relation LAZY hors session, avec trois cas concrets et leurs solutions."
 weight = 10
 +++
 
 > [!ressource] Ressource
 > [LazyInitializationException – What it is and the best way to fix it](https://thorben-janssen.com/lazyinitializationexception/)
 
-La section [précédente]({{< relref "jpa_deeper/fetch/index" >}}) va nous permettre de comprendre l'exception `LazyInitializationException`
+La section [précédente]({{< relref "jpa_performance/fetch/index" >}}) va nous permettre de comprendre l'exception `LazyInitializationException`
 
 ## Définition
 

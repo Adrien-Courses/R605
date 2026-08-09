@@ -1,5 +1,6 @@
 +++
 title = "Uni/Bidirectionnelle"
+description = "Relations unidirectionnelles et bidirectionnelles : les trois façons de représenter une même association en Java, et leurs conséquences."
 weight = 5
 +++
 
@@ -37,7 +38,7 @@ public class Passeport {
 *Rappelons que dans une base relationnelle, le problème ne se pose pas: une association représentée par une clé étrangère est par nature bidirectionnelle.* Néanmoins déterminer comment relier nos objets (les trois choix sont possibles) impactera :
 - La navigation entres nos entités Java
 - Le fait ou non de pouvoir écrire une requête JPQL ou Criteria
-- Les performances (e.g. [@OneToMany unidirectionnelle performance]({{< relref "one-to-many#performance" >}}))
+- Les performances (e.g. [@OneToMany unidirectionnelle performance]({{< relref "jpa/mapping_associations/relationship/one-to-many#performance" >}}))
 
 ## Exemple
 Si nous souhaitons représenter qu'une Commande est constituée de plusieurs lignes (LigneCommande) alors le code suivant est suffisant

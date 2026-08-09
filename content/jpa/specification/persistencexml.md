@@ -1,5 +1,6 @@
 +++
 title = "persistence.xml"
+description = "Le fichier persistence.xml : déclarer une unité de persistance, la connexion à la base et les propriétés spécifiques à Hibernate."
 weight = 10
 +++
 

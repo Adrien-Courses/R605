@@ -1,5 +1,6 @@
 +++
 title = "TP5 EE Container"
+description = "TP5 JPA en conteneur EE : construire un DAO générique, ajouter la pagination, puis des filtres de recherche avec l'API Criteria."
 weight = 10
 +++
 
@@ -7,16 +8,16 @@ weight = 10
 > https://github.com/Adrien-Courses/R605-TP-JPA-EE-container.git
 
 > [!danger] Rappel
-> Dans la section dédiée au [transaction JPA]({{< relref "jpa/specification/transaction/index" >}}) nous avons souligné deux cas
+> Dans la section dédiée au [transaction JPA]({{< relref "jpa/specification/transaction" >}}) nous avons souligné deux cas
 > - si nous sommes dans un contexte Java SE (l'ensemble des TP précédents) nous devions gérer les transactions et l'injection de dépendances
-> - si nous utilisons un container EE, alors nous pouvons nous passer de la gestion des transactions et déléguer l'injection au [CDI]({{< relref "cdi" >}})
+> - si nous utilisons un container EE, alors nous pouvons nous passer de la gestion des transactions et déléguer l'injection au [CDI]({{< relref "td_tp/jpa_ee_container/prerequis/cdi" >}})
 
 L'objectif de ce TP est donc de découvrir ces concepts en implémentant une architecture en couche tout en factorisant le code nécessaire.
 
 ## 1. Installer TomEE et lancer le projet
 Pour ce projet, nous avons besoin d'un container EE, nous allons utiliser TomEE.
 
-1. Installer TomEE et l'intégrer avec [Eclipse]({{< relref "installation_tomee_eclipse" >}}) ou [IntelliJ]({{< relref "installation_tomee_intellij" >}}) <br><br>
+1. Installer TomEE et l'intégrer avec [Eclipse]({{< relref "td_tp/jpa_ee_container/prerequis/installation_tomee_eclipse" >}}) ou [IntelliJ]({{< relref "td_tp/jpa_ee_container/prerequis/installation_tomee_intelliJ" >}}) <br><br>
 
 2. Télécharger et [importer le projet Maven dans Eclipse]({{< relref "td_tp/prerequis/impoter_project_maven/index" >}}) <br><br>
 3. Lancer Docker Desktop + `docker compose up` pour la base de données

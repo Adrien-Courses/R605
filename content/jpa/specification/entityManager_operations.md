@@ -1,5 +1,6 @@
 +++
 title = "EntityManager Opérations"
+description = "Les opérations courantes de l'EntityManager : persist, find, merge, remove et createQuery, et le moment où elles atteignent réellement la base."
 weight = 21
 +++
 

@@ -1,5 +1,6 @@
 +++
 title = "Criteria Query"
+description = "Le CriteriaQuery et l'objet Root : définir la source avec from, les colonnes avec select, les filtres avec where et les jointures avec join."
 weight = 20
 +++
 
@@ -74,7 +75,7 @@ query.select(root);
 
 ### Sélectionner un champ précis
 
-On retombe sur l'expression de la page [précédente]({{< relref "jpa_deeper/criteria_api/criteria_builder#comprendre-expression" >}}) : `Expression<String> nameExp = root.get("name");`
+On retombe sur l'expression de la page [précédente]({{< relref "jpa_requetes/criteria_api/criteria_builder#comprendre-expression" >}}) : `Expression<String> nameExp = root.get("name");`
 
 ```java
 query.select(root.get("name"));

@@ -1,5 +1,6 @@
 +++
 title = "Dynamic Web App"
+description = "Créer une application web dynamique avec Maven : dépendances, web.xml, persistence.xml et resources.xml pour un déploiement sur TomEE."
 weight = 6
 +++
 

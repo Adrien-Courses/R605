@@ -1,5 +1,6 @@
 +++
 title = "TP1 Spring JPA Découverte"
+description = "TP1 Spring Data JPA : créer une commande et récupérer la liste des commandes avec un repository, sans écrire de DAO."
 weight = 10
 +++
 
@@ -91,7 +92,7 @@ Dans le `application.yml` ajoutez `spring.jpa.open-in-view=false`
 - [What is this spring.jpa.open-in-view=true property in Spring Boot?](https://stackoverflow.com/questions/30549489/what-is-this-spring-jpa-open-in-view-true-property-in-spring-boot)
 - [The Open Session In View Anti-Pattern](https://vladmihalcea.com/the-open-session-in-view-anti-pattern/)
 
-Pour résoudre voir [Optimisation des lectures]({{< relref "jpa_deeper/fetch/" >}})
+Pour résoudre voir [Optimisation des lectures]({{< relref "jpa_performance/fetch/" >}})
 <!--
 Si dans le contrôleur en désactivant le open-in-view
 

@@ -1,5 +1,6 @@
 +++
 title = "TP1 JDBC"
+description = "TP1 JDBC : première mise en œuvre de l'API JDBC, de la connexion à la base jusqu'à l'exploitation d'un ResultSet."
 weight = 10
 +++
 

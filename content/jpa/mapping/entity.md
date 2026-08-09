@@ -1,5 +1,6 @@
 +++
 title = "Entité JPA"
+description = "Déclarer une entité JPA : les annotations @Entity, @Table, @Id, @GeneratedValue et @Column, et les stratégies de génération d'identifiant."
 weight = 10
 +++
 

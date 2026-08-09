@@ -1,5 +1,6 @@
 +++
 title = "Java Persistence API"
+description = "JPA est une spécification, pas une implémentation : le rôle des providers Hibernate et EclipseLink, et la façon dont JPA s'appuie sur JDBC."
 weight = 20
 +++
 

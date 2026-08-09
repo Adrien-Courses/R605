@@ -1,5 +1,6 @@
 +++
 title = "JPA Criteria API"
+description = "L'API Criteria de JPA : construire une requête comme un graphe d'objets typé, pour composer des filtres dynamiques vérifiés à la compilation."
 weight = 20
 +++
 

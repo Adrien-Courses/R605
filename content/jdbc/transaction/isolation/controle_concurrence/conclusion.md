@@ -1,5 +1,6 @@
 +++
 title = "Conclusion"
+description = "2PL et MVCC comparés : deux implémentations concrètes des niveaux d'isolation SQL, avec leurs forces et leurs compromis respectifs."
 weight = 40
 +++
 

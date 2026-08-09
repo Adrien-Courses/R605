@@ -1,5 +1,6 @@
 +++
 title = "Isolation SQL/JDBC"
+description = "L'isolation des transactions : pourquoi c'est la propriété ACID la plus complexe, et pourquoi elle conditionne la compréhension du verrouillage optimiste."
 weight = 20
 +++
 

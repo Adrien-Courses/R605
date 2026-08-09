@@ -1,12 +1,13 @@
 +++
 title = "Conclusion"
+description = "Synthèse du chapitre transactions : ce que garantit la base de données, ce qui reste à la charge de l'application, et ce que JPA reprendra à son compte."
 weight = "50"
 +++
 
 > [!ressource] Ressource
 > - [Pessimistic vs Optimistic Locking](https://newsletter.systemdesigncodex.com/p/pessimistic-vs-optimistic-locking)
 > - [Pessimistic locking vs Serializable transaction isolation level](https://stackoverflow.com/questions/47441027/pessimistic-locking-vs-serializable-transaction-isolation-level)
-> - [TP Isolation et Locking]({{< relref "td_tp/isolation_locking/tp1" >}})
+> - [TP Isolation et Locking]({{< relref "td_tp/jdbc_isolation_locking/tp1" >}})
 
 Dans cette longue section dédiée aux transactions nous avons
 - revue la notion [d'atomicité]({{< relref "jdbc/transaction/atomicite/" >}}) en SQL et en JAVA avec l'instruction `setAutoCommit(true/false)`

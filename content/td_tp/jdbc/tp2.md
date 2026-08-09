@@ -1,6 +1,6 @@
-
 +++
 title = "TP2 JDBC Transaction"
+description = "TP2 JDBC : gérer manuellement une transaction avec autocommit, commit et rollback, à partir d'un code source initial fourni."
 weight = 20
 +++
 

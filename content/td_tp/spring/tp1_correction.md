@@ -1,5 +1,6 @@
 +++
 title = "TP1 Correction"
+description = "Correction du TP1 Spring Data JPA : implémentation des opérations de création et de lecture, avec compléments sur les pièges rencontrés."
 weight = 11
 +++
 
@@ -105,7 +106,7 @@ private List<CommandeResponseModel> toResponseModel(List<Commande> commandes) {
 Dans le `application.yml` ajoutez `spring.jpa.open-in-view=false`
 - Nous avons donc une `LazyInitializeException` pourquoi ?
   - Car dans le constructeur de `CommandeResponseModel` on essaie d'accéder aux clients et aux articles. Or comme nous sommes en dehors du contexte de transaction, exception
-  - => Pour résoudre ceci, lorsque nous chargeons une commande nous devons également charger les clients et article (cf [Optimisation des lectures]({{< relref "jpa_deeper/fetch/" >}}))
+  - => Pour résoudre ceci, lorsque nous chargeons une commande nous devons également charger les clients et article (cf [Optimisation des lectures]({{< relref "jpa_performance/fetch/" >}}))
 
 Dans `CommandeRepository` on ajoute une méthode `findAllWithClientAndArticles`
 ```java

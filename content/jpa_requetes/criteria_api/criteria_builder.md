@@ -1,5 +1,6 @@
 +++
 title = "Criteria Builder"
+description = "Le CriteriaBuilder, point d'entrée de l'API Criteria : créer des requêtes, des prédicats, des expressions et des fonctions d'agrégation."
 weight = 20
 +++
 

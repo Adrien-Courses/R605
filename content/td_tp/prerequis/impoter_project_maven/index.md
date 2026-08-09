@@ -1,5 +1,6 @@
 +++
 title = "Importer un projet Maven"
+description = "Importer un projet Maven dans Eclipse et recharger la configuration du projet : la procédure pas à pas avant de commencer les TP."
 weight = 10
 +++
 

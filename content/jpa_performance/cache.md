@@ -1,5 +1,6 @@
 +++
 title = "Cache L1 et L2"
+description = "Le cache de premier niveau et le cache de second niveau d'Hibernate : leur portée, leur durée de vie et ce qu'ils évitent comme requêtes SQL."
 weight = 40
 +++
 

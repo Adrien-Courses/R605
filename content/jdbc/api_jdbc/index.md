@@ -1,5 +1,6 @@
 +++
 title = "L'api JDBC"
+description = "Les quatre types fondamentaux de JDBC : DriverManager, Connection, Statement et ResultSet, et les cinq étapes d'un accès à la base de données."
 weight = 3
 +++
 

@@ -1,5 +1,6 @@
 +++
 title = "TP1 Solution"
+description = "Correction du TP1 isolation et locking : mise en œuvre comparée du verrouillage pessimiste et du verrouillage optimiste."
 weight = 11
 +++
 

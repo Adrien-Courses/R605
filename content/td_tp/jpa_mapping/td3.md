@@ -1,12 +1,13 @@
 +++
 title = "TD3 JPA Relation Bidirectionnelle"
+description = "TD3 JPA : pourquoi supprimer une ligne de commande ne fonctionne pas comme prévu, et comment une relation bidirectionnelle corrige le problème."
 weight = 40
 +++
 
 > [!ressource] Ressource
 > [https://github.com/Adrien-Courses/R605-TD-JPA-synchronize-bidirectional](https://github.com/Adrien-Courses/R605-TD-JPA-synchronize-bidirectional) - voir la classe `test/CommandeTest`
 
-Dans les cas pratiques suivant, nous souhaitons comprendre l'utilité de la relation bidirectionnelle expliquée dans les sections [OneToMany relation]({{< relref "one-to-many.md" >}}) et [MappedBy]({{< relref "MappedBy.md" >}}).
+Dans les cas pratiques suivant, nous souhaitons comprendre l'utilité de la relation bidirectionnelle expliquée dans les sections [OneToMany relation]({{< relref "jpa/mapping_associations/relationship/one-to-many" >}}) et [MappedBy]({{< relref "jpa/mapping_associations/mappedBy/index" >}}).
 Pour ce faire nous prenons le cas :
 - d'une `Commande`
 - qui est composée de plusieurs lignes `LigneDetail` (i.e. un bon de commande est composé de plusieurs lignes représentant chacune des articles)

@@ -1,5 +1,6 @@
 +++
 title = "Cascade"
+description = "Les types de cascade JPA : PERSIST, MERGE, REMOVE, REFRESH, DETACH et ALL, et la propagation des opérations du parent vers ses enfants."
 weight = 60
 +++
 

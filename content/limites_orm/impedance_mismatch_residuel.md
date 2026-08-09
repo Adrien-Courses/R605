@@ -1,5 +1,6 @@
 +++
 title = "Impedance mismatch résiduel"
+description = "L'écart objet-relationnel que l'ORM ne comble pas : identité des entités, héritage, navigation, et la notion d'abstraction non étanche."
 weight = 10
 +++
 
@@ -26,8 +27,8 @@ Reprenons les exemples vus en cours.
 On parle d'**abstraction non étanche** (*leaky abstraction*) : une abstraction censée vous cacher un détail, mais dont le détail ressurgit au plus mauvais moment.
 
 Vous en avez déjà rencontré plusieurs dans ce cours :
-- la [`LazyInitializationException`]({{< relref "jpa_deeper/fetch/lazyexception" >}}) : le chargement paresseux, invisible dans le modèle objet, devient soudain visible parce que la session est fermée ;
-- le [problème N+1]({{< relref "jpa_deeper/fetch/index" >}}) : une simple boucle Java se transforme en centaines de requêtes ;
+- la [`LazyInitializationException`]({{< relref "jpa_performance/fetch/lazyexception" >}}) : le chargement paresseux, invisible dans le modèle objet, devient soudain visible parce que la session est fermée ;
+- le [problème N+1]({{< relref "jpa_performance/fetch/index" >}}) : une simple boucle Java se transforme en centaines de requêtes ;
 - le [dirty checking]({{< relref "jpa/specification/cycle_de_vie/flushing" >}}) : un `setNom()` déclenche un `UPDATE`… ou pas, selon qu'on est ou non dans une transaction.
 
 Dans les trois cas, le symptôme apparaît **loin** de sa cause, et il est invisible à la lecture du code Java seul. C'est le coût réel de l'abstraction.

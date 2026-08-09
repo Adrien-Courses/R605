@@ -1,5 +1,6 @@
 +++
 title = "JDBC TP Long"
+description = "TP long JDBC : implémenter le pattern DAO sur une application de gestion d'emprunts, puis traiter les accès concurrents."
 weight = 16
 +++
 

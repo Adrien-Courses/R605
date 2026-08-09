@@ -1,5 +1,6 @@
 +++
 title = "Cycle de vie entité JPA"
+description = "Les quatre états d'une entité JPA : NEW, MANAGED, DETACHED et REMOVED, et les transitions déclenchées par persist, detach, merge et remove."
 weight = 40
 +++
 

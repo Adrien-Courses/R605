@@ -1,5 +1,6 @@
 +++
 title = "Spring Data JPA"
+description = "Spring Data JPA : une abstraction au-dessus de JPA qui supprime le code répétitif des DAO et fournit pagination, tri et transactions."
 weight = 40
 +++
 

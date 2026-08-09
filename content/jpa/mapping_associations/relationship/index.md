@@ -1,5 +1,6 @@
 +++
 title = "Types de relation"
+description = "Les quatre types de relation JPA : @ManyToOne, @OneToMany, @OneToOne et @ManyToMany, et leur traduction dans le schéma de base de données."
 weight = 10
 +++
 

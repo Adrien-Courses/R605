@@ -1,5 +1,6 @@
 +++
 title = "Exemple JDBC"
+description = "Lire et modifier le niveau d'isolation depuis JDBC avec setTransactionIsolation, et pourquoi il s'applique par connexion et non globalement."
 weight = 70
 +++
 

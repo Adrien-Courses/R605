@@ -1,5 +1,6 @@
 +++
 title = "Flushing & Dirty Checking"
+description = "Le flush et le dirty checking expliqués : la session Hibernate comme cache de premier niveau, les flush modes, et la détection des modifications."
 weight = 30
 +++
 
@@ -59,4 +60,4 @@ Article a2 = em.find(Article.class, 1);
 
 Dans ce cas, Hibernate ne refait pas de requête SQL. L’entité est récupérée depuis le cache de premier niveau. On obtient donc l’ancien prix, obsolète.
 
-=> il faut mettre en place des mécanismes de cohérence. Par exemple, via un contrôle de version avec [Optimistic Update]({{< relref "jdbc/transaction/acid_non_suffisant/optimistic_locking/optimistic_locking_exemple" >}})
+=> il faut mettre en place des mécanismes de cohérence. Par exemple, via un contrôle de version avec [Optimistic Update]({{< relref "jdbc/transaction/acid_insuffisant/optimistic_locking/optimistic_locking_exemple" >}})

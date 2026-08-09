@@ -1,5 +1,6 @@
 +++
 title = "Lequel choisir ?"
+description = "Quel niveau d'isolation choisir en pratique : pourquoi SERIALIZABLE est rarement utilisé, et comment arbitrer entre READ COMMITTED et REPEATABLE READ."
 weight = 60
 +++
 
@@ -11,7 +12,7 @@ Pour des raisons de performance, les SGBD n’utilisent pas `SERIALIZABLE`. Pour
 > l’exécution concurrente est équivalente à une exécution strictement séquentielle.
 
 Pour y parvenir, un SGBD doit :
-- bloquer fortement ([2PL strict]({{< relref "two_phase_locking" >}})), ou
+- bloquer fortement ([2PL strict]({{< relref "jdbc/transaction/isolation/controle_concurrence/two_phase_locking" >}})), ou
 - détecter et annuler des transactions (SSI, OCC)
 
 => **Dans les deux cas, le parallélisme réel diminue.** car

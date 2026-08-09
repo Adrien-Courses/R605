@@ -1,5 +1,6 @@
 +++
 title = "Server-Side Caching"
+description = "Le cache serveur des plans d'exécution : pourquoi l'étape d'optimisation d'une requête SQL est coûteuse et pourquoi le SGBD conserve son résultat."
 weight = 10
 +++
 

@@ -1,5 +1,6 @@
 +++
 title = "Est-ce la bonne approche ?"
+description = "Les limites du verrouillage pessimiste : blocages en cascade, attentes inutiles et interblocages, même pour des traitements non critiques."
 weight = 20
 +++
 

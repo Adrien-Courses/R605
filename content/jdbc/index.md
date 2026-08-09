@@ -1,5 +1,6 @@
 +++
 title = "JDBC & BDD incontournables"
+description = "JDBC, l'API bas niveau de Java pour dialoguer avec une base de données relationnelle : connexion, requêtes SQL et lecture des résultats."
 weight = 10
 +++
 

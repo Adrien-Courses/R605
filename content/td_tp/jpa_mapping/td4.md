@@ -1,5 +1,6 @@
 +++
 title = "TD4 JPA OrphanRemoval"
+description = "TD4 JPA : le rôle de orphanRemoval, illustré par comparaison directe entre un mapping qui l'active et un mapping qui s'en passe."
 weight = 60
 +++
 

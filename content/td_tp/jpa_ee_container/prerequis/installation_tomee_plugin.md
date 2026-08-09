@@ -1,5 +1,6 @@
 +++
 title = "TomEE Maven Plugin"
+description = "Utiliser le plugin Maven TomEE pour lancer l'application sans installer le serveur séparément."
 weight = 8
 +++
 

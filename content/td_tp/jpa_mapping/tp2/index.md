@@ -1,5 +1,6 @@
 +++
 title = "TP2 JPA Mapping"
+description = "TP2 JPA Mapping : créer les entités, insérer des données, éviter la double persistance et supprimer la table de jointure superflue."
 weight = 50
 +++
 

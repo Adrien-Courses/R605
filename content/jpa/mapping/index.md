@@ -1,5 +1,6 @@
 +++
 title = "Mapping JPA"
+description = "Le mapping objet-relationnel avec JPA : transformer automatiquement un schéma relationnel en graphe d'objets Java."
 weight = 30
 +++
 

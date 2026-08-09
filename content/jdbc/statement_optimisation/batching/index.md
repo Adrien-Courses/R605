@@ -1,5 +1,6 @@
 +++
 title = "Batching"
+description = "Le batching JDBC : regrouper plusieurs INSERT ou UPDATE en un seul aller-retour réseau avec addBatch et executeBatch, avec benchmark à l'appui."
 weight = 10
 +++
 

@@ -1,5 +1,6 @@
 +++
 title = "TD1 JDBC Pooling"
+description = "TD1 JDBC : mesurer concrètement l'écart de performance entre des connexions ouvertes une à une et un pool de connexions."
 weight = 30
 +++
 

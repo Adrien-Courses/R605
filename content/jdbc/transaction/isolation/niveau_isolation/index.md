@@ -1,5 +1,6 @@
 +++
 title = "Niveaux d'isolation"
+description = "Les quatre niveaux d'isolation SQL ANSI : READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ et SERIALIZABLE, et les anomalies que chacun autorise."
 weight = 30
 +++
 
@@ -17,7 +18,7 @@ weight = 30
 > [!definition] Définition
 > L'isolation de la base de données permet à une transaction de s'exécuter comme s'il n'y avait aucune autre transaction en cours d'exécution simultanément.
 
-L'isolation est garantie par [MVCC]({{< relref "mvcc" >}}) ou les [Locks]({{< relref "two_phase_locking" >}})
+L'isolation est garantie par [MVCC]({{< relref "jdbc/transaction/isolation/controle_concurrence/mvcc" >}}) ou les [Locks]({{< relref "jdbc/transaction/isolation/controle_concurrence/two_phase_locking" >}})
 
 
 
@@ -40,7 +41,7 @@ Les niveaux d’isolation SQL (ANSI) :
 | `SERIALIZABLE`     | 2PL strict ou MVCC détection de conflits | aucune anomalie                           |
 
 
-=> Chaque niveau d'isolation [autorise certaines anomalie, voici pourquoi]({{< relref = "jdbc/transaction/isolation/niveau_isolation/pourquoi_anomalies" >}})
+=> Chaque niveau d'isolation [autorise certaines anomalie, voici pourquoi]({{< relref "jdbc/transaction/isolation/niveau_isolation/pourquoi_anomalies" >}})
 
 
 

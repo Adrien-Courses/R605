@@ -1,5 +1,6 @@
 +++
 title = "TP4 JPA Criteria API"
+description = "TP4 JPA Criteria API : implémenter un jeu de requêtes dynamiques avec CriteriaBuilder, puis étendre le modèle à une nouvelle entité."
 weight = 20
 +++
 

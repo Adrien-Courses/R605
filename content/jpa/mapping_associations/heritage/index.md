@@ -1,5 +1,6 @@
 +++
 title = "Héritage"
+description = "Mapper l'héritage avec JPA : les trois stratégies SINGLE_TABLE, JOINED et TABLE_PER_CLASS, leurs compromis et l'annotation @Inheritance."
 weight = 70
 +++
 

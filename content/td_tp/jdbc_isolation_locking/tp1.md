@@ -1,5 +1,6 @@
 +++
 title = "TP1 Isolation et Locking"
+description = "TP1 : identifier un bug de concurrence dans un code JDBC existant, puis proposer des solutions par niveau d'isolation ou par verrouillage."
 weight = 10
 +++
 

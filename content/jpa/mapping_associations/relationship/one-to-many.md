@@ -1,5 +1,6 @@
 +++
 title = "@OneToMany"
+description = "L'annotation @OneToMany : relation unidirectionnelle, table de jointure imposée, version bidirectionnelle avec mappedBy et impact sur les performances."
 weight = 11
 +++
 

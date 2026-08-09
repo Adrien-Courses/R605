@@ -1,5 +1,6 @@
 +++
 title = "Exemples complets"
+description = "Exemples complets d'API Criteria : clause WHERE, jointures et mise à jour, reprenant le CriteriaBuilder et le CriteriaQuery."
 weight = 30
 +++
 

@@ -1,5 +1,6 @@
 +++
 title = "Query By Example"
+description = "Query By Example avec Spring Data JPA : construire une requête à partir d'un objet exemple et d'un ExampleMatcher, sans écrire de JPQL."
 weight = 55
 +++
 
@@ -41,7 +42,7 @@ public class EtudiantService {
 }
 ```
 
-=> Dans cet exemple, tous les étudiants appartenant au département spécifié seront retournés.​ Ceci nous évite d'écrire une [Specification]({{< relref "specification" >}})
+=> Dans cet exemple, tous les étudiants appartenant au département spécifié seront retournés.​ Ceci nous évite d'écrire une [Specification]({{< relref "spring_data_jpa/specification/index" >}})
 
 ## Utilisation d'ExampleMatcher pour des correspondances avancées
 Par défaut, QBE utilise une correspondance exacte pour les attributs non nuls. Cependant, avec ExampleMatcher, vous pouvez personnaliser la stratégie de correspondance, par exemple pour effectuer des recherches insensibles à la casse ou des correspondances partielles

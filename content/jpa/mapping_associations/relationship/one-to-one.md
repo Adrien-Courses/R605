@@ -1,5 +1,6 @@
 +++
 title = "@OneToOne"
+description = "L'annotation @OneToOne : pourquoi deux @OneToOne ne font pas une relation bidirectionnelle, et le rôle décisif de mappedBy."
 weight = 30
 +++
 

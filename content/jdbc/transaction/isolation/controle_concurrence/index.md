@@ -1,5 +1,6 @@
 +++
 title = "Contrôle de la concurrence"
+description = "Deux familles de solutions face aux conflits de données : éviter le conflit par verrouillage, ou le détecter après coup avec le multiversionnement."
 weight = 20
 +++
 
@@ -7,7 +8,7 @@ weight = 20
 > - [🚩 Youtube : Transactions and Concurrency Control Patterns - Vlad Mihalcea](https://youtu.be/onYjxRcToto)
 > - [From Chaos to Order: The Importance of Concurrency Control within the Database](https://blogs.oracle.com/maa/from-chaos-to-order-the-importance-of-concurrency-control-within-the-database-2-of-6)
 
-Dans la page [précédente]({{< relref "acces_concurrent" >}}) nous avons évoqué le problème de l'accès concurrent à la donnée.
+Dans la page [précédente]({{< relref "jdbc/transaction/isolation/acces_concurrent" >}}) nous avons évoqué le problème de l'accès concurrent à la donnée.
 
 ## Solutions
 Pour gérer les conflits de données, plusieurs mécanismes de contrôle de la concurrence ont été développés au fil des ans.

@@ -1,5 +1,6 @@
 +++
 title = "Limite de JDBC"
+description = "Les limites de JDBC qui justifient le recours à un ORM : verbosité du code et dépendance aux spécificités SQL de chaque SGBD."
 weight = 10
 +++
 

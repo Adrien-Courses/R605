@@ -1,5 +1,6 @@
 +++
 title = "Derived Query Methods"
+description = "Les derived query methods de Spring Data JPA : dériver une requête du nom d'une méthode, ou l'écrire soi-même avec l'annotation @Query."
 weight = 30
 +++
 

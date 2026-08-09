@@ -1,5 +1,6 @@
 +++
 title = "CDI"
+description = "CDI (Contexts and Dependency Injection) expliqué par comparaison : le même code écrit avec et sans injection de dépendances."
 weight = 5
 +++
 

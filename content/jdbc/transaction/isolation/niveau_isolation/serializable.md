@@ -1,5 +1,6 @@
 +++
 title = "Serializable"
+description = "Le niveau d'isolation SERIALIZABLE illustré pas à pas : la garantie la plus forte du standard SQL, et le prix à payer en parallélisme."
 weight = 50
 +++
 

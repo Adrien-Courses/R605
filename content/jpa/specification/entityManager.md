@@ -1,5 +1,6 @@
 +++
 title = "EntityManager"
+description = "L'EntityManager, au cœur de toutes les opérations de persistance JPA : son obtention depuis une EntityManagerFactory et la notion d'unité de persistance."
 weight = 20
 +++
 

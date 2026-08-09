@@ -1,5 +1,6 @@
 +++
 title = "TP2 JPA Mapping OLD"
+description = "Ancienne version du TP2 JPA Mapping, conservée pour référence : création des entités, insertion et amélioration de la table de jointure."
 weight = 10
 tags = ["explorerexclude"]
 +++

@@ -1,5 +1,6 @@
 +++
 title = "Projections"
+description = "Les projections Spring Data JPA : interfaces de projection et DTO pour ne charger que les champs nécessaires depuis un repository."
 weight = 40
 +++
 
@@ -8,4 +9,4 @@ weight = 40
 > - [The best way to fetch a Spring Data JPA DTO Projection](https://vladmihalcea.com/spring-jpa-dto-projection/)
 
 > [!affirmation] Rappel
-> - Nous avons déjà abordé les projections avec JPA, voir [Projection]({{< relref "jpa_deeper/projection" >}})
+> - Nous avons déjà abordé les projections avec JPA, voir [Projection]({{< relref "jpa_requetes/projection" >}})

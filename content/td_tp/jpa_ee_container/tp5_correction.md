@@ -1,5 +1,6 @@
 +++
 title = "TP5 Correction"
+description = "Correction du TP5 : DAO générique, pagination avec jointures et recherche par Criteria, avec la structure complète du projet."
 weight = 11
 +++
 
@@ -7,9 +8,9 @@ weight = 11
 > https://github.com/Adrien-Courses/R605-TP-JPA-EE-container.git **BRANCHE final**
 
 > [!danger] Rappel
-> Dans la section dédiée au [transaction JPA]({{< relref "jpa/specification/transaction/index" >}}) nous avons souligné deux cas
+> Dans la section dédiée au [transaction JPA]({{< relref "jpa/specification/transaction" >}}) nous avons souligné deux cas
 > - si nous sommes dans un contexte Java SE (l'ensemble des TP précédents) nous devions gérer les transactions et l'injection de dépendances
-> - si nous utilisons un container EE, alors nous pouvons nous passer de la gestion des transactions et déléguer l'injection au [CDI]({{< relref "cdi" >}})
+> - si nous utilisons un container EE, alors nous pouvons nous passer de la gestion des transactions et déléguer l'injection au [CDI]({{< relref "td_tp/jpa_ee_container/prerequis/cdi" >}})
 
 ## Structure du projet
 Le projet est structuré par domaine technique, les différents packages représentent nos différentes couches `Controller`, `Service` et `Repository/DAO`
@@ -41,7 +42,7 @@ public class GenericDao<T extends  BaseEntity> {
 }
 ```
 
-- `@PersistenceContext` via TomEE nous bénéficions du [CDI]({{< relref "cdi" >}}) qui permet d'injecter la dépendance `EntityManager`
+- `@PersistenceContext` via TomEE nous bénéficions du [CDI]({{< relref "td_tp/jpa_ee_container/prerequis/cdi" >}}) qui permet d'injecter la dépendance `EntityManager`
 - `entityClass` nous permet de connaître la classe concrète
 - pas besoin de gérer les transactions
 
@@ -109,7 +110,7 @@ public class StudentService {
 }
 ```
 
-- Si nous réalisons le code ci-dessus, alors une `LazyInitializationException` sera levée; en effet nous ne pouvons pas accéder à la liste des soirées si nous ne sommes pas dans la même transaction. (cf [TP3]({{<relref "td_tp/jpa_godeeper/fetching/#implémenter-plusieurs-solutions" >}}))
+- Si nous réalisons le code ci-dessus, alors une `LazyInitializationException` sera levée; en effet nous ne pouvons pas accéder à la liste des soirées si nous ne sommes pas dans la même transaction. (cf [TP3]({{< relref "td_tp/jpa_godeeper/fetching/index#implémenter-plusieurs-solutions" >}}))
 - Une solution consiste donc à utiliser une JOINTURE, en codant une nouvelle méthode dans `StudentDao`
 
 ```java
@@ -156,7 +157,7 @@ Nous avons un problème de référence circulaire car :
 ```
 
 Plusieurs options permettent d'éviter les références circulaires :
-- supprimer l'attribut `student` dans la classe `Soirees`, mais ceci casse la relation bidirectionnelle, et comme rappelé dans le paragraphe [OneToMany relation-bidirectionnelle]({{< relref "jpa/mapping_associations/one-to-many#relation-bidirectionnelle" >}}) <br><br>
+- supprimer l'attribut `student` dans la classe `Soirees`, mais ceci casse la relation bidirectionnelle, et comme rappelé dans le paragraphe [OneToMany relation-bidirectionnelle]({{< relref "jpa/mapping_associations/relationship/one-to-many#relation-bidirectionnelle" >}}) <br><br>
 
 - une autre option consiste à rajouter l'annotation `@JsonIgnore` sur l'attribut `student` dans la classe `Soirees` pour ne pas afficher les étudiants au format JSON. Mais pour moi cette solution n'est pas la bonne car elle contourne le problème. <br><br>
 

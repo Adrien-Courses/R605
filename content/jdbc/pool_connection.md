@@ -1,5 +1,6 @@
 +++
 title = "Pool de connexions"
+description = "Ouvrir une connexion à une base de données coûte cher : comment un pool de connexions divise ce coût par deux à quatre, et comment il fonctionne."
 weight = 15
 +++
 

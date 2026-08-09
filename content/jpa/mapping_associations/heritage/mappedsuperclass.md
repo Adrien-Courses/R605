@@ -1,5 +1,6 @@
 +++
 title = "MappedSuperClass"
+description = "L'annotation @MappedSuperclass : factoriser des attributs communs sans créer d'entité, et la contrainte sur les requêtes polymorphiques."
 weight = 10
 +++
 

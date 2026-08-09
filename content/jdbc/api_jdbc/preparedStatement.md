@@ -1,5 +1,6 @@
 +++
 title = "PrepareStatement"
+description = "Statement ou PreparedStatement en JDBC : pourquoi la concaténation de paramètres ouvre la porte aux injections SQL et comment s'en protéger."
 weight = 5
 +++
 

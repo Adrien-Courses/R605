@@ -1,6 +1,7 @@
 +++
 archetype = "home"
 title = "JDBC, JPA, Spring DATA JPA"
+description = "Cours complet sur la persistance des données en Java : JDBC, transactions et isolation, JPA et le mapping objet-relationnel, Hibernate et Spring Data JPA."
 +++
 
 > [!example] Ressource 

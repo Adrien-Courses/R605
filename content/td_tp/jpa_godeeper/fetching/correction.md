@@ -1,5 +1,6 @@
 +++
 title = "TP3 JPA Fetching Correction"
+description = "Correction du TP3 JPA Fetching : les quatre implémentations comparées pour supprimer les requêtes N+1 et la LazyInitializationException."
 weight = 11
 +++
 <!-- tags = ["explorerexclude"] -->

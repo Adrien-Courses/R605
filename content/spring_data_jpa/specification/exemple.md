@@ -1,5 +1,6 @@
 +++
 title = "Exemple"
+description = "Deux implémentations possibles d'une Specification Spring Data JPA, comparées sur un même besoin de filtrage."
 weight = 10
 +++
 

@@ -1,5 +1,6 @@
 +++
 title = "Projections"
+description = "Les projections JPA : ne récupérer que les colonnes utiles au lieu d'entités complètes, via des valeurs scalaires ou des DTO, pour gagner en performance."
 weight = 30
 +++
 

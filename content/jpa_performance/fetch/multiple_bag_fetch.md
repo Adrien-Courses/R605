@@ -1,5 +1,6 @@
 +++
 title = "MultipleBagFetchException"
+description = "MultipleBagFetchException : pourquoi Hibernate refuse deux JOIN FETCH sur des List, ce que cache le produit cartésien, et les bonnes solutions."
 weight = 50
 +++
 
@@ -25,7 +26,7 @@ public class Commande {
 }
 ```
 
-Pour éviter le [problème N+1]({{< relref "jpa_deeper/fetch/index" >}}), vous appliquez ce que vous avez appris et vous faites un `JOIN FETCH` sur les deux collections :
+Pour éviter le [problème N+1]({{< relref "jpa_performance/fetch/index" >}}), vous appliquez ce que vous avez appris et vous faites un `JOIN FETCH` sur les deux collections :
 
 ```java
 em.createQuery("""
@@ -106,7 +107,7 @@ em.createQuery("""
     .getSingleResult();
 ```
 
-La deuxième requête peut sembler inutile puisqu'on ignore son résultat. En réalité elle est essentielle : les deux requêtes s'exécutant dans **le même contexte de persistance**, Hibernate reconnaît qu'il s'agit de la même instance de `Commande` (grâce au [cache de premier niveau]({{< relref "jpa_deeper/cache" >}})) et **remplit** simplement sa collection `paiements`.
+La deuxième requête peut sembler inutile puisqu'on ignore son résultat. En réalité elle est essentielle : les deux requêtes s'exécutant dans **le même contexte de persistance**, Hibernate reconnaît qu'il s'agit de la même instance de `Commande` (grâce au [cache de premier niveau]({{< relref "jpa_performance/cache" >}})) et **remplit** simplement sa collection `paiements`.
 
 Résultat : deux requêtes simples de 100 et 50 lignes, au lieu d'une requête de 5 000 lignes.
 

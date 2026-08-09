@@ -1,5 +1,6 @@
 +++
 title = "Client-side Caching"
+description = "Le cache client du driver JDBC : réutiliser les PreparedStatement déjà préparés pour éviter de les recréer à chaque exécution."
 weight = 20
 +++
 

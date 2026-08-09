@@ -1,5 +1,6 @@
 +++
 title = "JPA Notions élémentaires"
+description = "JPA (Jakarta Persistence API) : la spécification standard du mapping objet-relationnel en Java, et son articulation avec JDBC et Hibernate."
 weight = 20
 +++
 

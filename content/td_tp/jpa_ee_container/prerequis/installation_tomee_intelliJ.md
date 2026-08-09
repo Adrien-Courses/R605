@@ -1,5 +1,6 @@
 +++
 title = "Intégration TomEE/IntelliJ"
+description = "Installer TomEE et l'intégrer à IntelliJ IDEA : choix de l'instance, création du projet web dynamique et déploiement."
 weight = 7
 +++
 

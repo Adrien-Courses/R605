@@ -1,5 +1,6 @@
 +++
 title = "TP Long solution"
+description = "Correction du TP long JDBC : quatre solutions au problème de l'emprunt concurrent, du SELECT FOR UPDATE au verrouillage optimiste."
 weight = 10
 draft = true
 +++

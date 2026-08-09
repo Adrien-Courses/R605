@@ -1,5 +1,6 @@
 +++
 title = "TD2 JPA Cycle de vie Cache"
+description = "TD2 JPA : mettre en évidence le cache de premier niveau et son effet sur le nombre de requêtes SQL réellement exécutées."
 weight = 20
 +++
 

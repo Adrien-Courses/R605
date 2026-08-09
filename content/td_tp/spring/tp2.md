@@ -1,5 +1,6 @@
 +++
 title = "TP2 Spring Rest+JPA"
+description = "TP2 Spring Data JPA : reprendre le TP5 JPA et l'exposer sous forme d'API REST avec Spring Boot."
 weight = 20
 +++
 

@@ -1,5 +1,6 @@
 +++
 title = "DataSource"
+description = "Remplacer DriverManager par l'interface DataSource : pourquoi c'est la manière recommandée d'obtenir une connexion JDBC depuis la version 2.0 de l'API."
 weight = 10
 +++
 

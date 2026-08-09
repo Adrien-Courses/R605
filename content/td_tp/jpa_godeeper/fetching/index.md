@@ -1,5 +1,6 @@
 +++
 title = "TP3 JPA Fetching"
+description = "TP3 JPA Fetching : diagnostiquer un problème de N+1 puis le corriger de quatre façons, du JOIN FETCH à l'Entity Graph."
 weight = 10
 +++
 

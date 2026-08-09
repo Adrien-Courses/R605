@@ -1,5 +1,6 @@
 +++
 title = "Hibernate"
+description = "Hibernate, l'implémentation de référence de la spécification JPA : sa place dans l'écosystème Java et ce qu'il apporte au-dessus du standard."
 weight = 70
 +++
 

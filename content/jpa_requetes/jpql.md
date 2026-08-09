@@ -1,5 +1,6 @@
 +++
 title = "JPQL"
+description = "JPQL, le langage de requêtes de JPA : interroger des entités plutôt que des tables, avec TypedQuery, paramètres nommés et jointures."
 weight = 10
 +++
 

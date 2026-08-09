@@ -1,5 +1,6 @@
 +++
 title = "Optimistic Locking"
+description = "Le verrouillage optimiste : ajouter une colonne version et la placer dans la clause WHERE de l'UPDATE pour détecter les modifications concurrentes."
 weight = 40
 +++
 

@@ -1,5 +1,6 @@
 +++
 title = "BDD dans container docker"
+description = "Lancer une base de données dans un conteneur Docker et exécuter des commandes SQL depuis le conteneur pour les TP du cours."
 weight = 20
 +++
 

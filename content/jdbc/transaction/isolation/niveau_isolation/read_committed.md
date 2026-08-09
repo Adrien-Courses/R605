@@ -1,5 +1,6 @@
 +++
 title = "Read Committed"
+description = "Le niveau d'isolation READ COMMITTED illustré pas à pas, et l'anomalie de lecture non répétable qu'il n'empêche pas."
 weight = 30
 +++
 

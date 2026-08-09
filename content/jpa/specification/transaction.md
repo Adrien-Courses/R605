@@ -1,5 +1,6 @@
 +++
 title = "Transactions optionnelles ?"
+description = "Les transactions JPA avec EntityTransaction : la différence entre une application Java SE et un conteneur Jakarta EE ou Spring, et les pièges du flush."
 weight = 50
 +++
 

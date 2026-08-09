@@ -1,5 +1,6 @@
 +++
 title = "@ManyToOne"
+description = "L'annotation @ManyToOne, le côté porteur de la clé étrangère : versions unidirectionnelle et bidirectionnelle, avec le SQL généré."
 weight = 10
 +++
 

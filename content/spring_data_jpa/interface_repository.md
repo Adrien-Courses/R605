@@ -1,5 +1,6 @@
 +++
 title = "L'interface Repository"
+description = "La hiérarchie des interfaces Repository, CrudRepository et JpaRepository : les opérations CRUD et la pagination fournies sans écrire une ligne de code."
 weight = 20
 +++
 

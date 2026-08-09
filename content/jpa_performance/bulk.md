@@ -1,5 +1,6 @@
 +++
 title = "Les écritures en masse"
+description = "Les écritures en masse avec JPA : bulk update JPQL, @Modifying, batching Hibernate, et pourquoi IDENTITY désactive le regroupement des INSERT."
 weight = 30
 +++
 
@@ -27,7 +28,7 @@ Ce code est **élégant** et **fonctionnellement correct** — c'est bien ce qui
 
 1. un `SELECT` qui ramène 100 000 lignes en mémoire ;
 2. la création de 100 000 objets Java, tous conservés dans le contexte de persistance ;
-3. la conservation d'un **instantané** (*snapshot*) de chaque objet pour le [dirty checking]({{< relref "limites_orm/dirty_checking" >}}), soit **le double** de l'empreinte mémoire ;
+3. la conservation d'un **instantané** (*snapshot*) de chaque objet pour le [dirty checking]({{< relref "jpa_performance/dirty_checking" >}}), soit **le double** de l'empreinte mémoire ;
 4. l'émission de 100 000 ordres `UPDATE ... WHERE id = ?` au flush.
 
 Résultat typique : plusieurs minutes d'exécution, et souvent un `OutOfMemoryError`.
@@ -57,9 +58,9 @@ int augmenterPrix(@Param("cat") String categorie);
 ```
 
 > [!definition] ⚠️ Le piège du bulk update
-> Un bulk update est exécuté **directement en base** : il ne passe ni par le contexte de persistance, ni par le [cache de premier niveau]({{< relref "jpa_deeper/cache" >}}). Les entités déjà chargées en mémoire gardent donc leur **ancienne valeur**, et le cache de second niveau devient obsolète.
+> Un bulk update est exécuté **directement en base** : il ne passe ni par le contexte de persistance, ni par le [cache de premier niveau]({{< relref "jpa_performance/cache" >}}). Les entités déjà chargées en mémoire gardent donc leur **ancienne valeur**, et le cache de second niveau devient obsolète.
 >
-> Les callbacks (`@PreUpdate`, `@PreRemove`), la [cascade]({{< relref "jpa/mapping_associations/cascade" >}}) et l'[optimistic locking]({{< relref "jpa_deeper/optimistic_locking/index" >}}) sont également **ignorés** : c'est à vous d'incrémenter `version` dans la requête si vous en dépendez.
+> Les callbacks (`@PreUpdate`, `@PreRemove`), la [cascade]({{< relref "jpa/mapping_associations/cascade" >}}) et l'[optimistic locking]({{< relref "jpa/optimistic_locking/index" >}}) sont également **ignorés** : c'est à vous d'incrémenter `version` dans la requête si vous en dépendez.
 >
 > D'où l'usage de `clearAutomatically = true`, qui vide le contexte après l'exécution.
 

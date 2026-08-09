@@ -1,5 +1,6 @@
 +++
 title = "Atomicité SQL/JDBC"
+description = "L'atomicité d'une transaction en SQL et en Java : désactiver l'autocommit et piloter commit et rollback manuellement depuis JDBC."
 weight = 20
 +++
 

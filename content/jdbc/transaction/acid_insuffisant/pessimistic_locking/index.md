@@ -1,5 +1,6 @@
 +++
 title = "Pessimistic Locking"
+description = "Le verrouillage pessimiste avec SELECT ... FOR UPDATE : poser un verrou dès la lecture pour empêcher toute modification concurrente."
 weight = 30
 +++
 
@@ -34,7 +35,7 @@ Par conséquence,
 
 <!--
 > [!note] Note
-> L'exemple suivant est avec Hibernate et aborde la notion de `PESSIMISTIC_WRITE` (== à un [exclusive (write) lock]({{< relref "jdbc/transaction/controle_concurrence/two_phase_locking#type-de-lock-verrous" >}})).
+> L'exemple suivant est avec Hibernate et aborde la notion de `PESSIMISTIC_WRITE` (== à un [exclusive (write) lock]({{< relref "jdbc/transaction/isolation/controle_concurrence/two_phase_locking#type-de-lock-verrous" >}})).
 
 Une race condition survient lorsque :
 - plusieurs traitements concurrents
@@ -114,12 +115,12 @@ insert turn              insert turn
 
 #### Pourquoi les transactions ne suffisent pas ?
 
-Ceci arrive, car le [niveau d'isolation]({{< relref "jdbc/transaction/isolation_level/#anomalies-autorisées" >}}) est `READ COMMITTED`, ce qui nous a conduit à un PHANTOM READ (lecture fantôme) qui a conduit à un LOST UPDATE.
+Ceci arrive, car le [niveau d'isolation]({{< relref "jdbc/transaction/isolation/niveau_isolation/pourquoi_anomalies#anomalies-autorisees" >}}) est `READ COMMITTED`, ce qui nous a conduit à un PHANTOM READ (lecture fantôme) qui a conduit à un LOST UPDATE.
 
 ### Une Solution : Verrou pessimiste (PESSIMISTIC_WRITE)
 
 > [!definition] PESSIMISTIC_WRITE
-> Un [lock exclusif]({{< relref "jdbc/transaction/controle_concurrence/two_phase_locking#type-de-lock-verrous" >}}) est acquis pour éviter qu'une autre transaction acquière elle aussi un verrou shared/exclusif
+> Un [lock exclusif]({{< relref "jdbc/transaction/isolation/controle_concurrence/two_phase_locking#type-de-lock-verrous" >}}) est acquis pour éviter qu'une autre transaction acquière elle aussi un verrou shared/exclusif
 
 ```java
 // 1. verrouiller les données de la session

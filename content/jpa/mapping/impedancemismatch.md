@@ -1,5 +1,6 @@
 +++
 title = "Impedance mismatch"
+description = "L'impedance mismatch objet-relationnel : pourquoi l'héritage, les listes et les maps du monde objet n'ont pas d'équivalent direct en base relationnelle."
 weight = 5
 +++
 

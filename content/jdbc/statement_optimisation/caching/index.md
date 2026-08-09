@@ -1,5 +1,6 @@
 +++
 title = "Caching"
+description = "Les deux niveaux de mise en cache des requêtes préparées : côté serveur dans le SGBD, et côté client dans le driver JDBC."
 weight = 20
 +++
 

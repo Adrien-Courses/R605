@@ -1,5 +1,6 @@
 +++
 title = "Présentation"
+description = "Configurer Hibernate avec hibernate.cfg.xml plutôt que persistence.xml, et comprendre les objets Session et SessionFactory propres à Hibernate."
 weight = 10
 +++
 

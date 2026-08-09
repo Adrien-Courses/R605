@@ -1,5 +1,6 @@
 +++
 title = "Pagination + JOIN FETCH"
+description = "Pagination et JOIN FETCH sont incompatibles : pourquoi Hibernate charge alors toute la table en mémoire, et comment paginer correctement."
 weight = 60
 +++
 
@@ -12,7 +13,7 @@ Voici le piège le plus spectaculaire du chapitre, parce que **rien ne plante**.
 
 Vous avez deux bonnes pratiques, apprises séparément dans ce cours :
 
-- pour éviter le [N+1]({{< relref "jpa_deeper/fetch/index" >}}) : faire un `JOIN FETCH` ;
+- pour éviter le [N+1]({{< relref "jpa_performance/fetch/index" >}}) : faire un `JOIN FETCH` ;
 - pour éviter de tout charger : **paginer**.
 
 Vous les combinez :
@@ -39,7 +40,7 @@ applying in memory
 
 Relisez la fin du message : **`applying in memory`**.
 
-Le problème vient du produit cartésien décrit dans la page [`MultipleBagFetchException`]({{< relref "limites_orm/multiple_bag_fetch" >}}). Avec un `JOIN FETCH` sur une collection, une commande de 5 lignes occupe **5 lignes** dans le `ResultSet` SQL. Un `LIMIT 10` en SQL ne renverrait donc pas 10 commandes, mais 2 commandes et un bout de la troisième — un résultat incohérent.
+Le problème vient du produit cartésien décrit dans la page [`MultipleBagFetchException`]({{< relref "jpa_performance/fetch/multiple_bag_fetch" >}}). Avec un `JOIN FETCH` sur une collection, une commande de 5 lignes occupe **5 lignes** dans le `ResultSet` SQL. Un `LIMIT 10` en SQL ne renverrait donc pas 10 commandes, mais 2 commandes et un bout de la troisième — un résultat incohérent.
 
 Hibernate ne peut donc pas traduire votre pagination en `LIMIT`. Il fait la seule chose qui préserve la correction du résultat :
 
@@ -94,7 +95,7 @@ private List<LigneCommande> lignes = new ArrayList<>();
 
 ### Solution 3 : ne pas charger d'entités
 
-Si la page ne sert qu'à **afficher** un tableau, une [projection DTO]({{< relref "jpa_deeper/projection" >}}) résout le problème à la racine : sans collection à charger, la pagination redevient un simple `LIMIT`.
+Si la page ne sert qu'à **afficher** un tableau, une [projection DTO]({{< relref "jpa_requetes/projection" >}}) résout le problème à la racine : sans collection à charger, la pagination redevient un simple `LIMIT`.
 
 ## La leçon
 

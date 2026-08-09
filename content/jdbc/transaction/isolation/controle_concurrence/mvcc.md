@@ -1,5 +1,6 @@
 +++
 title = "Multi-Version Conc. Control"
+description = "Le contrôle de concurrence multiversion (MVCC) : pourquoi il a été conçu pour dépasser les limites du 2PL, et ce qu'il apporte en débit transactionnel."
 weight = 20
 +++
 

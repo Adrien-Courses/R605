@@ -1,5 +1,6 @@
 +++
 title = "Optimisation des lectures"
+description = "FetchType LAZY ou EAGER : les stratégies de chargement des relations JPA, leurs valeurs par défaut, et le problème des N+1 requêtes."
 weight = 10
 +++
 

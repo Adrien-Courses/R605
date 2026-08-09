@@ -1,5 +1,6 @@
 +++
 title = "ACID"
+description = "L'acronyme ACID expliqué : atomicité, cohérence, isolation et durabilité, et le partage des responsabilités entre le SGBD et le développeur."
 weight = 10
 +++
 

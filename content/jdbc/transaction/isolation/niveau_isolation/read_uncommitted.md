@@ -1,5 +1,6 @@
 +++
 title = "Read Uncommitted"
+description = "Le niveau d'isolation READ UNCOMMITTED illustré pas à pas, et l'anomalie de lecture sale (dirty read) qu'il laisse passer."
 weight = 20
 +++
 

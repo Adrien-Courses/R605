@@ -1,5 +1,6 @@
 +++
 title = "La fausse solution"
+description = "Une solution intuitive mais fausse au problème de stock concurrent : pourquoi un SELECT suivi d'un UPDATE ne protège pas de la concurrence."
 weight = 20
 +++
 

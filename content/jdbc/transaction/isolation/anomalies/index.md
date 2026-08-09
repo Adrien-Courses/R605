@@ -1,5 +1,6 @@
 +++
 title = "Les anomalies"
+description = "Les quatre anomalies transactionnelles : lecture sale, lecture non répétable, mise à jour perdue et lecture fantôme."
 weight = 30
 +++
 

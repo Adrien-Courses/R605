@@ -1,5 +1,6 @@
 +++
 title = "Optimistic locking"
+description = "Le verrouillage optimiste en JPA avec @Version : détecter deux modifications concurrentes d'une même entité et protéger un invariant métier."
 weight = 50
 +++
 

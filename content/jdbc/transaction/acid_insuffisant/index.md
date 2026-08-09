@@ -1,5 +1,6 @@
 +++
 title = "ACID insuffisant"
+description = "Pourquoi ACID ne suffit pas : dès qu'une règle métier s'étale sur plusieurs transactions physiques, les garanties du SGBD ne protègent plus de rien."
 weight = 30
 +++
 
@@ -7,7 +8,7 @@ weight = 30
 > - [🚩  What is the Lost Update anomaly and the best way to fix it - Vlad Mihalcea](https://youtu.be/Qcpsx2INYdU)
 > - [How to prevent lost updates in long conversations - Vlad Mihalcea](https://vladmihalcea.com/preventing-lost-updates-in-long-conversations/)
 
-Les deux sections précédentes sur le [Contrôle de la concurrence]({{< relref "jdbc/transaction/controle_concurrence/index" >}}) et le [Niveau d'isolation]({{< relref "jdbc/transaction/isolation_level/index" >}}) permettent d'assurer une transaction ACID physique.
+Les deux sections précédentes sur le [Contrôle de la concurrence]({{< relref "jdbc/transaction/isolation/controle_concurrence/index" >}}) et le [Niveau d'isolation]({{< relref "jdbc/transaction/isolation/niveau_isolation/index" >}}) permettent d'assurer une transaction ACID physique.
 Mais que ce passe-t-il lorsque nous avons une logique métier transactionnelle répartie sur plusieurs transaction physique ?
 
 ## Pourquoi ACID n'est pas suffisant ?

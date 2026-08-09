@@ -1,5 +1,6 @@
 +++
 title = "Transactions"
+description = "La gestion des transactions avec Spring Data JPA : l'annotation @Transactional, son comportement par défaut et ses pièges."
 weight = 25
 +++
  

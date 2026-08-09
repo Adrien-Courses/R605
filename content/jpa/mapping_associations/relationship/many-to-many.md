@@ -1,5 +1,6 @@
 +++
 title = "@ManyToMany"
+description = "L'annotation @ManyToMany : la table d'association obligatoire, les cas unidirectionnel et bidirectionnel, et l'alternative des deux @OneToMany."
 weight = 40
 +++
 

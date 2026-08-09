@@ -1,5 +1,6 @@
 +++
 title = "Reporting et requêtes analytiques"
+description = "Pourquoi un ORM est le mauvais outil pour le reporting : agrégats, GROUP BY, fonctions fenêtrées et CTE que JPQL ne sait pas exprimer."
 weight = 20
 +++
 
@@ -32,12 +33,12 @@ for (Commande c : commandes) {
 Ce code est catastrophique pour au moins trois raisons :
 
 1. **On charge tout en mémoire.** 500 000 commandes deviennent 500 000 objets Java gérés par le contexte de persistance, alors que le résultat final tient en 30 lignes.
-2. **On déclenche un [N+1]({{< relref "jpa_deeper/fetch/index" >}})** en naviguant vers le client puis l'adresse.
+2. **On déclenche un [N+1]({{< relref "jpa_performance/fetch/index" >}})** en naviguant vers le client puis l'adresse.
 3. **On refait en Java ce que la base sait faire mieux.** Un `GROUP BY` sur un index est l'opération pour laquelle un SGBD a été optimisé pendant 40 ans.
 
 ## Le bon réflexe : projeter, agréger côté base
 
-La base doit renvoyer **le résultat**, pas la matière première. On utilise une [projection]({{< relref "jpa_deeper/projection" >}}) vers un DTO :
+La base doit renvoyer **le résultat**, pas la matière première. On utilise une [projection]({{< relref "jpa_requetes/projection" >}}) vers un DTO :
 
 ```java
 public record CaParVille(String ville, int mois, BigDecimal total) {}

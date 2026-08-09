@@ -1,5 +1,6 @@
 +++
 title = "Intégration TomEE/Eclipse"
+description = "Installer TomEE et l'intégrer à Eclipse : choix de l'instance, configuration du serveur et déploiement d'un projet web de test."
 weight = 7
 +++
 

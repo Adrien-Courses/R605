@@ -1,5 +1,6 @@
 +++
 title = "Criteria vs JPQL"
+description = "Criteria ou JPQL : ce qui a changé entre Hibernate 5 et Hibernate 6 dans la façon dont les deux approches sont traduites en SQL."
 weight = 40
 +++
 

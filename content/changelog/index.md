@@ -1,5 +1,6 @@
 +++
 title = "Quoi de neuf"
+description = "Les évolutions du cours JDBC, JPA et Spring Data JPA année par année : nouveaux chapitres, sujets approfondis et TP ajoutés à chaque millésime."
 weight = 98
 +++
 

@@ -1,5 +1,6 @@
 +++
 title = "Le coût du dirty checking"
+description = "Le coût caché du dirty checking : le snapshot de chaque entité gérée, la charge au flush, et comment garder un contexte de persistance léger."
 weight = 40
 +++
 
@@ -50,7 +51,7 @@ Le code paraît linéaire à la lecture ; il est en réalité **quadratique**. C
 
 ## Comment limiter le coût
 
-**1. Garder les contextes de persistance petits et courts.** C'est la règle principale. Une transaction ne devrait charger que ce dont elle a besoin. Une transaction qui gère 100 000 entités est presque toujours le signe qu'on aurait dû faire un [bulk update]({{< relref "limites_orm/bulk" >}}).
+**1. Garder les contextes de persistance petits et courts.** C'est la règle principale. Une transaction ne devrait charger que ce dont elle a besoin. Une transaction qui gère 100 000 entités est presque toujours le signe qu'on aurait dû faire un [bulk update]({{< relref "jpa_performance/bulk" >}}).
 
 **2. Utiliser les requêtes en lecture seule.** Si vous ne modifiez rien, dites-le : Hibernate n'a alors pas besoin de conserver de snapshot.
 
@@ -67,9 +68,9 @@ List<Produit> produits = em.createQuery("SELECT p FROM Produit p", Produit.class
 public List<Produit> lister() { ... }
 ```
 
-**3. Utiliser des projections DTO.** Un DTO n'est pas une entité : il n'est **pas géré**, donc pas de snapshot, pas de dirty checking, pas de coût au flush. C'est la solution idéale pour tous les écrans de consultation. Voir [Projections]({{< relref "jpa_deeper/projection" >}}).
+**3. Utiliser des projections DTO.** Un DTO n'est pas une entité : il n'est **pas géré**, donc pas de snapshot, pas de dirty checking, pas de coût au flush. C'est la solution idéale pour tous les écrans de consultation. Voir [Projections]({{< relref "jpa_requetes/projection" >}}).
 
-**4. Découper avec `flush()` + `clear()`** dans les traitements par lots, comme vu dans la page [écritures en masse]({{< relref "limites_orm/bulk" >}}).
+**4. Découper avec `flush()` + `clear()`** dans les traitements par lots, comme vu dans la page [écritures en masse]({{< relref "jpa_performance/bulk" >}}).
 
 > [!affirmation] À retenir
 > Le contexte de persistance est un **cache de travail transactionnel**, pas un cache applicatif. Il est conçu pour contenir quelques dizaines d'entités le temps d'une unité de travail métier — pas des dizaines de milliers.

@@ -1,5 +1,6 @@
 +++
 title = "Parent/Child side"
+description = "Les notions de parent side et child side : la clé étrangère n'existe que d'un côté en base, alors que Java peut représenter les deux sens."
 weight = 4
 +++
 

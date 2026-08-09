@@ -1,5 +1,6 @@
 +++
 title = "TP1 JPA Découverte"
+description = "TP1 JPA : première prise en main de l'EntityManager, de la configuration persistence.xml à la persistance d'une entité."
 weight = 10
 +++
 

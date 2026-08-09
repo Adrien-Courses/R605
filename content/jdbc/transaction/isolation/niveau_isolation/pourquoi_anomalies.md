@@ -1,5 +1,6 @@
 +++
 title = "Pourquoi autoriser anomalies ?"
+description = "Pourquoi les SGBD autorisent volontairement certaines anomalies : le compromis entre garanties d'isolation, blocages et débit transactionnel."
 weight = 10
 +++
 
@@ -33,7 +34,7 @@ Le niveau **SERIALIZABLE** offre la garantie la plus forte : l’exécution conc
 
 ### 4 niveaux
 
-- **Sérialisable** : il s'agit du niveau d'isolation le plus élevé. Les transactions simultanées sont garanties d'être exécutées dans l'ordre (= [2PL strict]({{< relref "two_phase_locking" >}})).
+- **Sérialisable** : il s'agit du niveau d'isolation le plus élevé. Les transactions simultanées sont garanties d'être exécutées dans l'ordre (= [2PL strict]({{< relref "jdbc/transaction/isolation/controle_concurrence/two_phase_locking" >}})).
 
 
 - **Lecture répétable (Repeatable Read)**  : les données lues pendant la transaction restent identiques à celles au début de la transaction.
