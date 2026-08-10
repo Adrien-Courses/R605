@@ -1,7 +1,7 @@
 +++
-title = "Optimisation des lectures"
-description = "FetchType LAZY ou EAGER : les stratégies de chargement des relations JPA, leurs valeurs par défaut, et le problème des N+1 requêtes."
-weight = 10
+title = "Fetching Type"
+description = "FetchType LAZY ou EAGER : les stratégies de chargement des relations JPA, leurs valeurs par défaut et comment choisir."
+weight = 70
 +++
 
 > [!ressource] Ressource
@@ -9,13 +9,15 @@ weight = 10
 > - https://blog.paumard.org/cours/jpa/chap03-entite-chargement.html
 > [ Build faster persistence layers with Spring Data JPA 3 by Thorben Janssen @ Spring I/O 2024 ](https://youtu.be/t27Uozc2Z58)
 
+## Définition
+
 > [!definition] Définition
 > - `FetchType.LAZY` : indique que la relation doit être chargée à la demande ;
 > - `FetchType.EAGER` : indique que la relation doit être chargée en même temps que l'entité qui la porte.
 
-Lorsqu'on travaille avec JPA (Java Persistence API), il est essentiel de comprendre comment sont chargées les relations entre entités pour optimiser les performances de l'application. Deux stratégies principales existent : *Lazy Fetching* (chargement paresseux) et *Eager Fetching* (chargement immédiat).
+Il est essentiel de comprendre comment sont chargées les relations entre entités pour optimiser les performances de l'application. Deux stratégies principales existent : *Lazy Fetching* (chargement paresseux) et *Eager Fetching* (chargement immédiat).
 
-## Default fetching
+### Default fetching
 - Par défaut, `@OneToMany` et `@ManyToMany` adoptent une approche Lazy Fetching
 - Par défaut, `@OneToOne` et `@ManyToOne` adoptent une approche Eager Fetching
 
@@ -43,13 +45,13 @@ Etudiant etudiant = entityManager.find(Etudiant.class, etudiantId);
 List<Livre> livres = etudiant.getLivresLus();
 ```
 
-Comme c'est du `LAZY`, deux requêtes SQL vont être nécessaires
+Comme nous effectué un chargement *lazy* (paresseux), deux requêtes SQL vont être nécessaires pour récupérer les livres lus d'un étudiant
 - `SELECT * FROM etudiant WHERE id = ?;`
 - puis `SELECT * FROM livre WHERE etudiant_id = ?;`
 
 
 ## Fetch Eager
-Le Eager Fetching force le chargement immédiat des relations lors de la requête initiale. Une seule requête avec jointure (JOIN) est exécutée pour récupérer l'étudiant et ses livres lus.
+Le Eager Fetching force le chargement immédiat des relations lors de la requête initiale. Une seule requête avec jointure (`JOIN`) est exécutée pour récupérer l'étudiant et ses livres lus.
 
 ```java
 @Entity
@@ -86,24 +88,10 @@ Et bien ça dépend.
   - => Cela ne ferait qu'un seul aller-retour avec la base de données, et serait de ce fait beaucoup plus performant. 
 - En revanche, dans le cas d'une relation qui, pour des raisons applicatives, ne serait pas explorée, ou rarement, alors l'exécution de la jointure lors du SELECT serait un surcoût inutile.
 
-### Problème du n+1
-En complément, nous allons mettre un nom sur cette problématique.
+### En pratique
 
-> The N+1 query problem happens when the data access framework executed N additional SQL statements to fetch the same data that could have been retrieved when executing the primary SQL query (JOIN)
+Le `EAGER` peut sembler pratique — la relation est toujours disponible — mais il impose son coût à **toutes** les requêtes portant sur l'entité, y compris celles qui n'ont pas besoin de la relation. La recommandation est donc de garder un mapping `LAZY` partout, et de décider du chargement au niveau de la requête, selon le cas d'usage.
 
-![alt text](n1query.png)
-
-Supposons qu'une relation de `Voiture` à plusieurs `Roue` => `@OneToMany`
-- Supposons maintenant qu'il faille parcourir toutes les voitures et, pour chacune d'entre elles, afficher la liste des roues. L'implémentation O/R naïve ferait ce qui suit
-  - `SELECT * FROM Cars;`
-  - Puis pour chaque voiture `SELECT * FROM Wheel WHERE CarId = ?`
-  
-En d'autres termes, nous avons une sélection pour les voitures, puis *N* sélections supplémentaires, où *N* est le nombre total de voitures. Par exemple, une jointure aurait été pertinente et plus performante
-```sql
-SELECT c.*, w.* 
-FROM Cars c
-LEFT JOIN Wheel w ON c.id = w.car_id;
-
-```
+C'est ce que nous détaillons dans les articles suivants, qui partent du problème le plus courant du chargement paresseux : les [N+1 requêtes]({{< relref "jpa_performance/n1_query_problem/" >}}).
 
 Plusieurs solutions existent, nous en étudierons certaines dans le [TP3 JPA Fetching]({{< relref "td_tp/jpa_godeeper/fetching" >}})

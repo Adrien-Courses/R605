@@ -1,7 +1,7 @@
 +++
 title = "LazyInitializationException"
 description = "LazyInitializationException : pourquoi Hibernate ne peut pas charger une relation LAZY hors session, avec trois cas concrets et leurs solutions."
-weight = 10
+weight = 15
 +++
 
 > [!ressource] Ressource

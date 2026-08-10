@@ -5,9 +5,16 @@ weight = 60
 +++
 
 > [!ressource] Ressource
-> - [Vlad Mihalcea - How to fix HHH000104 firstResult/maxResults specified with collection fetch](https://vladmihalcea.com/fix-hibernate-hhh000104-entity-fetch-pagination-warning-message/)
+> - [The best way to use JOIN FETCH and Pagination with Spring](https://vladmihalcea.com/join-fetch-pagination-spring/)
+> - [The best way to fix the Hibernate “firstResult/maxResults specified with collection fetch; applying in memory!” warning message](https://vladmihalcea.com/fix-hibernate-hhh000104-entity-fetch-pagination-warning-message/)
+> - [Thorben Janssen - How to fix Hibernate’s Warning “HHH000104: firstResult/maxResults specified with collection fetch”](https://thorben-janssen.com/hibernate-warning-firstresult-maxresults/)
 
-Voici le piège le plus spectaculaire du chapitre, parce que **rien ne plante**. Le code s'exécute, les résultats sont corrects, les tests passent. Et l'application s'effondre en production.
+> [!definition] Suivant le version d'Hibernate
+> - https://github.com/Adrien-Courses/HHH000104-join-with-pagination
+> - Problème existant en Hibernate 5/6
+> - Résolu avec Hibernate 7 - [Hibernate 7.4 New Features](https://blog.jetbrains.com/idea/2026/05/hibernate-7-4-new-features/)
+
+Nous allons ci-dessous présenter le *warn* car si vous travaillez sous d'ancienne version d'hibernate vous allez probablement le rencontrer
 
 ## La situation
 
@@ -35,6 +42,10 @@ Vous obtenez bien 10 commandes. Mais dans les logs, discrètement :
 WARN HHH90003004: firstResult/maxResults specified with collection fetch;
 applying in memory
 ```
+
+Comme l'indique l'article [The best way to use JOIN FETCH and Pagination with Spring](https://vladmihalcea.com/join-fetch-pagination-spring/)
+
+> The most obvious but wrong way of implementing this requirement is to combine a JOIN FETCH on the child collection with the parent entity pagination in a single Spring @Query that looks as follows [...]
 
 ## Ce qui se passe réellement
 

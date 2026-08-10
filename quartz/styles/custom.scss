@@ -161,8 +161,16 @@ a.internal {
     background-color: white;
 }
 
+p > code {
+  border-radius: 2px;
+  white-space: nowrap;
+  color: #5e5e5e;
+  background: #FFF7DD;
+  //border: 1px solid #fbf0cb;
+  padding: 0px 2px;
+}
 
-code {
+li > code {
   border-radius: 2px;
   white-space: nowrap;
   color: #5e5e5e;
