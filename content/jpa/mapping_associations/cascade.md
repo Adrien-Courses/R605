@@ -5,7 +5,8 @@ weight = 60
 +++
 
 > [!ressource] Ressource
-> http://orm.bdpedia.fr/dynamic.html#s2-persistance-transitive
+> - [A beginner’s guide to JPA and Hibernate Cascade Types](https://vladmihalcea.com/a-beginners-guide-to-jpa-and-hibernate-cascade-types/)
+> - [Why you should avoid CascadeType.REMOVE for to-many associations and what to do instead](https://thorben-janssen.com/avoid-cascadetype-delete-many-assocations/)
 
 En JPA/Hibernate, la cascade est un mécanisme qui permet de propager automatiquement certaines opérations (comme `persist`, `remove`, `merge`, etc.) d'une entité parent à ses entités enfants. Cela simplifie la gestion des relations en évitant d’avoir à sauvegarder ou supprimer manuellement chaque entité associée.
 
