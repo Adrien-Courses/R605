@@ -7,17 +7,17 @@ weight = 15
 > [!ressource] Ressource
 > [LazyInitializationException – What it is and the best way to fix it](https://thorben-janssen.com/lazyinitializationexception/)
 
-La section [précédente]({{< relref "jpa_performance/fetch/index" >}}) va nous permettre de comprendre l'exception `LazyInitializationException`
+L'exception `LazyInitializationException` est l'une des erreurs les plus courantes lors de l'utilisation de JPA et d'Hibernate. Elle survient lorsque vous tentez d'accéder à une association chargée de manière différée après la fermeture du contexte de persistance (session Hibernate). Ce guide explique les causes de ce problème et propose plusieurs solutions.
 
 ## Définition
 
 > [!definition] Javadoc LazyInitializationException
 > Indicates an attempt to access unfetched data outside the context of an open stateful Session. [^1]
 
-Cette erreur se produit lorsque qu'hibernate essaye de charger une relation `LAZY` en dehors de son contexte de persistence.
+Cette erreur se produit lorsque qu'hibernate essaye de charger une relation [*Lazy*]({{< relref "jpa/mapping_associations/fetching" >}}) en dehors de son contexte de persistence.
 
 ## Rappels
-Par défaut, beaucoup de relations sont en chargement paresseux
+Par défaut, beaucoup de relations sont en [chargement paresseux]({{< relref "jpa/mapping_associations/fetching" >}})
 ```java
 @OneToMany(fetch = FetchType.LAZY)
 private List<Order> orders;
@@ -26,11 +26,11 @@ private List<Order> orders;
 Cela signifie :
 - Hibernate ne charge pas les orders immédiatement
 - Il attend qu'on appelle explicitement la relation (faire un `.getOrders()`)
-    - pour rappel, ceci va exécuter une nouvelle requêtes SQL `SELECT * FROM Orders WHERE fk_id_x = y`
+    - pour rappel, ceci va exécuter une nouvelle requêtes SQL `SELECT * FROM Orders WHERE fk_id_x = y` => implicant généralement des problèmes de [N+1 queries]({{< relref "jpa_performance/n1_query_problem/" >}})
 
 ### Mais, que lorsque la session est ouverte
 
-Hibernate ne peut charger une relation lazy que si :
+Hibernate **ne peut charger une relation lazy que si** :
 - la session est encore ouverte
 - la transaction est active
 
@@ -104,5 +104,39 @@ Quand Jackson transforme l’objet en JSON, il appelle automatiquement
 Nous avons déjà abordés les solutions possible : 
 - passer en `EAGER`, mais problème de performance car on chargera toujours l'ensemble des relations
 - créer une méthode `findById` et une autre `findByIdJoinOrder` via un `JOIN FETCH`, c'est cette solution à privilégier
+- pour le troisième exemple, par defaut spring met en place du [Open Session In View]({{< relref "jpa_performance/n1_query_problem/open_session_in_view" >}}) (le `user.getOrders()` est exécuté sans exception), mais c'est un anti-pattern : l'exception disparaît, le N+1 reste
+
+### Le cas de Hibernate.initialize()
+
+Hibernate propose une méthode utilitaire qui force l'initialisation d'une association **tant que la session est encore ouverte**.
+
+```java
+@Transactional
+public User getUser(Integer userId) {
+    User user = userRepository.findById(userId).orElseThrow();
+
+    Hibernate.initialize(user.getOrders());   // émet le SELECT maintenant
+
+    return user;   // l'entité peut sortir de la session sans risque
+}
+```
+
+La collection étant déjà peuplée au moment où l'entité quitte le service, la couche appelante peut la parcourir sans lever d'exception.
+
+C'est un dépannage pratique, mais il faut être conscient de ses limites.
+
+- **Ce n'est pas une solution au N+1**. Un `Hibernate.initialize()` par entité, dans une boucle, produit exactement les mêmes requêtes que le chargement paresseux qu'il remplace.
+
+  ```java
+  for (User user : users) {
+      Hibernate.initialize(user.getOrders());   // ❌ toujours une requête par utilisateur
+  }
+  ```
+
+- **Le chargement reste une requête séparée.** Là où `findByIdJoinOrder()` ramène l'utilisateur et ses commandes en une seule jointure, `Hibernate.initialize()` en émet systématiquement deux.
+- **C'est une API Hibernate**, pas du JPA standard. L'équivalent portable est `Hibernate.isInitialized()` / un simple accès à la collection (`user.getOrders().size()`), avec la même mécanique.
+
+> [!note] En pratique
+> `Hibernate.initialize()` dépanne quand on ne maîtrise pas la requête d'origine — par exemple une entité remontée par un code tiers. Dès qu'on écrit soi-même la requête, une [méthode dédiée avec `JOIN FETCH`]({{< relref "join_fetch" >}}) reste préférable : une seule requête, et le plan de chargement lisible dans la signature.
 
 [^1]: https://docs.hibernate.org/orm/7.2/javadocs/org/hibernate/LazyInitializationException.html

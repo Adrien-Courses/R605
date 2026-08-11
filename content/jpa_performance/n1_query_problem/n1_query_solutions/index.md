@@ -1,6 +1,6 @@
 +++
 title = "Solutions aux N+1 requêtes"
-description = "Panorama des solutions JPA au problème des N+1 requêtes : EAGER, JOIN FETCH, @BatchSize et Entity Graph."
+description = "Panorama des solutions JPA au problème des N+1 requêtes : EAGER, JOIN FETCH, @BatchSize, SUBSELECT, Entity Graph et projections DTO."
 weight = 5
 +++
 
@@ -16,7 +16,9 @@ Plusieurs solutions existent pour supprimer les N+1 requêtes. Elles ne se valen
 | [`FetchType.EAGER`]({{< relref "eager" >}}) | forcer le chargement dans le mapping | ❌ ne règle rien et pénalise toutes les requêtes |
 | [`JOIN FETCH` dans une méthode dédiée]({{< relref "join_fetch" >}}) | une méthode de repository par plan de chargement | ✅ ma préférée |
 | [`@BatchSize`]({{< relref "batch_size" >}}) | charger les associations par paquets | ⚠️ atténue le problème sans le supprimer |
+| [`@Fetch(FetchMode.SUBSELECT)`]({{< relref "subselect" >}}) | toutes les collections en une requête, via une sous-requête | ⚠️ efficace mais implicite et non standard |
 | [Entity Graph]({{< relref "entity_graph" >}}) | le plan de chargement passé en paramètre de la requête | ✅ quand les combinaisons se multiplient |
+| [Projection DTO]({{< relref="jpa_requetes/projection" >}}) | ne charger aucune entité, juste les colonnes utiles | ✅ en lecture seule |
 
 ## Ma préférence : les méthodes dédiées
 
@@ -34,10 +36,3 @@ C'est le meilleur compromis pour trois raisons
 - **c'est du JPQL standard** : pas d'annotation propriétaire, pas de comportement implicite.
 
 Son défaut connu est la **combinatoire** : avec plusieurs associations, le nombre de méthodes explose (`findAllWithLivresAndAdresses`, `findAllWithLivresAndCursus`…). C'est le seul cas où je bascule vers un [Entity Graph]({{< relref "entity_graph" >}}), qui permet de garder une requête générique et de passer le plan de chargement en paramètre.
-
-## Autres pistes
-
-Deux options complémentaires, qui ne font pas l'objet d'un article dédié
-
-- **la projection DTO** : `select new com.exemple.EtudiantDto(e.nom, l.titre) from Etudiant e join e.livresLus l`. On ne charge aucune entité, juste les colonnes utiles. Souvent la meilleure option en lecture seule (voir [Projection]({{< relref "jpa_requetes/projection" >}})) ;
-- **`@Fetch(FetchMode.SUBSELECT)`** : Hibernate charge toutes les collections en deux requêtes, la seconde réutilisant la première en sous-requête.

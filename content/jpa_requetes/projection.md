@@ -8,7 +8,7 @@ weight = 30
 > https://thorben-janssen.com/projections-with-jpa-and-hibernate/
 
 > [!definition] Définition
-> Les projections sont des techniques qui permettent de sélectionner et de récupérer uniquement les données nécessaires d'une base de données.
+> Les projections sont des techniques qui permettent de sélectionner et de récupérer uniquement les données nécessaires d'une base de données. Cependant l'objet projeté ne font plus partie du contexte de persistance ([voir plus bas]({{< relref "jpa_requetes/projection#note-importante" >}}))
 
 Elles permettent ainsi de
 - réduire la quantité de données transférées
@@ -78,7 +78,32 @@ List<BookDTO> bookDTOs = query.getResultList();
 Contrairement aux projections d'entités, les projections scalaires et DTO ne font plus partie du contexte de persistance et ne suivent plus le cycle de vie. 
 - Ainsi si vous mettez à jour le DTO, la nouvelle donnée ne sera pas persistée en base de données
 - Par conséquent **les projections scalaires et DTO ne peuvent être utilisées que pour de la lecture**
-  
+
+Comparons les deux comportements sur la même modification.
+
+```java
+// Projection d'entité : Book est géré par le contexte de persistance
+Book book = entityManager.createQuery("SELECT b FROM Book b WHERE b.id = 1", Book.class)
+                         .getSingleResult();
+
+book.setTitle("Nouveau titre");   // ✅ le dirty checking détecte la modification
+// => UPDATE book SET title = 'Nouveau titre' WHERE id = 1; au flush
+```
+
+```java
+// Projection DTO : BookDTO est un simple objet Java
+BookDTO dto = entityManager.createQuery(
+                    "SELECT new com.example.BookDTO(b.title, b.publisher) FROM Book b WHERE b.id = 1",
+                    BookDTO.class)
+              .getSingleResult();
+
+dto.setTitle("Nouveau titre");    // ❌ ne modifie que l'objet en mémoire
+// => aucune requête émise, la base n'est pas modifiée
+```
+
+Dans le second cas, `BookDTO` n'est pas une entité : le contexte de persistance ne le connaît pas, ne conserve aucun état initial pour lui, et n'a donc aucun moyen de détecter le changement (voir [Dirty checking]({{< relref "jpa_performance/dirty_checking" >}})). L'objet est un simple conteneur de données, détaché de toute logique de persistance.
+
+
 ### Choisir sa projection
 Le choix du type de projection dépend du cas d'utilisation :
 
