@@ -1,5 +1,5 @@
 +++
-title = "Fetching Type"
+title = "Fetch Eager/Lazy"
 description = "FetchType LAZY ou EAGER : les stratégies de chargement des relations JPA, leurs valeurs par défaut et comment choisir."
 weight = 70
 +++
