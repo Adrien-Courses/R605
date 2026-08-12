@@ -181,6 +181,9 @@ Comme dans la section précédente sur le `@OneToOne` nous utilisons la proprié
 En d'autre terme, la FK **ne** sera **pas** dans la table `Utilisateur`
 
 ### 2. Méthodes de synchronisation
+> [!ressource] Ressource
+> - [TD3 JPA Relation Bidirectionnelle]({{< relref "td_tp/jpa_mapping/td3" >}})
+
 Maintenant, même si nous avons défini l'attribut `mappedBy` et que l'association `@ManyToOne` côté enfant gère la colonne de clé étrangère, nous devons toujours synchroniser les deux côtés de l'association bidirectionnelle. La meilleure façon de le faire est d'ajouter ces deux méthodes utilitaires [^2]
 
 [^2]: https://stackoverflow.com/a/60889316/9399016
@@ -214,3 +217,27 @@ values (1, 'Premier Commentaire', 1)
 insert into commentaire (fk_utilisateur_id, desc, id)
 values (1, 'Second Commentaire', 2)
 ```
+
+## Synthèse : quel mapping choisir ?
+
+Il existe en réalité une quatrième possibilité, souvent oubliée : ne pas mettre de collection du tout et se contenter d'un [`@ManyToOne`]({{< relref "many-to-tone" >}}) côté enfant.
+
+| Mapping | Écriture de la FK | Coût d'un ajout | Sync à gérer |
+| --- | --- | --- | --- |
+| `@ManyToOne` seul | directe | 1 `INSERT` ✅ | aucune |
+| Bidirectionnel | par l'enfant | 1 `INSERT` ✅ | ⚠️ les deux côtés |
+| `@OneToMany` + `@JoinColumn` | par la collection | `INSERT` + `UPDATE` | aucune |
+| `@OneToMany` seul | table de jointure | 2 `INSERT` ❌ | aucune |
+
+Ce qu'il faut en retenir
+
+- **`@OneToMany` seul** crée une table de jointure alors que le modèle ne le demande pas : trois tables pour une relation 1:N. À éviter.
+- **`@OneToMany` + `@JoinColumn`** évite la table de jointure, mais l'enfant ne connaissant pas sa propre clé étrangère, Hibernate insère puis met à jour. La colonne doit donc être nullable.
+- **Le bidirectionnel** est optimal en SQL, mais impose de [synchroniser les deux côtés]({{< relref "jpa/mapping_associations/synchroniser_les_deux_cotes" >}}).
+- **`@ManyToOne` seul** est le plus efficace et le plus simple. Son seul défaut est ergonomique : plus de `utilisateur.getCommandes()`, il faut passer par une requête — et donc plus de cascade ni d'`orphanRemoval` depuis le parent.
+
+> [!affirmation] Recommandation
+> Si la navigation depuis le parent n'est pas réellement nécessaire, rester sur un `@ManyToOne` unidirectionnel. Le bidirectionnel ne se justifie que lorsque le parcours de la collection est utile — et il faut alors assumer les méthodes de synchronisation.
+
+> [!warning] Le cas de la suppression
+> Sur les deux variantes unidirectionnelles avec collection, retirer un élément d'une `List` amène Hibernate à supprimer **toutes** les lignes rattachées au parent puis à réinsérer celles qui restent. C'est le même comportement que pour [`@ElementCollection`]({{< relref "jpa/mapping_associations/element_collection" >}}); même cause, mêmes remèdes (`Set` ou `@OrderColumn`).

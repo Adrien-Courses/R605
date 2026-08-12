@@ -1,8 +1,10 @@
 +++
-title = "TD3 JPA Relation Bidirectionnelle"
+title = "Suppression Ligne/LigneDetail"
 description = "TD3 JPA : pourquoi supprimer une ligne de commande ne fonctionne pas comme prévu, et comment une relation bidirectionnelle corrige le problème."
-weight = 40
+weight = 20
 +++
+
+*Le TD3 traite l'ajout, ici on traite la suppression*
 
 > [!ressource] Ressource
 > [https://github.com/Adrien-Courses/R605-TD-JPA-synchronize-bidirectional](https://github.com/Adrien-Courses/R605-TD-JPA-synchronize-bidirectional) - voir la classe `test/CommandeTest`
