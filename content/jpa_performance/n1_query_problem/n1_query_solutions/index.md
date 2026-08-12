@@ -18,7 +18,7 @@ Plusieurs solutions existent pour supprimer les N+1 requêtes. Elles ne se valen
 | [`@BatchSize`]({{< relref "batch_size" >}}) | charger les associations par paquets | ⚠️ atténue le problème sans le supprimer |
 | [`@Fetch(FetchMode.SUBSELECT)`]({{< relref "subselect" >}}) | toutes les collections en une requête, via une sous-requête | ⚠️ efficace mais implicite et non standard |
 | [Entity Graph]({{< relref "entity_graph" >}}) | le plan de chargement passé en paramètre de la requête | ✅ quand les combinaisons se multiplient |
-| [Projection DTO]({{< relref="jpa_requetes/projection" >}}) | ne charger aucune entité, juste les colonnes utiles | ✅ en lecture seule |
+| [Projection DTO]({{< relref "jpa_requetes/projection" >}}) | ne charger aucune entité, juste les colonnes utiles | ✅ en lecture seule |
 
 ## Ma préférence : les méthodes dédiées
 

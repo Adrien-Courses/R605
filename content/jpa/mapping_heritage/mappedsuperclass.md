@@ -1,5 +1,5 @@
 +++
-title = "MappedSuperClass"
+title = "@MappedSuperClass"
 description = "L'annotation @MappedSuperclass : factoriser des attributs communs sans créer d'entité, et la contrainte sur les requêtes polymorphiques."
 weight = 10
 +++
@@ -62,3 +62,28 @@ public class Client {
 Des solutions :
 - Se demander si document ne devrait pas être une entité ?
 - Utiliser deux listes dans la classe `Client`
+
+## La pagination
+
+Sur une entité concrète, la pagination est **optimale**. Chaque table est autonome et complète, **par contre il n'existe aucune requête polymorphique** : on pagine donc toujours une table unique, avec un index pleinement exploité.
+
+```sql
+SELECT * FROM facture ORDER BY date DESC LIMIT 20 OFFSET 0;
+```
+
+Le piège est ailleurs : **on ne peut pas paginer la hiérarchie**. Si le besoin est « les 20 derniers documents du client, devis et factures confondus », aucune requête JPQL ne peut l'exprimer puisque `Document` n'est pas une entité. Il faut charger les deux listes séparément et les fusionner côté Java.
+
+```java
+List<Devis> devis = em.createQuery("select d from Devis d order by d.date desc", Devis.class)
+                      .setMaxResults(20).getResultList();
+
+List<Facture> factures = em.createQuery("select f from Facture f order by f.date desc", Facture.class)
+                           .setMaxResults(20).getResultList();
+
+// puis fusionner, retrier et tronquer à 20 en mémoire
+```
+
+Cela fonctionne pour la première page, mais se dégrade vite : pour obtenir la page *N*, il faut ramener *N*×20 lignes de **chaque** table avant de trier, et le nombre total d'éléments reste indéterminable sans un `count` par table.
+
+> [!note] À retenir
+> C'est le prolongement direct de la contrainte ci-dessus. Si un besoin de vue transverse et paginée existe, c'est le signe que `Document` devrait être une entité — et donc que [SINGLE_TABLE]({{< relref "single_table" >}}) ou [JOINED]({{< relref "joined" >}}) serait le bon choix.

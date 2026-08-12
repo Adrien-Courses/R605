@@ -9,6 +9,7 @@ weight = 98
 Le fil rouge de cette édition est la **performance** : savoir écrire un mapping correct ne suffit pas, encore faut-il être conscient des requêtes réellement envoyées à la base et du coût de l'abstraction ORM.
 
 **Prévu**
+- Amélioration du cours sur [l'héritage]({{< relref "jpa/mapping_heritage/index" >}})
 - [Les limites d'un ORM]({{< relref "limites_orm/" >}}) — ce qu'un ORM ne résout pas, et les cas où revenir à du SQL est le bon réflexe.
 - Une section dédiée aux [performances]({{< relref "jpa_performance/" >}})
     - Le problème du **N+1 select** : [le reconnaître dans les logs SQL]({{< relfef "jpa_performance/observabilite" >}}), comprendre d'où il vient, et les stratégies pour l'éviter.

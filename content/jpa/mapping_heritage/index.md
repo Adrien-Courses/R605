@@ -10,6 +10,7 @@ weight = 50
 En OO il est naturel d'avoir des classes qui héritent les unes des autres, tandis qu'en base de données relationnelle une table ne va pas hériter d'une autre table; Problème d'[Impedance mismatch]({{< relref "/jpa/mapping/impedancemismatch" >}})
 
 ## Héritage d'entité
+
 ```java
 @Entity
 public class User {
@@ -25,82 +26,64 @@ public class Employee extends User {
 }
 ```
 
-## 3 stratégies de mapping
-- Héritage avec une table par classe `TABLE_PER_CLASS`
-```
-Employee : ID | Name | Salary
-User :     ID | Name
-```
+Ce code Java est valide, mais il ne dit rien de la façon dont ces deux entités seront stockées. C'est tout l'enjeu : il n'existe pas de traduction évidente de l'héritage vers le modèle relationnel, seulement trois compromis possibles.
 
-- Héritage avec une seule table `SINGLE_TABLE`
-```
-User : ID | Name | Salary
-```
+## L'annotation @Inheritance
 
-- Héritage avec  jointure (relation 1:1 une *employee* depend d'un *user* pour existé) `JOINED`
-  - L'ID dans User et Employee seront les mêmes pour un employee
-```
-User :     ID | Name
-Employee : ID | Salary
-```
+La stratégie se déclare sur la **classe racine** de la hiérarchie, et s'applique à toute sa descendance.
 
-
-### Stratégie TABLE_PER_CLASS
-> [!ressource] Ressource
-> [ 08 - 03 - Mapper une hiérarchie de classes en mode TABLE_PER_CLASS ](https://youtu.be/mb6tEK3C5_o?list=PLzzeuFUy_CnhVfJIKyc3okTiiCc0anutx)
-
-Pour les opérations CRUD aucun problème :
-
-- `em.persist(...)` suivant le type enregistrera dans la bonne table
-- `em.find(User.class, 1)` suivant la valeur du premier paramètre SELECT dans la bonne table
-- `user.setName(...)` de même aucun problème, le type de l'objet est précis
-- `em.remove(user)` on connaît également le type
-
-### Stratégie SINGLE_TABLE
-> [!ressource]
-> [ 08 - 04 - Mapper une hiérarchie de classes en mode SINGLE_TABLE](https://youtu.be/swXo45QrYWo?list=PLzzeuFUy_CnhVfJIKyc3okTiiCc0anutx)
-
-Nous allons avoir une table unique pour ces deux entités, avec l'ensemble des colonnes de `User` et `Employee`
-```
-User : ID | Name | Salary
-```
-
-- Si on met des instances de `User` alors on utilisera que les deux premières colonnes
-- Si on met des instances de `Employee` alors on utilisera les trois colonnes
-
-On rencontre déjà un premier problème, car avec JPA on peut mettre `@Column(nullable = false) int salary` or les `user` auront ce champ à NULL.
-Par conséquent, en choisissant la stratégie `SINGLE_TABLE` on ne pourra pas utiliser `nullable` sur les entités qui étendent l'entité de base
-
-- `em.persist(...)` même table donc aucun problème
-- `em.find(User.class, 1)`
-  - Est-ce que le User qui a l'id 1 est réellement un User ?
-  - La seule façon de s'en sortir est d'ajouter une colonne technique `DTYPE` qui sera complété lors de l'insertion et qui précisera `User` ou `Employee`
-- `employee.setSalary(10000)` aucun problème car on a le type de l'objet
-- `em.remove(employee)` on sait que l'instance est une instance d'employee donc aucun problème
-
-### Stratégie JOINED
-> [!ressource]
-> [ 08 - 05 - Mapper une hiérarchie de classes en mode JOINED ](https://youtu.be/M9UOBnCLalI?list=PLzzeuFUy_CnhVfJIKyc3okTiiCc0anutx)
-
-Une entité qui étend une autre entité est en relation 1:1 avec cette entité
-
-```
-User :     ID | Name
-Employee : ID | Salary
-```
-
-L'ID dans User et Employee seront les mêmes pour un employee
-
-- `em.persist(employee)` deux requêtes `INSERT` nécessaires, une pour la table User et une autre pour Employee
-- `em.find(Employee, 2)` il nous faudra une jointure sur les deux tables
-- `employee.setSalary(10000)` aucun problème avec la mise à jour car la propriété salaire est dans la classe `Employee` qui elle met est associée à une table précise => un seul update en base
-- `em.remove(employee)` deux requêtes `DELETE` nécessaires
-
-## L’annotation @Inheritance
 ```java
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class User {
 
 }
 ```
+
+> [!note] Note
+> En l'absence d'annotation `@Inheritance`, JPA applique la stratégie [SINGLE_TABLE]({{< relref "single_table" >}}) par défaut.
+
+## Les 3 stratégies de mapping
+
+Reprenons `User` et `Employee`, et regardons le schéma produit par chacune.
+
+**[SINGLE_TABLE]({{< relref "single_table" >}})** — une seule table pour toute la hiérarchie, plus une colonne discriminante
+
+```
+user : ID | DTYPE | NAME | SALARY
+```
+
+**[JOINED]({{< relref "joined" >}})** — une table par classe, reliées par une clé primaire partagée (relation 1:1, un *employee* dépend d'un *user* pour exister)
+
+```
+user     : ID | NAME
+employee : ID | SALARY
+```
+
+**[TABLE_PER_CLASS]({{< relref "table_per_class" >}})** — une table complète et autonome par classe concrète, les colonnes héritées étant dupliquées
+
+```
+user     : ID | NAME
+employee : ID | NAME | SALARY
+```
+
+## Comparaison
+
+| | [SINGLE_TABLE]({{< relref "single_table" >}}) | [JOINED]({{< relref "joined" >}}) | [TABLE_PER_CLASS]({{< relref "table_per_class" >}}) |
+| --- | --- | --- | --- |
+| Nombre de tables | 1 | 1 par classe | 1 par classe concrète |
+| `persist` d'une fille | 1 `INSERT` | 1 `INSERT` par niveau | 1 `INSERT` |
+| `find` sur une fille | 1 `SELECT` | jointure | 1 `SELECT` |
+| Requête polymorphique | 1 `SELECT` ✅ | `LEFT JOIN` sur toutes les tables | `UNION` sur toutes les tables ❌ |
+| Pagination | ✅ index exploité | ✅ piloté par la table racine | ⚠️ tri sur le résultat de l'`UNION` |
+| Contraintes `NOT NULL` | ❌ impossibles sur les filles | ✅ | ✅ |
+| Modèle normalisé | ❌ colonnes creuses | ✅ | ❌ colonnes dupliquées |
+| Clé étrangère vers la racine | ✅ | ✅ | ❌ impossible |
+
+## Comment choisir
+
+- **[SINGLE_TABLE]({{< relref "single_table" >}})** si les classes filles ajoutent peu d'attributs et que les lectures priment. C'est le défaut, et souvent le bon choix.
+- **[JOINED]({{< relref "joined" >}})** si les classes filles ont de nombreux attributs obligatoires et que l'intégrité doit être garantie par la base.
+- **[TABLE_PER_CLASS]({{< relref "table_per_class" >}})** rarement — et dans ce cas, se demander d'abord si un [`@MappedSuperclass`]({{< relref "mappedsuperclass" >}}) ne conviendrait pas mieux.
+
+Ces trois stratégies supposent que la classe mère soit une **entité**. Si ce n'est pas le cas — si l'on veut seulement factoriser des attributs communs sans jamais interroger la classe mère — c'est vers [`@MappedSuperclass`]({{< relref "mappedsuperclass" >}}) qu'il faut se tourner.
